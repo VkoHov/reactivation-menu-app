@@ -4,12 +4,12 @@ import 'firebase/auth';
 
 // Replace this with your own config details
 var config = {
-    apiKey: "AIzaSyA9DOwXutW8btr-nwMGoQqulH5PWzMbqwc",
-    authDomain: "reactivation-8bfeb.firebaseapp.com",
-    databaseURL: "https://reactivation-8bfeb.firebaseio.com",
-    projectId: "reactivation-8bfeb",
-    storageBucket: "reactivation-8bfeb.appspot.com",
-    messagingSenderId: "669461431553"
+    apiKey: "AIzaSyB1heLOYN_GTbdAYdC8Lrt-K7x2O5ZtJe4",
+    authDomain: "menu-app-d88b1.firebaseapp.com",
+    databaseURL: "https://menu-app-d88b1.firebaseio.com",
+    projectId: "menu-app-d88b1",
+    storageBucket: "",
+    messagingSenderId: "523981174616"
 };
 firebase.initializeApp(config);
 firebase.firestore().settings({ timestampsInSnapshots: true });
