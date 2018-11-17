@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {loginUser} from '../../actions/loginAction'
+import {LoginAction} from '../../actions/authActions'
 import { connect } from 'react-redux'
 import './Login.css';
 
@@ -16,13 +16,12 @@ class Login extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.loginUser(this.state);
+        this.props.LoginAction(this.state);
     }
     render() {
         return(
             <div>
                 <form  onSubmit={this.handleSubmit}>
-                    <h5 >Sign In</h5>
                     <div >
                         <label htmlFor="email">Email</label>
                         <input type="email" id='email' onChange={this.handleChange} />
@@ -42,7 +41,7 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        loginUser: (user) => dispatch(loginUser(user)),
+        LoginAction: (credentials) => dispatch(LoginAction(credentials)),
     }
 }
 

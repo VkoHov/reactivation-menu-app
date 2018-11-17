@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux'
 import {firestoreReducer} from 'redux-firestore'
-import loginReducer from './reducers/loginReducer'
+import authReducer from './reducers/authReducer'
 
 export default combineReducers({
-    login: loginReducer,
+    login: authReducer,
     firestore: firestoreReducer,
 })
