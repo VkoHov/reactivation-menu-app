@@ -3,6 +3,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 // Replace this with your own config details
+
 var config = {
     apiKey: "AIzaSyB1heLOYN_GTbdAYdC8Lrt-K7x2O5ZtJe4",
     authDomain: "menu-app-d88b1.firebaseapp.com",
@@ -11,7 +12,6 @@ var config = {
     storageBucket: "",
     messagingSenderId: "523981174616"
 };
-firebase.initializeApp(config);
-firebase.firestore().settings({ timestampsInSnapshots: true });
+  firebase.initializeApp(config);
 
 export default firebase

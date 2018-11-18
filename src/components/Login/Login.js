@@ -3,7 +3,6 @@ import {LoginAction} from '../../actions/authActions';
 import { connect } from 'react-redux';
 import { withRouter , Redirect} from 'react-router-dom';
 import {compose} from 'redux';
-
 import './Login.css';
 
 
@@ -27,6 +26,7 @@ class Login extends Component {
         }
     }
     render() {
+
         if(this.props.auth.uid) return <Redirect to="/"/>
         return(
             <div>

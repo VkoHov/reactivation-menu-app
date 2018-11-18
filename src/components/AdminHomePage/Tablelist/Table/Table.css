@@ -1,0 +1,12 @@
+.free{
+    background-color: green;
+}
+
+.busy{
+    background-color: brown;
+}
+
+.reserved{
+
+ background-color: blueviolet;
+}
