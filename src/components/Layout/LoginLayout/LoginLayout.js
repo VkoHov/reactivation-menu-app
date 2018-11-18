@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import {LoginAction} from '../../actions/authActions';
+import './LoginLayout.css';
+import {LoginAction} from "../../../actions/authActions";
 import { connect } from 'react-redux';
-import { withRouter , Redirect} from 'react-router-dom';
-import {compose} from 'redux';
-import './Login.css';
+import { compose } from 'redux';
+import {withRouter} from 'react-router-dom';
 
-
-class Login extends Component {
+class LoginLayout extends Component{
     state = {
         email: '',
         password: ''
@@ -25,19 +24,17 @@ class Login extends Component {
             this.props.history.push('/');
         }
     }
-    render() {
-
-        if(this.props.auth.uid) return <Redirect to="/"/>
+    render(){
         return(
             <div>
                 <form  onSubmit={this.handleSubmit}>
                     <div >
-                        <label htmlFor="emailP">Email</label>
-                        <input type="email" id='emailP' onChange={this.handleChange} />
+                        <label htmlFor="email">Email</label>
+                        <input type="email" id='email' onChange={this.handleChange} />
                     </div>
                     <div >
-                        <label htmlFor="passwordP">Password</label>
-                        <input type="password" id='passwordP' onChange={this.handleChange} />
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id='password' onChange={this.handleChange} />
                     </div>
                     <div>
                         <button onClick={this.handleClick}>Login</button>
@@ -50,7 +47,6 @@ class Login extends Component {
 const mapStateToProps = state => {
     return {
         firebase: state.firebase,
-        auth: state.firebase.auth,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -58,8 +54,7 @@ const mapDispatchToProps = dispatch => {
         LoginAction: (credentials) => dispatch(LoginAction(credentials)),
     }
 }
-
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(mapStateToProps,mapDispatchToProps),
     withRouter,
-)(Login);
+)(LoginLayout);

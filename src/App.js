@@ -9,7 +9,6 @@ import EditAdmin from './components/EditAdmi/EditAdmin';
 import EditManu from './components/Editmanu/EditManu';
 import TableInfo from './components/AdminHomePage/Tablelist/TableInfo/TableInfo';
 
-
 import './App.css';
 
 
