@@ -29,5 +29,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "loader": "^2.1.1",
+    "node-sass": "^4.10.0",
+    "sass": "^1.15.1"
+  }
 }

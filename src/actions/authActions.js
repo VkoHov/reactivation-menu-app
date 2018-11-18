@@ -12,3 +12,11 @@ export const LoginAction = (credentials) => {
 
     }
 }
+export const LogoutAction = () => {
+    return (dispatch, getState, {getFirebase}) => {
+        let firebase = getFirebase();
+        firebase.auth().signOut().then(() => {
+            dispatch({type: 'LOGOUT_SUCCESS'});
+        });
+    }
+}

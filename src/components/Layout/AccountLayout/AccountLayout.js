@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
-import LoginLayout from '../LoginLayout/LoginLayout'
-import LogoutLayout from '../LogoutLayout/LogoutLayout'
-import {Link} from 'react-router-dom'
+import LoginLayout from '../LoginLayout/LoginLayout';
+import LogoutLayout from '../LogoutLayout/LogoutLayout';
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom';
 import './AccountLayout.css';
 
 class AccountLayout extends Component{
-    state = {
-        isLogedIn: false,
-    }
+
     render(){
+        const links = this.props.authID
+            ? <LogoutLayout/>
+            : <LoginLayout/>;
+        const accountLink = this.props.authID
+            ? <p>Account</p>
+            : <Link to = '/login'> Account </Link>;
         return(
             <div>
-                {this.state.isLogedIn
-                    &&  <p>Account</p>
-                    || <Link to = '/login'> Account </Link>
-                }
-                {this.state.isLogedIn
-                    && <LogoutLayout/>
-                    || <LoginLayout/>
-                }
+                { accountLink }
+                { links }
             </div>
         )
     }
 }
-export default AccountLayout;
+
+const mapStateToProps = state => {
+    return{
+        authID: state.firebase.auth.uid,
+    }
+}
+export default connect(mapStateToProps)(AccountLayout);
