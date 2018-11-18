@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route , Switch} from "react-router-dom";
-import {connect} from 'react-redux'
 import Header from "./components/Header/Header";
 import Homepage from "./components/Homepage/Homepage";
 import Login from "./components/Login/Login";
