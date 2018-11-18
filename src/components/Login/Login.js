@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {loginUser} from '../../actions/loginAction'
+import { loginUser } from '../../actions/loginAction'
 import { connect } from 'react-redux'
 import './Login.css';
 
@@ -19,9 +19,9 @@ class Login extends Component {
         this.props.loginUser(this.state);
     }
     render() {
-        return(
+        return (
             <div>
-                <form  onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <h5 >Sign In</h5>
                     <div >
                         <label htmlFor="email">Email</label>

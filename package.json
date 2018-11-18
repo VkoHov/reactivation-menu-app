@@ -29,5 +29,17 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VkoHov/reactivation-team-work.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VkoHov/reactivation-team-work/issues"
+  },
+  "homepage": "https://github.com/VkoHov/reactivation-team-work#readme"
 }
