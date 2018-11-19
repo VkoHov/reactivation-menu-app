@@ -13,7 +13,7 @@ class AddNewDish extends Component {
 		description:null,
 		image:null,
 		url:null,
-		category:"Category",
+		category:"category",
 		price:null,
 		str:"",
 	}
@@ -80,12 +80,10 @@ class AddNewDish extends Component {
                 		<button type="button" onClick={this.handleUpload}>Upload</button>
                 		</p>
                 		<select id="category" onChange={this.handleChange}  value={this.state.category}>
-                			<option disabled="disabled" >
-                				Categorys
-                			</option>
-                			<option>desert</option>
-                			<option>salad</option>
-                			<option>garnish</option>
+							<option value="category" disabled style={{display: 'none'}}> Category </option>
+                			<option value="desert"> Desert </option>
+                			<option value="salad"> Salad </option>
+                			<option value="garnish"> Garnish </option>
                 		</select>
                 		<ChangableIngredient/>
                 		<input id="price" 
