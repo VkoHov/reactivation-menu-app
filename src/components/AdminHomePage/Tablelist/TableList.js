@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import Table from './Table/Table';
 import { connect } from 'react-redux';
-
+import { compose } from 'redux';
+import {firestoreConnect} from 'react-redux-firebase';
 import '../Tablelist/TableList.css';
 
 class TableLIst extends Component {
     render() {
-        console.log('esi table infonaaaa', this.props.tableInfo.info)
         return (
             <div>
-                {this.props.tableInfo.info &&
-                    this.props.tableInfo.info.map((tablee, index) => {
+                {this.props.firestoreInfo &&
+                this.props.firestoreInfo.map((tablee, index) => {
                         return (
                             < Table key={index} tablee={tablee} className={`${tablee.tabelStatus}`} />
                         );
@@ -24,8 +24,14 @@ class TableLIst extends Component {
 const mapStateToProps = state => {
     return {
         tableInfo: state.tableInfo,
+        firestoreInfo: state.firestore.ordered.tables,
     }
 }
 
 
-export default connect(mapStateToProps)(TableLIst);
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        {collection: 'tables'}
+    ])
+)(TableLIst);

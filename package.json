@@ -41,10 +41,5 @@
   "bugs": {
     "url": "https://github.com/VkoHov/reactivation-team-work/issues"
   },
-  "homepage": "https://github.com/VkoHov/reactivation-team-work#readme",
-  "devDependencies": {
-    "loader": "^2.1.1",
-    "node-sass": "^4.10.0",
-    "sass": "^1.15.1"
-  }
+  "homepage": "https://github.com/VkoHov/reactivation-team-work#readme"
 }
