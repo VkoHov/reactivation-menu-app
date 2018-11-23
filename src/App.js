@@ -8,6 +8,7 @@ import AdminHomePage from './components/AdminHomePage/AdminHomePage';
 import EditAdmin from './components/EditAdmi/EditAdmin';
 import EditManu from './components/Editmanu/EditManu';
 import TableInfo from './components/AdminHomePage/Tablelist/TableInfo/TableInfo';
+import CategoryList from './components/CategoryList/CategoryList';
 
 import './App.css';
 
@@ -25,7 +26,8 @@ class App extends Component {
                         <Route path='/admin/editadmin' component={EditAdmin} />
                         <Route path='/admin/editmanu' component={EditManu} />
                         <Route path='/admin/table/:tableId' component={TableInfo} />
-
+                        <Route path='/listing'  component={CategoryList}/ >
+                     
                     </Switch>
                 </div>
             </Router>
