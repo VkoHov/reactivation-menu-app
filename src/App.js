@@ -8,8 +8,8 @@ import AdminHomePage from './components/AdminHomePage/AdminHomePage';
 import EditAdmin from './components/EditAdmi/EditAdmin';
 import EditManu from './components/Editmanu/EditManu';
 import TableInfo from './components/AdminHomePage/Tablelist/TableInfo/TableInfo';
-
 import './App.css';
+import DishDetails from './components/DishDetails';
 
 
 class App extends Component {
@@ -25,7 +25,7 @@ class App extends Component {
                         <Route path='/admin/editadmin' component={EditAdmin} />
                         <Route path='/admin/editmanu' component={EditManu} />
                         <Route path='/admin/table/:tableId' component={TableInfo} />
-
+                        <Route path = '/dish' component = {DishDetails} />
                     </Switch>
                 </div>
             </Router>
