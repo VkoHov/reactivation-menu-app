@@ -1,22 +1,18 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Link} from "react-router-dom";
 
 
 class TableInfo extends Component {
     render() {
-        console.log('gago');
         return (
             <div>
                 aystex petqe lini info sexani masin;
-              kam
+                kam
                 aystex karox e linel dzer govazdy;
-
-
                 <div>
-                    <Link to={'/admin/'} > back to homePage </Link>
+                    <Link to={'/admin/'}> back to homePage </Link>
                 </div>
-                {console.log('esi amen mi tablei infona', this.props.tableInfo.info)}
             </div>
         )
     }

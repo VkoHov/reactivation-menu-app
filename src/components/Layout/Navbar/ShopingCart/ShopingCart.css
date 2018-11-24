@@ -1,0 +1,55 @@
+.shopingIcon span{
+	background: green;
+	border-radius: 50%;
+	padding: 2px 4px;
+	position: absolute;
+	font-size: 10px;
+}
+
+.shopingCart{
+	width: 300px;
+	position: absolute;
+	border:1px solid black;
+	padding: 0 10px;
+	top: 40px;
+	display: none;
+}
+.shoping{
+	position: relative;
+}
+.shopingCart li{
+	list-style-type: none;
+	padding: 5px;
+	display: flex;
+	border-bottom: 1px solid black
+}
+
+.shopingCart li div:first-of-type{
+	flex: 1;
+}
+
+.shopingCart li div:last-of-type{
+	flex: 3;
+	position: relative;
+}
+.shopingCart li span{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
+.shopingCart h3{
+	font-style: italic;
+	text-align: center;
+	color: red;
+}
+.shopingIcon{
+	cursor: pointer;
+	font-size: 25px;
+	width: 50px;
+	position: relative;
+}
+.shoping:hover .shopingCart{
+	transition: 1s;
+	display: block;
+}
