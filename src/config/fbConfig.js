@@ -13,7 +13,7 @@ var config = {
     storageBucket: "menu-app-d88b1.appspot.com",
     messagingSenderId: "523981174616"
 };
-  firebase.initializeApp(config);
+firebase.initializeApp(config);
 const storage = firebase.storage();
 firebase.firestore().settings({ timestampsInSnapshots: true });
 
