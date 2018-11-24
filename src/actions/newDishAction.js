@@ -3,9 +3,7 @@ export const addNewDish = (newDish) => {
         const firestore = getFirestore();
         firestore.collection("dishes").add({
         	...newDish,
-        	added:'Haykuhi',
-            showOrHide:true,
-        	adding:new Date()
+        	adding:new Date(),
         }).then(() => {
         	dispatch({type: 'NEW_DISH', newDish});
         })
