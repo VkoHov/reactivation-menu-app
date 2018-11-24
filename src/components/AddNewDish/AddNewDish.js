@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { addNewDish } from '../../actions/newDishAction';
 import ChangableIngredient from './changableIngredients/changableIngredient';
@@ -7,16 +6,25 @@ import {storage} from '../../config/fbConfig';
 import './AddNewDish.css';
 
 class AddNewDish extends Component {
+	constructor(props){
+		super(props);
+        this.addingridientArrToState = this.addingridientArrToState.bind(this);
+        this.state = {
+            title:null,
+            description:null,
+            url:'',
+            changeIng:[],
+            category:"category",
+            price:null,
+            str:"",
+        }
+    }
 
-	state = {
-		title:null,
-		description:null,
-		image:null,
-		url:null,
-		changeIng:'',
-		category:"category",
-		price:null,
-		str:"",
+
+	addingridientArrToState(arr){
+		this.setState({
+			changeIng: arr,
+		});
 	}
 
 	addingridientArrToState(arr){
@@ -29,7 +37,7 @@ class AddNewDish extends Component {
 		this.setState({
 			[e.target.id]: e.target.value,
 		})
-	}
+	};
 
 	hhh = (ingredients) => {
 		this.setState({
@@ -39,8 +47,22 @@ class AddNewDish extends Component {
 
 	handleAdd = (e) => {
 		e.preventDefault();
-		this.props.addNewDish(this.state)
-	}
+		const {url, description, title, image, category, price} = this.state;
+		if(url && description && title && image && category !== 'category' && price){
+            this.props.addNewDish({url, description,title,category, price});
+            this.setState({
+                title:null,
+                description:null,
+                url:'',
+                changeIng:[],
+                category:"category",
+                price:null,
+                str:"",
+			})
+		} else {
+			console.log('chexav brat')
+		}
+	};
 
 	addImage = (e) => {
 		if(e.target.files[0]) {
@@ -49,16 +71,12 @@ class AddNewDish extends Component {
 				image:image,
 			})
 		}
+	};
 
-
-  
-	}
-
-	handleUpload = () => {
+	handleUpload = (e) => {
 		const {image} = this.state;
-		const uploadTask = storage.ref(`images/${image.name}`).put(image);
-		
-		console.log('state.image',image)
+		const uploadTask = storage.ref(`dishimages/${image.name}`).put(image);
+
 		uploadTask.on('state_changed',
 				(snapshot) => {console.log(snapshot)},
 				(error) => {console.log(error)},
@@ -66,7 +84,9 @@ class AddNewDish extends Component {
 					storage.ref('images')
 						.child(image.name)
 						.getDownloadURL()
-						.then(url => {console.log(url)})
+						.then(url => {
+							this.setState({url})
+						})
 				}
 			)
 		
@@ -107,7 +127,7 @@ addIngredient = (e) => {
                 			<option value="salad"> Salad </option>
                 			<option value="garnish"> Garnish </option>
                 		</select>
-	                	<ChangableIngredient changeIng={this.addingridientArrToState}/>
+	                	<ChangableIngredient changedIngArr={this.addingridientArrToState}/>
 	                	<input id="price" 
 	                		type="text" 
 	                		placeholder="Price" 

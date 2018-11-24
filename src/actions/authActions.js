@@ -20,3 +20,16 @@ export const LogoutAction = () => {
         });
     }
 }
+export  const SignUp = (newUser) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firebase = getFirebase();
+        const firestore = getFirestore();
+        firebase.auth().createUserWithEmailAndPassword(
+            newUser.email,
+            newUser.password,
+        ).then((resp) => {
+            return firestore.collation('users').doc(resp.user.uid)
+        });
+    }
+
+}
