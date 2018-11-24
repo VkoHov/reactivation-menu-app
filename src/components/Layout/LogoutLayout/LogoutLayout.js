@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './LogoutLayout.css';
 import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase'
+import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux'
 import {LogoutAction} from "../../../actions/authActions";
 
 class LogoutLayout extends Component{
         render(){
+            console.log(this.props.firestoreInfo);
             let users = this.props.firestoreInfo.users ? Object.values(this.props.firestoreInfo.users) : [];
             let user = users.filter((user) => {
                 return user.userId === this.props.firebaseInfo.auth.uid

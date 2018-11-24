@@ -1,0 +1,33 @@
+.about {
+	display: flex;
+	text-align: center;
+}
+
+.about > ul,
+.about > div {
+	flex: 1;
+	margin: 0;
+}
+
+ .about h3 {
+	text-transform: uppercase;
+	font-size: 18px;
+	color: #FF9900;
+ }
+ 
+  .about p {
+ 	font-size: 14px;
+ }
+
+ .about li {
+ 	padding: 0 14%;
+ 	margin-bottom: 6%;
+ }
+
+  .aboutul {
+ 	padding: 5% 0 ;
+  }
+
+   .about img{
+  	height: 100%;
+  }
