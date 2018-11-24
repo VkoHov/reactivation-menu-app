@@ -5,7 +5,7 @@ export const addNewDish = (newDish) => {
         	...newDish,
         	adding:new Date(),
         }).then(() => {
-        	dispatch({type: 'NEW_DISH', newDish});
+            dispatch({type: 'NEW_DISH', newDish});
         })
     }
 }

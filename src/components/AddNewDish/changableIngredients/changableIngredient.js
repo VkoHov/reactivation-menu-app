@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import './changableIngredient.css';
 class ChangableIngredient extends Component {
+
+
     state = {
         ingredients: [''],
     };
+
 
     addNewIngredient = () => {
         this.setState({
@@ -20,6 +23,12 @@ class ChangableIngredient extends Component {
         });
         this.props.changedIngArr(temp);
     }
+    addIngredient(e){
+        let temp = this.state.ingredients;
+        let key = e.currentTarget.getAttribute('key');
+        let value = e.target.value;
+        console.log('gago',key);
+        temp[key] = value;
 
     render() {
 
@@ -37,6 +46,7 @@ class ChangableIngredient extends Component {
 
                         </p>)
                 })}
+
                 <span onClick={this.addNewIngredient}>+</span>
             </div>
         )

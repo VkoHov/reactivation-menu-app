@@ -25,7 +25,12 @@ class AddNewDish extends Component {
 		this.setState({
 			changeIng: arr,
 		});
+	}
 
+	addingridientArrToState(arr){
+		this.setState({
+			changeIng: arr,
+		})
 	}
 
 	handleChange = (e) =>{
@@ -33,6 +38,12 @@ class AddNewDish extends Component {
 			[e.target.id]: e.target.value,
 		})
 	};
+
+	hhh = (ingredients) => {
+		this.setState({
+			changeIng:ingredients,
+		})
+	}
 
 	handleAdd = (e) => {
 		e.preventDefault();
@@ -63,7 +74,6 @@ class AddNewDish extends Component {
 	};
 
 	handleUpload = (e) => {
-
 		const {image} = this.state;
 		const uploadTask = storage.ref(`dishimages/${image.name}`).put(image);
 
@@ -83,6 +93,11 @@ class AddNewDish extends Component {
 
 	}
 
+addIngredient = (e) => {
+        this.setState({
+            ingredient: e.target.value
+        });
+    }
     render() {
         return (
                 <div className="addNewDish">
