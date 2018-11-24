@@ -1,32 +1,42 @@
 import React, {Component} from 'react';
 import {firestoreConnect} from 'react-redux-firebase';
+import {store} from '../../../redux/reducers/newDishReducer'
 
 
 import './changableIngredient.css';
 
 class ChangableIngredient extends Component {
+
+
     state = {
         ingredients: [],
         inputsCount: ["a"],
         ingredient: '',
     }
 
-    addIngredient = (e) => {
-        this.setState({
-            ingredient: e.target.value
-        });
-    }
 
-    addNewIngredient = () => {
+    addNewIngredient = (ingredients) => {
+        console.log('store from changeIng',store);
         this.setState({
             ingredients: this.state.ingredients.concat([this.state.ingredient]),
             inputsCount : this.state.inputsCount.concat(['a']),
         });
     }
+    addIngredient(e){
+        let temp = this.state.ingredients;
+        let key = e.currentTarget.getAttribute('key');
+        let value = e.target.value;
+        console.log('gago',key);
+        temp[key] = value;
 
+        this.setState({
+            ingredients: temp,
+        })
+        console.log(this.state.ingredients);
+    }
 
     render() {
-        console.log(this.state.inputsCount);
+
         return (
             <div className="changeIng">
                 {this.state.inputsCount.map((inp,index)  => {
@@ -35,14 +45,14 @@ class ChangableIngredient extends Component {
                             id="changeIng"
                             type="text"
                             placeholder="Changeable ingredients"
-                            onChange={this.addIngredient}
+                            onChange={(e) => {this.addIngredient(e)}}
                         />
-                        <span onClick={this.addNewIngredient}>+</span>
 
                     </p>)
                 })
             }
 
+                <span onClick={this.addNewIngredient}>+</span>
             </div>
         )
     }
