@@ -2,12 +2,12 @@ export const addNewDish = (newDish) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         firestore.collection("dishes").add({
-        	...newDish,
-        	added:'Haykuhi',
+            ...newDish,
+            added:'Haykuhi',
             showOrHide:true,
-        	adding:new Date()
+            adding:new Date()
         }).then(() => {
-        	dispatch({type: 'NEW_DISH', newDish});
+            dispatch({type: 'NEW_DISH', newDish});
         })
     }
 }

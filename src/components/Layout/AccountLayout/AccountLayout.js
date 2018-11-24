@@ -12,8 +12,8 @@ class AccountLayout extends Component{
             ? <LogoutLayout/>
             : <LoginLayout/>;
         const accountLink = this.props.authID
-            ? <p>Account</p>
-            : <Link to = '/login'> Account </Link>;
+            ? <p><i className="far fa-user"></i></p>
+            : <Link to = '/login'> <i className="far fa-user"></i> </Link>;
         return(
             <div>
                 { accountLink }

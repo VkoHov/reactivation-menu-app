@@ -13,9 +13,16 @@ class AddNewDish extends Component {
 		description:null,
 		image:null,
 		url:null,
+		changeIng:'',
 		category:"category",
 		price:null,
 		str:"",
+	}
+
+	addingridientArrToState(arr){
+		this.setState({
+			changeIng: arr,
+		})
 	}
 
 	handleChange = (e) =>{
@@ -24,29 +31,37 @@ class AddNewDish extends Component {
 		})
 	}
 
+	hhh = (ingredients) => {
+		this.setState({
+			changeIng:ingredients,
+		})
+	}
+
 	handleAdd = (e) => {
 		e.preventDefault();
-		console.log(this.state);
 		this.props.addNewDish(this.state)
 	}
 
 	addImage = (e) => {
-		if(e.target.files[0]){
+		if(e.target.files[0]) {
+			let image = e.target.files[0];
 			this.setState({
-				image:e.target.files[0]
+				image:image,
 			})
-
 		}
 
+
+  
 	}
+
 	handleUpload = () => {
 		const {image} = this.state;
-		const uploadImg = storage.ref(`images/${image.name}`).put(image);
+		const uploadTask = storage.ref(`images/${image.name}`).put(image);
 		
-		console.log(image)
-		uploadImg.on('state_changed',
-				(snapshot) => {},
-				(error) => {},
+		console.log('state.image',image)
+		uploadTask.on('state_changed',
+				(snapshot) => {console.log(snapshot)},
+				(error) => {console.log(error)},
 				() => {
 					storage.ref('images')
 						.child(image.name)
@@ -54,9 +69,15 @@ class AddNewDish extends Component {
 						.then(url => {console.log(url)})
 				}
 			)
+		
+
 	}
 
-
+addIngredient = (e) => {
+        this.setState({
+            ingredient: e.target.value
+        });
+    }
     render() {
         return (
                 <div className="addNewDish">
@@ -72,21 +93,22 @@ class AddNewDish extends Component {
 	                		placeholder="Short description" 
 	                		onChange={this.handleChange}>
                 		</textarea>
-                		<p><input 
-	                		id="image" 
-	                		type="file" 
-	                		onChange={this.addImage}
-                		/>
-                		<button type="button" onClick={this.handleUpload}>Upload</button>
-                		</p>
+                		<p>
+	                		<input 
+		                		id="image" 
+		                		type="file" 
+		                		onChange={this.addImage}
+	                		/>
+			           		<button type="button" onClick={this.handleUpload}>Upload</button>
+		                </p>
                 		<select id="category" onChange={this.handleChange}  value={this.state.category}>
 							<option value="category" disabled style={{display: 'none'}}> Category </option>
                 			<option value="desert"> Desert </option>
                 			<option value="salad"> Salad </option>
                 			<option value="garnish"> Garnish </option>
                 		</select>
-                		<ChangableIngredient/>
-                		<input id="price" 
+	                	<ChangableIngredient changeIng={this.addingridientArrToState}/>
+	                	<input id="price" 
 	                		type="text" 
 	                		placeholder="Price" 
 	                		onChange={this.handleChange}
@@ -96,7 +118,7 @@ class AddNewDish extends Component {
                 </div>
         )
     }
-		}
+}
 
 
 

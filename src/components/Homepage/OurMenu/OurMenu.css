@@ -1,0 +1,52 @@
+.ourMenu{
+	display: flex;
+	margin-bottom: 1%;
+}
+.ourMenu > div{
+	flex:1;
+	height: 29.3vw;
+}
+.shape{
+	height: 100%;
+	background: rgba(255, 153, 0, .8);
+	display: flex;
+	flex-direction: column;
+	transform: scale(0);
+	transition: .5s linear;
+	align-items: center;
+	justify-content: center;
+}
+.ourMenu > div:hover .shape{
+	transform: scale(1);
+}
+.ourMenu > div:nth-of-type(1){
+	background: url(../images/baner1.jpg);
+	background-size: 100% 100%;
+}
+.ourMenu > div:nth-of-type(2){
+	background-size: 100% 100%;
+	margin: 0 1.5%;
+	background: url(../images/baner2.jpg);
+}
+.ourMenu > div:nth-of-type(3){
+	background-size: 100% 100%;
+	background: url(../images/baner3.jpg);
+}
+.ourMenu p{
+	margin: 0;
+}
+.shape>p:first-of-type {
+	font-size: 30px;
+	color: #fff;
+}
+.shape>p:last-of-type {
+	font-size: 24px;
+	color: #fff;
+	font-weight: 100;
+	text-transform: uppercase;
+}
+.shape>p:empty {
+	border-bottom: 1px solid #fff;
+	width: 60%;
+	margin: 30px 0;
+}
