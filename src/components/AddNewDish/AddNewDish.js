@@ -13,24 +13,17 @@ class AddNewDish extends Component {
             title:null,
             description:null,
             url:'',
-            changeIng:[],
+            ingredients:[],
             category:"category",
             price:null,
-            str:"",
         }
     }
 
 
 	addingridientArrToState(arr){
 		this.setState({
-			changeIng: arr,
+			ingredients: arr,
 		});
-	}
-
-	addingridientArrToState(arr){
-		this.setState({
-			changeIng: arr,
-		})
 	}
 
 	handleChange = (e) =>{
@@ -38,13 +31,6 @@ class AddNewDish extends Component {
 			[e.target.id]: e.target.value,
 		})
 	};
-
-	hhh = (ingredients) => {
-		this.setState({
-			changeIng:ingredients,
-		})
-	}
-
 	handleAdd = (e) => {
 		e.preventDefault();
 		const {url, description, title, image, category, price} = this.state;
@@ -54,11 +40,15 @@ class AddNewDish extends Component {
                 title:null,
                 description:null,
                 url:'',
-                changeIng:[],
+                ingredients:[],
                 category:"category",
                 price:null,
                 str:"",
+				rating: [],
+				doneness: [],
+				
 			})
+			console.log('exav')
 		} else {
 			console.log('chexav brat')
 		}
@@ -73,15 +63,15 @@ class AddNewDish extends Component {
 		}
 	};
 
-	handleUpload = (e) => {
+	handleUpload = () => {
 		const {image} = this.state;
-		const uploadTask = storage.ref(`dishimages/${image.name}`).put(image);
+        const uploadTask = storage.ref(`dishimages/${image.name}`).put(image);
 
 		uploadTask.on('state_changed',
 				(snapshot) => {console.log(snapshot)},
 				(error) => {console.log(error)},
 				() => {
-					storage.ref('images')
+					storage.ref('dishimages')
 						.child(image.name)
 						.getDownloadURL()
 						.then(url => {
@@ -100,7 +90,7 @@ addIngredient = (e) => {
     }
     render() {
         return (
-                <div className="addNewDish">
+                <div className="add-new-dish">
                 	<form>
                 		<input 
 	                		id="title" 
