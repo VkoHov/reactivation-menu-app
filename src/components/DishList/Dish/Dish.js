@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 class Dish extends Component {
     render() {
       
-
+console.log('esi dishi propsna jhvgk ftfuctc ',this.props);
         return (
             <div>
-           {  this.props.dish.title}
+           {  this.props.dish.description}
                
             </div>
         );

@@ -1,40 +1,31 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {changeCategoryName} from '../../../actions/listingAction'; 
+
 
 
 class Category extends Component {
-   constructor(props) {
-        super(props);
-
-        this.state = {
-            addClass: false,
-        }
-        this.addActive = this.addActive.bind(this);
-    }
-
-    addActive = () => {
-    	   this.setState({
-            addClass: !this.state.addClass
-        });
-    }
 
     render() {
-        let activeClass = '';
-        if(this.state.addClass) {
-          activeClass = 'active';
-        }
+
         return (
-            <li className={activeClass} onClick={()=>
-            	{ this.props.changeCategoryName(this.props.category)},
-            	this.addActive }  >
+            <div  onClick={()=>{ this.props.changeCategoryName(this.props.category)} }>
                 {
                     this.props.category
                 }
-            </li>
+            </div>
         );
     }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        changeCategoryName: (catName) => dispatch(changeCategoryName(catName)),
+
+    }
+
+}
 
 
-export default Category;
+export default connect(null,mapDispatchToProps)(Category);
 
 

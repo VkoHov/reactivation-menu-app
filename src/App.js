@@ -7,7 +7,7 @@ import AdminHomePage from './components/AdminHomePage/AdminHomePage';
 import EditAdmin from './components/EditAdmi/EditAdmin';
 import EditManu from './components/Editmanu/EditManu';
 import TableInfo from './components/AdminHomePage/Tablelist/TableInfo/TableInfo';
-import CategoryList from './components/CategoryList/Category/CategoryList';
+import Listing from './components/Listing/Listing';
 import AddNewDish from './components/AddNewDish/AddNewDish';
 
 import './App.css';
@@ -27,7 +27,7 @@ class App extends Component {
                         <Route path='/admin/editadmin' component={EditAdmin} />
                         <Route path='/admin/editmanu' component={EditManu} />
                         <Route path='/admin/table/:tableId' component={TableInfo} />
-                        <Route path='/listing'  component={CategoryList} />
+                        <Route path='/listing'  component={Listing} />
                         <Route path='/newDish' component={AddNewDish}/>
                         <Route path = '/dish' component = {DishDetails} />
                     </Switch>
