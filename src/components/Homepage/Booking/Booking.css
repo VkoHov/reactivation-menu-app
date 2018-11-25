@@ -41,7 +41,7 @@
 	background: rgba(0,0,0,.7);
 	padding: 5% 0 9%;
 }
-h2{
+.booking h2{
 	font-size: 32px;
 	color: #FF9900;
 	text-align: center;
@@ -49,24 +49,24 @@ h2{
 	margin-top: 0;
 }
 
-form>div{
+.booking form>div{
 	display: flex;
 }
 
-form>div>div {
+.booking form>div>div {
 	flex: 1;
 }
 
-form p{
+.booking form p{
 	text-align: center;
 }
 
-form>p:last-of-type{
+.booking form>p:last-of-type{
 	margin:5% 0 0;
 }
 
-input,
-select{
+.booking input,
+.booking select{
 	width: 68%;
 	font-size: 14px;
 	color: #707070;
@@ -75,12 +75,12 @@ select{
 	border:none;
 }
 
-input[type="date"] {
+.booking input[type="date"] {
 	width: 64%;
 	padding: 3.47% 5px;
 }
 
-button {
+.booking button {
 	color:#fff;
 	text-transform: uppercase;
 	outline: none;

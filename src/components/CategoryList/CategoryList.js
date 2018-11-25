@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import Category from './Category/Category';
-import DishList from './Category/DishList/DishLIst';
+import DishList from '../DishList/DishLIst';
 
 
 
