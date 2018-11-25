@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import Dish from './Dish/Dish';
+import Dish from './Dish';
 
 
 
@@ -28,12 +28,14 @@ class DishList extends Component {
         }
 
         return (
-            <div>
+            <section className="dishList">
+                <div className="container">
                 {
                     allDish &&
                     allDish.map((dish, index) => <Dish key={dish.id} dish={dish} />)
                 }
-            </div>
+                </div>
+            </section>
         );
     }
 }

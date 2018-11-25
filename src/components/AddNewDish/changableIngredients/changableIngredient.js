@@ -13,6 +13,7 @@ class ChangableIngredient extends Component {
             ingredients: this.state.ingredients.concat(['']),
         });
     };
+
     addIngredient(e){
         let temp = this.state.ingredients;
         let key = e.target.getAttribute('inpid');
@@ -29,7 +30,7 @@ class ChangableIngredient extends Component {
         let value = e.target.value;
         console.log('gago',key);
         temp[key] = value;
-
+    }
     render() {
 
         return (
