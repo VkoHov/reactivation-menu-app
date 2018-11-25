@@ -1,0 +1,66 @@
+.rating-container{
+    height: 40px;
+    width: 200px;
+    position: relative;
+}
+
+.rating{
+    position: absolute;
+    height: 40px;
+    width: 100%;
+    background-color: yellow;
+    z-index: -1;
+}
+
+.star{
+    height: 40px;
+}
+
+.add-to-cart-button{
+    height: 50px;
+    width: 80px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
+.add-to-favorites{
+    height: 50px;
+    width: 80px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
+.add-to-cart-img{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.doneness-drop-down {
+    height: 30px;
+    width: 160px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
+.ingredients-drop-down{
+   
+    height: 30px;
+    width: 160px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
+.count-button{
+    height: 30px;
+    width: 30px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
+.select-checkbox{
+    height: 30px;
+    width: 30px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}

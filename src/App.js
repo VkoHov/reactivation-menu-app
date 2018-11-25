@@ -11,6 +11,7 @@ import CategoryList from './components/CategoryList/CategoryList';
 import AddNewDish from './components/AddNewDish/AddNewDish';
 
 import './App.css';
+import DishDetails from './components/DishDetails';
 
 
 class App extends Component {
@@ -28,6 +29,7 @@ class App extends Component {
                         <Route path='/admin/table/:tableId' component={TableInfo} />
                         <Route path='/listing'  component={CategoryList}/ >
                         <Route path='/newDish' component={AddNewDish}/>
+                        <Route path = '/dish' component = {DishDetails} />
                     </Switch>
                 </div>
             </Router>
