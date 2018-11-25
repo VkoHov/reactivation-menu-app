@@ -2,14 +2,34 @@ import React, { Component } from 'react';
 
 
 class Category extends Component {
+   constructor(props) {
+        super(props);
+
+        this.state = {
+            addClass: false,
+        }
+        this.addActive = this.addActive.bind(this);
+    }
+
+    addActive = () => {
+    	   this.setState({
+            addClass: !this.state.addClass
+        });
+    }
 
     render() {
+        let activeClass = '';
+        if(this.state.addClass) {
+          activeClass = 'active';
+        }
         return (
-            <div onClick={()=>{ this.props.changeCategoryName(this.props.category)} }  >
+            <li className={activeClass} onClick={()=>
+            	{ this.props.changeCategoryName(this.props.category)},
+            	this.addActive }  >
                 {
                     this.props.category
                 }
-            </div>
+            </li>
         );
     }
 }
