@@ -8,4 +8,4 @@ export const addNewDish = (newDish) => {
             dispatch({type: 'NEW_DISH', newDish});
         })
     }
-}
+};
