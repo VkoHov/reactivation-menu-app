@@ -30,7 +30,7 @@ class Booking extends Component {
             		<div className="mapShape">
             			<div>
             				<div>
-            					<img src={Baner1}/>
+            					<img src={Baner1} alt='banner'/>
             				</div>
             				<div>
             					<p> <span>Address</span>Yerevan Abovyan 23/3 </p>
@@ -39,7 +39,7 @@ class Booking extends Component {
             				</div>
             			</div>
             		</div>
-            		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.4004225318185!2d44.51679891488675!3d40.17790137805471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406abcf064510117%3A0x9544a284409a0a35!2sHanrapetutyan+pokhots%2C+Yerevan%2C+Armenia!5e0!3m2!1sen!2s!4v1542925931363" ></iframe>
+            		<iframe title='map' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.4004225318185!2d44.51679891488675!3d40.17790137805471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406abcf064510117%3A0x9544a284409a0a35!2sHanrapetutyan+pokhots%2C+Yerevan%2C+Armenia!5e0!3m2!1sen!2s!4v1542925931363" ></iframe>
             	</div>
             	<div className="bookTable">
             		<div className="bookShape">

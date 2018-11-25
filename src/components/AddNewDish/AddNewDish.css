@@ -1,16 +1,16 @@
-.addNewDish{
-	width: 40%;
-	margin:30px auto;
-	border:1px solid black;
-	text-align: center;
-}
-.addNewDish input,
-.addNewDish textarea,
-.addNewDish select,
-.addNewDish button{
-	width: 90%;
-	border:1px solid black;
-	margin: 10px 0;
-	padding:5px 10px;
-	outline:none;
+.add-new-dish{
+     width: 40%;
+     margin:30px auto;
+     border:1px solid black;
+     text-align: center;
+ }
+.add-new-dish input,
+.add-new-dish textarea,
+.add-new-dish select,
+.add-new-dish button{
+    width: 90%;
+    border:1px solid black;
+    margin: 10px 0;
+    padding:5px 10px;
+    outline:none;
 }

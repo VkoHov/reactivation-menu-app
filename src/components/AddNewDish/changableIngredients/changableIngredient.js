@@ -7,7 +7,6 @@ class ChangableIngredient extends Component {
         ingredients: [''],
     };
 
-
     addNewIngredient = () => {
         this.setState({
             ingredients: this.state.ingredients.concat(['']),
@@ -24,6 +23,7 @@ class ChangableIngredient extends Component {
         });
         this.props.changedIngArr(temp);
     }
+<<<<<<< HEAD
     addIngredient(e){
         let temp = this.state.ingredients;
         let key = e.currentTarget.getAttribute('key');
@@ -31,6 +31,8 @@ class ChangableIngredient extends Component {
         console.log('gago',key);
         temp[key] = value;
     }
+=======
+>>>>>>> develop
     render() {
 
         return (

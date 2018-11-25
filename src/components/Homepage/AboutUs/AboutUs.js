@@ -12,7 +12,7 @@ class AboutAs extends Component {
             		<h1>about <span>us</span></h1>
             		<div className="about">
             			<div>
-            				<img src={Baner2}/>
+            				<img src={Baner2} alt='banner'/>
             			</div>
             			<ul>
             				<li>
