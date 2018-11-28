@@ -11,21 +11,21 @@ class Login extends Component {
     state = {
         email: '',
         password: ''
-    }
+    };
     handleChange = (e) => {
         this.setState({
-            [e.target.id]: e.target.value
+            [e.target.type]: e.target.value
         })
-    }
+    };
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.LoginAction(this.state);
-    }
+    };
     handleClick = () => {
-        if (!this.props.firebase.auth.uid){
+        if (this.props.firebase.auth.uid){
             this.props.history.push('/');
         }
-    }
+    };
     render() {
 
         if(this.props.auth.uid) return <Redirect to="/"/>
@@ -33,12 +33,12 @@ class Login extends Component {
             <div>
                 <form  onSubmit={this.handleSubmit}>
                     <div >
-                        <label htmlFor="emailP">Email</label>
-                        <input type="email" id='emailP' onChange={this.handleChange} />
+                        <label htmlFor="pemail">Email</label>
+                        <input type="email" id='pemail' onChange={this.handleChange} />
                     </div>
                     <div >
-                        <label htmlFor="passwordP">Password</label>
-                        <input type="password" id='passwordP' onChange={this.handleChange} />
+                        <label htmlFor="ppassword">Password</label>
+                        <input type="password" id='ppassword' onChange={this.handleChange} />
                     </div>
                     <div>
                         <button onClick={this.handleClick}>Login</button>
