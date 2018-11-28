@@ -23,4 +23,3 @@ const initialState = {
 
 let store = createStore(newDishReducer).getState();
 export { store,newDishReducer as default};
-console.log('store from reducer',store)

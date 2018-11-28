@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import scrollToComponent from 'react-scroll-to-component';
+// import scrollToComponent from 'react-scroll-to-component';
 
 import OurMenu from './OurMenu/OurMenu';
 import Booking from './Booking/Booking';

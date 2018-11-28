@@ -26,7 +26,7 @@ class Navbar extends Component{
 	            		<div className="layout">
 	            			<Link to="/login"><i className="far fa-user"></i></Link>
 	            			<Link to=""><i className="far fa-heart"></i></Link>
-	            			<Link to=""><i className="fas fa-shopping-cart"></i></Link>
+	            			<Link to="/shoppingcart"><i className="fas fa-shopping-cart"></i></Link>
 	            		</div>
 	            	</div>
             	</div>

@@ -29,7 +29,7 @@ class ChangableIngredient extends Component {
         let value = e.target.value;
         console.log('gago',key);
         temp[key] = value;
-
+    }
     render() {
 
         return (
@@ -51,7 +51,7 @@ class ChangableIngredient extends Component {
             </div>
         )
     }
-}
+    }
 
 
 export default ChangableIngredient;

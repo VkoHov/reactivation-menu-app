@@ -9,9 +9,10 @@ import EditManu from './components/Editmanu/EditManu';
 import TableInfo from './components/AdminHomePage/Tablelist/TableInfo/TableInfo';
 import CategoryList from './components/CategoryList/CategoryList';
 import AddNewDish from './components/AddNewDish/AddNewDish';
-
+import ShoppingCart from './components/Layout/Navbar/ShopingCart/ShoppingCart';
 import './App.css';
-import DishDetails from './components/DishDetails';
+
+
 
 
 class App extends Component {
@@ -27,9 +28,9 @@ class App extends Component {
                         <Route path='/admin/editadmin' component={EditAdmin} />
                         <Route path='/admin/editmanu' component={EditManu} />
                         <Route path='/admin/table/:tableId' component={TableInfo} />
-                        <Route path='/listing'  component={CategoryList}/ >
+                        <Route path='/listing'  component={CategoryList} />
                         <Route path='/newDish' component={AddNewDish}/>
-                        <Route path = '/dish' component = {DishDetails} />
+                        <Route path='/shoppingcart' component = {ShoppingCart}/>
                     </Switch>
                 </div>
             </Router>
@@ -39,3 +40,4 @@ class App extends Component {
 
 
 export default App;
+/* <Route path = '/dish' component = {DishDetails} /> */
