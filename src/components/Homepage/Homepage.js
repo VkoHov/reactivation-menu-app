@@ -10,15 +10,13 @@ import './Homepage.css';
 class Homepage extends Component {
 
     render() {
-
         return(
-            <div>
+            <div className='homepage'>
                <Header />
                <OurMenu />
                <Booking />
                <AboutUs />
                <Footer />
-
             </div>
         )
     }
