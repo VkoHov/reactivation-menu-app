@@ -22,5 +22,6 @@ class Dish extends Component {
       </div>
     );
   }
+
 }
 export default Dish;

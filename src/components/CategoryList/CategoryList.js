@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import Category from './Category/Category';
-import DishList from './Category/DishList/DishLIst';
 
 
 
@@ -12,45 +11,24 @@ class CategoryList extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            categoryName: 'all',
-            isCategory: false,
-        }
-        this.changeCategoryName = this.changeCategoryName.bind(this);
     }
-
-    changeCategoryName = function (name) {
-        this.setState({
-            categoryName: name,
-        });
-    }
-
-
-
     render() {
 
 
-        let categoryss = this.props.categories && this.props.categories[0].Category
-        
-        return (
-            <div >
-                <div>
-                    {
-                        categoryss &&
-                        categoryss.map((category, index) => {
-                            return (
-                                <Category changeCategoryName={this.changeCategoryName} key={index} category={category} />
-                            );
-                        })
-                    }
-                    <div> ##########</div>
-                    {
-                        
-                        <DishList categoryName={this.state.categoryName}  />
-                    }
-                </div>
+        console.log('this.propsaaa', this.props.categories && this.props.categories[0]);
+        let categoryss = this.props.categories && Object.values(this.props.categories[0]);
+        categoryss && categoryss.shift();
 
+        return (
+            <div>
+                {
+                    categoryss &&
+                    categoryss.map((category, index) => {
+                        return (
+                            <Category  key={index} category={category} />
+                        );
+                    })
+                }
             </div>
         );
     }

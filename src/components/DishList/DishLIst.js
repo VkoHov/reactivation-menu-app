@@ -7,32 +7,29 @@ import Dish from './Dish/Dish';
 
 
 class DishList extends Component {
-    constructor(props) {
-        super(props);
-
-    }
 
     render() {
+        console.log("dish List", this.props);
         let dishes = this.props.dishes && this.props.dishes;
         let allDish = [];
-        if (this.props.categoryName !== 'all') {
+
+        if (this.props.categoryName !== 'all menu') {
             for (let i = 0; i < dishes.length; i++) {
+                console.log('diqsjhagfjksgaj',dishes);
                 if (dishes[i].category === this.props.categoryName) {
                     allDish.push(dishes[i]);
                 }
             }
-
         } else {
-          
-            allDish=dishes;
+            allDish = dishes;
         }
-
         return (
             <div>
                 {
                     allDish &&
                     allDish.map((dish, index) => <Dish key={dish.id} dish={dish} />)
                 }
+
             </div>
         );
     }
@@ -41,6 +38,7 @@ class DishList extends Component {
 const mapStateToProps = state => {
     return {
         dishes: state.firestore.ordered.dishes,
+        categoryName: state.listing.categoryName,
     }
 
 }

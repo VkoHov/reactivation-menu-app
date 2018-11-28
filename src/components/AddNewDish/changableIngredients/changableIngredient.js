@@ -7,12 +7,12 @@ class ChangableIngredient extends Component {
         ingredients: [''],
     };
 
-
     addNewIngredient = () => {
         this.setState({
             ingredients: this.state.ingredients.concat(['']),
         });
     };
+
     addIngredient(e){
         let temp = this.state.ingredients;
         let key = e.target.getAttribute('inpid');
@@ -22,13 +22,6 @@ class ChangableIngredient extends Component {
             ingredients: temp,
         });
         this.props.changedIngArr(temp);
-    }
-    addIngredient(e){
-        let temp = this.state.ingredients;
-        let key = e.currentTarget.getAttribute('key');
-        let value = e.target.value;
-        console.log('gago',key);
-        temp[key] = value;
     }
     render() {
 
