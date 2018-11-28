@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './ShopingCart.css';
 import { connect } from 'react-redux';
 import Quantity from './Quantity';
 

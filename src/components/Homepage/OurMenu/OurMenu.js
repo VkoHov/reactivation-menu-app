@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import MenuItem from './MenuItem';
 
-import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
-import { compose } from 'redux';
+import {connect} from 'react-redux';
+import {firestoreConnect} from 'react-redux-firebase';
+import {compose} from 'redux';
 
 import '../Homepage.css';
 import './OurMenu.css';
 
 class OurMenu extends Component {
 
-	constructor(props) {
+    constructor(props) {
         super(props);
 
         this.state = {
             categoryName: 'all',
             isCategory: false,
-        }
+        };
         this.changeCategoryName = this.changeCategoryName.bind(this);
     }
 
@@ -26,29 +26,24 @@ class OurMenu extends Component {
         });
     }
 
-  
 
     render() {
+        let categoryss = this.props.categories && Object.values(this.props.categories[0]);
+        categoryss && categoryss.shift();
+        return (
+            <section>
+                <div className="container">
+                    <h1> our <span>menu</span></h1>
+                    <div className="ourMenu">
+                        {
 
-        let categoryss = this.props.categories && Object.values( this.props.categories[0]);
-             categoryss&&categoryss.shift();
-    	// let style = { backgroundImage: `url(${this.props.dish.url})`}
-
-
-        return(
-            <section >
-	            <div className="container">
-	            	<h1> our <span>menu</span></h1>
-	            	<div className="ourMenu">
-	            		{
-	            			
                             categoryss && categoryss.map((category, index) => {
-	            			return (<MenuItem text={category} key={index}/>)
-	            		})
-	            		}
+                                return (<MenuItem text={category} key={index}/>)
+                            })
+                        }
 
-				    </div>
-				</div>
+                    </div>
+                </div>
             </section>
         )
     }
@@ -64,6 +59,6 @@ const mapStateToProps = state => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'categories' },
+        {collection: 'categories'},
     ]),
 )(OurMenu);

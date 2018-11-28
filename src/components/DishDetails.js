@@ -141,11 +141,11 @@ class DishDetails extends React.Component {
        <div>Rating: {Math.round(parseFloat(rates/20) * 100) / 100}</div>
         <div className="rating" style={{ width: width }} />
           <div className="star-container" >
-            <img className="star" src={this.state.starUrl} />
-            <img className="star" src={this.state.starUrl} />
-            <img className="star" src={this.state.starUrl} />
-            <img className="star" src={this.state.starUrl} />
-            <img className="star" src={this.state.starUrl} />
+            <img className="star" alt="star" src={this.state.starUrl} />
+            <img className="star" alt="star" src={this.state.starUrl} />
+            <img className="star" alt="star" src={this.state.starUrl} />
+            <img className="star" alt="star" src={this.state.starUrl} />
+            <img className="star" alt="star" src={this.state.starUrl} />
           </div>
         
          
@@ -190,10 +190,9 @@ class DishDetails extends React.Component {
             return (
               <label key={index}>
                 <input
-                  className="select-checkbox"
+                  className="select-checkbox ingredients-drop-down"
                   type="checkbox"
                   value={ingredient}
-                  className="ingredients-drop-down"
                   onChange={this.changeIngredient}
                 />
                 {ingredient}
@@ -210,9 +209,6 @@ class DishDetails extends React.Component {
             Select All
           </label>
         </div>
-
-      
-        <img className="dish-image" src={dish && dish[0].url} />
       </div>
     );
   }

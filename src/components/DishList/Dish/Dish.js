@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import DishDetails from "../../../../DishDetails";
-import '../../../../DishDetails.css'
+import DishDetails from "../../DishDetails";
 class Dish extends Component {
   constructor(props) {
     super(props);
