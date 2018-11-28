@@ -1,15 +1,27 @@
-import React, { Component } from 'react';
-
+import React, { Component } from "react";
+import DishDetails from "../../../../DishDetails";
+import '../../../../DishDetails.css'
 class Dish extends Component {
-    render() {
-      
-console.log('esi dishi propsna jhvgk ftfuctc ',this.props);
-        return (
-            <div>
-           {  this.props.dish.description}
-               
-            </div>
-        );
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      showPopUp: false
+    };
+    this.showPopUp = this.showPopUp.bind(this);
+  }
+  showPopUp = () => {
+    this.setState({
+      showPopUp: !this.state.showPopUp
+    });
+  };
+  render() {
+    return (
+      <div >
+        <div onClick={this.showPopUp}>{this.props.dish.title}</div>
+        {this.state.showPopUp && <DishDetails className = "pop-Up" dishInfo={this.props} />}
+      </div>
+    );
+  }
+
 }
 export default Dish;

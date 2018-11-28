@@ -2,8 +2,9 @@ const initState = {};
 const projectReducer = (state = initState, action) => {
     switch (action.type) {
       case 'ADD_TO_CART':
-        console.log("reduceri datana add to cart component sarqeluc es datana petq",action.dishInfo);
-        return state;
+        return {
+          dish:action.dishInfo,
+        };
       
       default:
         return state;
@@ -11,3 +12,4 @@ const projectReducer = (state = initState, action) => {
   };
   
   export default projectReducer;
+   

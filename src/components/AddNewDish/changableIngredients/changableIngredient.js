@@ -44,7 +44,7 @@ class ChangableIngredient extends Component {
             </div>
         )
     }
-}
+    }
 
 
 export default ChangableIngredient;
