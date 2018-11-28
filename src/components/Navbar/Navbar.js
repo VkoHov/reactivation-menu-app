@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import AccountLayout from '../AccountLayout/AccountLayout';
 import {Link} from 'react-router-dom';
-
+import AccountLayout from '../Layout/AccountLayout/AccountLayout'
 import './Navbar.css';
 class Navbar extends Component{
     render(){
@@ -24,8 +23,8 @@ class Navbar extends Component{
 		            			<Link to="">about</Link>
 		            		</div>
 		            		<div className="layout">
-		            			<Link to="/login"><i className="far fa-user"></i></Link>
-		            			<Link to=""><i className="far fa-heart"></i></Link>
+								<AccountLayout/>
+								<Link to=""><i className="far fa-heart"></i></Link>
 		            			<Link to=""><i className="fas fa-shopping-cart"></i></Link>
 		            		</div>
 		            	</div>

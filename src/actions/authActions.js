@@ -1,4 +1,5 @@
 export const LoginAction = (credentials) => {
+    console.log(credentials)
     return (dispatch, getState, {getFirebase}) => {
         let firebase = getFirebase();
         firebase.auth().signInWithEmailAndPassword(
@@ -11,7 +12,7 @@ export const LoginAction = (credentials) => {
         })
 
     }
-}
+};
 export const LogoutAction = () => {
     return (dispatch, getState, {getFirebase}) => {
         let firebase = getFirebase();
@@ -19,17 +20,26 @@ export const LogoutAction = () => {
             dispatch({type: 'LOGOUT_SUCCESS'});
         });
     }
-}
-export  const SignUp = (newUser) => {
+};
+export const SignUp = (newUser) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firebase = getFirebase();
         const firestore = getFirestore();
         firebase.auth().createUserWithEmailAndPassword(
-            newUser.email,
-            newUser.password,
+            newUser.regemail,
+            newUser.regpassword,
         ).then((resp) => {
-            return firestore.collation('users').doc(resp.user.uid)
-        });
+            return firestore.collection('users').doc(resp.user.uid).set({
+                name: newUser.name,
+                lastname: newUser.lastname,
+                email: newUser.regemail,
+                password: newUser.regpassword,
+            })
+        }).then(() => {
+            dispatch({type: 'SIGNUP_SUCCESS'})
+        }).catch(err => {
+            dispatch({type: "SIGNUP_ERROR" , err})
+        })
     }
 
-}
+};
