@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DishDetails from '../../DishDetails/DishDetails';
-import {connect} from 'react-redux'
 
 
 class Dish extends Component {

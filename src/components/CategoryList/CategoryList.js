@@ -8,10 +8,6 @@ import Category from './Category/Category';
 
 
 class CategoryList extends Component {
-
-    constructor(props) {
-        super(props);
-    }
     render() {
 
 

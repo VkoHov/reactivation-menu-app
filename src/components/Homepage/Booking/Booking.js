@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import './../Homepage.css';
 import './Booking.css';
 
@@ -66,7 +67,6 @@ class Booking extends Component {
 
 
 	render() {
-		console.log('esi propsnkjQHWVFHo;q',this.props);
 		return (
 			<section className="booking">
 				<div className="map">
@@ -161,7 +161,7 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps)( ooking);
+export default connect(mapStateToProps)( Booking);
 
 
 

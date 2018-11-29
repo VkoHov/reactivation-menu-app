@@ -46,4 +46,3 @@ class App extends Component {
 
 
 export default App;
-                            {/* <Route path='/dish' component={DishDetails} /> */}
