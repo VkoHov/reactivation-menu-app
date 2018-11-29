@@ -9,8 +9,13 @@ import Category from './Category/Category';
 
 class CategoryList extends Component {
 
+    constructor(props) {
+        super(props);
+    }
     render() {
 
+
+        console.log('this.propsaaa', this.props.categories && this.props.categories[0]);
         let categoryss = this.props.categories && Object.values(this.props.categories[0]);
         categoryss && categoryss.shift();
 
