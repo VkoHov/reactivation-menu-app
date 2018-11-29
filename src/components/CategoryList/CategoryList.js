@@ -12,14 +12,14 @@ class CategoryList extends Component {
 
 
         console.log('this.propsaaa', this.props.categories && this.props.categories[0]);
-        let categoryss = this.props.categories && Object.values(this.props.categories[0]);
-        categoryss && categoryss.shift();
+        let categories = this.props.categories && Object.values(this.props.categories[0].categories);
+
 
         return (
             <div>
                 {
-                    categoryss &&
-                    categoryss.map((category, index) => {
+                    categories &&
+                    categories.map((category, index) => {
                         return (
                             <Category  key={index} category={category} />
                         );

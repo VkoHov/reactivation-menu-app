@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {addNewDish} from '../../actions/newDishAction';
 import ChangableIngredient from './changableIngredients/changableIngredient';
 import {storage} from '../../config/fbConfig';
+import {firestoreConnect} from "react-redux-firebase";
+import {compose} from 'redux';
 import './AddNewDish.css';
 
 class AddNewDish extends Component {
@@ -86,7 +88,6 @@ class AddNewDish extends Component {
     };
 
     render() {
-        console.log(this.state)
         return (
             <div className="add-new-dish">
                 <form>
@@ -111,9 +112,14 @@ class AddNewDish extends Component {
                     </p>
                     <select id="category" onChange={this.handleChange} value={this.state.category}>
                         <option value="category" disabled style={{display: 'none'}}> Category</option>
-                        <option value="desert"> Desert</option>
-                        <option value="salad"> Salad</option>
-                        <option value="garnish"> Garnish</option>
+                        {
+                            this.props.categories
+                            && this.props.categories[0].categories.map((category , index) => {
+                                if(category !== 'all menu'){
+                                    return <option key={index} value={category}> {category}</option>
+                                }
+                            })
+                        }
                     </select>
                     <ChangableIngredient changedIngArr={this.addingridientArrToState}/>
                     <input id="price"
@@ -128,11 +134,20 @@ class AddNewDish extends Component {
     }
 }
 
-
+const mapStateToProps = state => {
+    return{
+        categories: state.firestore.ordered.categories
+    }
+}
 const mapDispatchToProps = (dispatch) => {
     return {
-        addNewDish: (newDish) => dispatch(addNewDish(newDish))
+        addNewDish: (newDish) => dispatch(addNewDish(newDish)),
     }
 }
 
-export default connect(null, mapDispatchToProps)(AddNewDish);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([
+        {collection: 'categories'}
+    ])
+)(AddNewDish);
