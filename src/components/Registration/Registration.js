@@ -10,8 +10,8 @@ class Registration extends Component {
     state = {
         name: '',
         lastname: '',
-        regemail: '',
-        regpassword: '',
+        email: '',
+        password: '',
         passwordComfirm: '',
     };
     handleChange = (e) => {
@@ -46,11 +46,11 @@ class Registration extends Component {
                     </div>
                     <div >
                         <label htmlFor="email">Email</label>
-                        <input type="email" id='regemail' onChange={this.handleChange} />
+                        <input type="email" id='email' onChange={this.handleChange} />
                     </div>
                     <div >
                         <label htmlFor="password">Password</label>
-                        <input type="password" id='regpassword' onChange={this.handleChange} />
+                        <input type="password" id='password' onChange={this.handleChange} />
                     </div>
                     <div >
                         <label htmlFor="passwordComfirm">Comfirme Password</label>

@@ -33,12 +33,12 @@ class Login extends Component {
             <div>
                 <form  onSubmit={this.handleSubmit}>
                     <div >
-                        <label htmlFor="pemail">Email</label>
-                        <input type="email" id='pemail' onChange={this.handleChange} />
+                        <label htmlFor="email">Email</label>
+                        <input type="email" id='email' onChange={this.handleChange} />
                     </div>
                     <div >
-                        <label htmlFor="ppassword">Password</label>
-                        <input type="password" id='ppassword' onChange={this.handleChange} />
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id='password' onChange={this.handleChange} />
                     </div>
                     <div>
                         <button onClick={this.handleClick}>Login</button>
