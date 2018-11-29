@@ -115,9 +115,7 @@ class AddNewDish extends Component {
                         {
                             this.props.categories
                             && this.props.categories[0].categories.map((category , index) => {
-                                if(category !== 'all menu'){
-                                    return <option key={index} value={category}> {category}</option>
-                                }
+                                return category !== 'all menu' &&  <option key={index} value={category}> {category}</option>
                             })
                         }
                     </select>
