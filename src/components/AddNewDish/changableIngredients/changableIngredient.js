@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './changableIngredient.css';
 class ChangableIngredient extends Component {
 
-
     state = {
         ingredients: [''],
     };
@@ -24,7 +23,7 @@ class ChangableIngredient extends Component {
         this.props.changedIngArr(temp);
     }
     render() {
-
+        console.log(this.state.ingredients)
         return (
             <div className="changeIng">
                 {this.state.ingredients.map((inp,index)  => {
@@ -44,7 +43,6 @@ class ChangableIngredient extends Component {
             </div>
         )
     }
-    }
-
+}
 
 export default ChangableIngredient;

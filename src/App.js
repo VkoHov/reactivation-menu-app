@@ -10,15 +10,8 @@ import EditManu from './components/Editmanu/EditManu';
 import TableInfo from './components/AdminHomePage/Tablelist/TableInfo/TableInfo';
 import Listing from './components/Listing/Listing';
 import AddNewDish from './components/AddNewDish/AddNewDish';
-import ShoppingCart from './components/Layout/Navbar/ShopingCart/ShoppingCart';
-// import DishDetails from './components/DishDetails/DishDetails';
+import ShoppingCart from './components/ShopingCart/ShoppingCart';
 import Registration from "./components/Registration/Registration";
-
-
-import './App.css';
-
-
-
 
 class App extends Component {
     render() {

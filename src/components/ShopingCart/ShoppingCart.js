@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Quantity from './Quantity';
+import Quantity from '../Quantity/Quantity';
 
 
 class ShoppingCart extends Component {
