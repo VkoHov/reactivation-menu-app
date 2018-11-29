@@ -11,10 +11,13 @@ import TableInfo from './components/AdminHomePage/Tablelist/TableInfo/TableInfo'
 import Listing from './components/Listing/Listing';
 import AddNewDish from './components/AddNewDish/AddNewDish';
 import ShoppingCart from './components/Layout/Navbar/ShopingCart/ShoppingCart';
+// import DishDetails from './components/DishDetails/DishDetails';
+import Registration from "./components/Registration/Registration";
+
+
 import './App.css';
 
-import DishDetails from './components/DishDetails/DishDetails';
-import Registration from "./components/Registration/Registration";
+
 
 
 class App extends Component {
@@ -34,7 +37,6 @@ class App extends Component {
                         <Route path='/listing'  component={Listing} />
                         <Route path='/newDish' component={AddNewDish}/>
                         <Route path='/shoppingcart' component = {ShoppingCart}/>
-                        <Route path='/dish' component={DishDetails} />
                     </Switch>
                 </div>
             </Router>
@@ -44,3 +46,4 @@ class App extends Component {
 
 
 export default App;
+                            {/* <Route path='/dish' component={DishDetails} /> */}
