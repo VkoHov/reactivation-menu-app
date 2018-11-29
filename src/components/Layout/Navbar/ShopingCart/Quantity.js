@@ -14,7 +14,6 @@ class Quantity extends Component {
     };
 
     plusCount = () => {
-
         this.setState({
             count: this.state.count + 1
         });
