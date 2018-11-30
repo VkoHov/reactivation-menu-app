@@ -23,7 +23,6 @@ class Registration extends Component {
     };
     handleSubmit = (e) => {
         e.preventDefault();
-
     };
     handleClick = () => {
 
@@ -44,7 +43,7 @@ class Registration extends Component {
                     lastname: lastname,
                     email: email,
                     password: password,
-                    collection: 'users',
+                    collection: 'administrators',
                 });
             } else {
                 this.setState({
@@ -61,7 +60,7 @@ class Registration extends Component {
 
     render() {
 
-        if (this.props.auth.uid) return <Redirect to="/"/>;
+        if (!this.props.auth.uid) return <Redirect to="/login"/>;
         return (
             <div>
 

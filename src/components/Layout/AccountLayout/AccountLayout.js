@@ -7,6 +7,7 @@ import './AccountLayout.css';
 class AccountLayout extends Component{
 
     render(){
+
         const links = this.props.authID
             ? <LogoutLayout/>
             : <div>
@@ -28,6 +29,7 @@ class AccountLayout extends Component{
 const mapStateToProps = state => {
     return{
         authID: state.firebase.auth.uid,
+
     }
 };
 export default connect(mapStateToProps)(AccountLayout);

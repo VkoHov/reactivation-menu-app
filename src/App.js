@@ -12,6 +12,7 @@ import Listing from './components/Listing/Listing';
 import AddNewDish from './components/AddNewDish/AddNewDish';
 import ShoppingCart from './components/ShopingCart/ShoppingCart';
 import Registration from "./components/Registration/Registration";
+import AdminRegistration from "./components/AdminRegistration/AdminRegistration";
 
 class App extends Component {
     render() {
@@ -23,6 +24,7 @@ class App extends Component {
                         <Route exact path='/' component={Homepage} />
                         <Route path='/login' component={Login} />
                         <Route path='/registration' component={Registration}/>
+                        <Route path='/adminregistration' component={AdminRegistration}/>
                         <Route exact path='/admin' component={AdminHomePage} />
                         <Route path='/admin/editadmin' component={EditAdmin} />
                         <Route path='/admin/editmanu' component={EditManu} />
