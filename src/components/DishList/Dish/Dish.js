@@ -12,8 +12,6 @@ class Dish extends Component {
         this.showPopUp = this.showPopUp.bind(this);
     }
 
-
-
     showPopUp = () => {
         this.setState({
             popUpIsOpen: !this.state.popUpIsOpen,
@@ -27,18 +25,24 @@ let style = {backgroundImage: 'url(' + this.props.dish.url + ')',}
      
 
         return (
+            <div onClick = {this.showPopUp}>
+                <div >
+
             <div className="dishBlock" style={style} onClick={this.showPopUp}>
                 <div className='shape'>
                     { this.props.dish.description }
                 </div>
                 <div  >
+
                     {
                         this.props.dish.title
                     }
                 </div>
-                {
-                    this.state.popUpIsOpen && <DishDetails dish={this.props} />
-                }
+                {this.state.popUpIsOpen && <div onClick={(e)=> {e.stopPropagation()}}><DishDetails dish={this.props} /></div> }
+                {this.state.popUpIsOpen &&   <div className = "overlay"></div>}
+                
+                
+               
             </div>
         );
     }
