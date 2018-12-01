@@ -4,8 +4,10 @@ import {firestoreConnect} from "react-redux-firebase";
 import {compose} from "redux";
 import {changeData} from "../../actions/rateAction";
 import {addToCart} from "../../actions/dishDetailAction";
-import "./DishDetails.css";
 import Quantity from "../Quantity/Quantity";
+
+import "./DishDetails.css";
+
 
 class DishDetails extends React.Component {
     state = {
