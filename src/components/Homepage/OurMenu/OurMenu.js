@@ -28,18 +28,9 @@ class OurMenu extends Component {
 
 
     render() {
-        let categoryss = this.props.categories && Object.values(this.props.categories[0]);
-        categoryss && categoryss.shift();
-        return (
-            <section>
-                <div className="container">
-                    <h1> our <span>menu</span></h1>
-                    <div className="ourMenu">
-                        {
+    
         let categoryss = this.props.categories && Object.values( this.props.categories[0]);
              categoryss&&categoryss.shift();
-    	// let style = { backgroundImage: `url(${this.props.dish.url})`}
-console.log('jjj',categoryss)
 
         return(
             <section >

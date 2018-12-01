@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import Category from './Category/Category';
@@ -37,7 +36,7 @@ class CategoryList extends Component {
                             categoryss &&
                             categoryss[0].map((category, index) => {
                                 return (
-                                    <li className={classActive} key={index} onClick={this.toggle.bind(this)}cc>
+                                    <li className={classActive} key={index} onClick={this.toggle.bind(this)}>
                                         <Category  key={index} category={category} />
                                     </li>
                                 );
