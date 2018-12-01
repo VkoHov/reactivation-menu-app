@@ -5,7 +5,7 @@ import {compose} from "redux";
 import {changeData} from "../../actions/rateAction";
 import {addToCart} from "../../actions/dishDetailAction";
 import "./DishDetails.css";
-// import Quantity from "../Quantity/Quantity";
+
 
 class DishDetails extends React.Component {
     state = {
@@ -249,9 +249,6 @@ class DishDetails extends React.Component {
                     <img src = {this.props.dish.dish.url} alt ="dishimage"></img>
                 </div>
             );
-        
-        
-        
     }
 }
 

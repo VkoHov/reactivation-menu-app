@@ -5,6 +5,7 @@ import Booking from './Booking/Booking';
 import AboutUs from './AboutUs/AboutUs';
 import Footer from './Footer/Footer';
 import HeaderSlider from './HomepageSlider/HomepageSlider';
+import {connect} from 'react-redux';
 import './Homepage.css';
 
 class Homepage extends Component {
@@ -13,17 +14,17 @@ class Homepage extends Component {
         scrollToComponent(this.HeaderSlider, {});
     }
     componentDidUpdate(){
-        switch (this.state.sliderstatus){
-            case 'OurMenu':
-                scrollToComponent(this.Booking, {});
-                break;
-            case 'Booking':
+        switch (this.props.sliderstatus){
+            case 'ourmenu':
                 scrollToComponent(this.OurMenu, {});
                 break;
-            case 'AboutUs':
+            case 'reservation':
+                scrollToComponent(this.Booking, {});
+                break;
+            case 'aboutus':
                 scrollToComponent(this.AboutUs, {});
                 break;
-            case 'Contact':
+            case 'contact':
                 scrollToComponent(this.Footer, {});
                 break;
             default:
@@ -31,8 +32,9 @@ class Homepage extends Component {
         }
     }
     render() {
+        console.log(this.props.sliderstatus);
         return(
-            <div>
+            <div className='homepage'>
                  <HeaderSlider ref={(section) => { this.HeaderSlider = section; }}/>
                  <OurMenu ref={(section) => { this.OurMenu = section; }} />
                  <Booking ref={(section) => { this.Booking = section; }} />
@@ -44,4 +46,10 @@ class Homepage extends Component {
     }
     
 }
-export default Homepage
+
+const mapStateToProps = state => {
+    return{
+        sliderstatus: state.navbar.sliderId,
+    }
+};
+export default connect(mapStateToProps)(Homepage);

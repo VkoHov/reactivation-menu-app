@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {addNewDish} from '../../actions/newDishAction';
 import ChangableIngredient from './changableIngredients/changableIngredient';
+import Doneness from './Doneness/Doneness';
 import {storage} from '../../config/fbConfig';
 import {firestoreConnect} from "react-redux-firebase";
 import {compose} from 'redux';
@@ -11,6 +12,7 @@ class AddNewDish extends Component {
     constructor(props) {
         super(props);
         this.addingridientArrToState = this.addingridientArrToState.bind(this);
+        this.addDonenessArrToState = this.addDonenessArrToState.bind(this);
         this.state = {
             title: null,
             description: null,
@@ -29,6 +31,11 @@ class AddNewDish extends Component {
             ingredients: arr,
         });
     }
+    addDonenessArrToState(arr) {
+        this.setState({
+            doneness: arr,
+        })
+    }
 
     handleChange = (e) => {
         this.setState({
@@ -38,6 +45,7 @@ class AddNewDish extends Component {
     handleAdd = (e) => {
         e.preventDefault();
         const {url, description, title, image, category, price, ingredients, rating, doneness} = this.state;
+        console.log(doneness)
         if (url && description && title && image && category !== 'category' && price) {
             this.props.addNewDish({url, description, title, category, price, ingredients, rating, doneness});
             this.setState({
@@ -120,6 +128,7 @@ class AddNewDish extends Component {
                         }
                     </select>
                     <ChangableIngredient changedIngArr={this.addingridientArrToState}/>
+                    <Doneness changedDonnesArr={this.addDonenessArrToState}/>
                     <input id="price"
                            type="text"
                            placeholder="Price"

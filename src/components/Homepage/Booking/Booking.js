@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { firestoreConnect } from "react-redux-firebase";
+import { changeStatus } from '../../../actions/changeTableInfo';
+import { compose } from "redux";
+
 import './../Homepage.css';
 import './Booking.css';
 
@@ -10,9 +14,16 @@ class Booking extends Component {
 		time: null,
 		name: null,
 		phone: null,
+		dtatmilisecond: null,
 	}
 
 	handleChange = (e) => {
+		if (e.target.id === 'date') {
+			var myDate = Number(new Date(e.target.value));
+			this.setState({
+				dtatmilisecond: myDate,
+			})
+		}
 		this.setState({
 			[e.target.id]: e.target.value,
 		})
@@ -26,21 +37,31 @@ class Booking extends Component {
 			case (this.state.date === null):
 				console.log('mutqagreq amsativy');
 				break;
+				case (this.state.date !== null):
+				if (this.state.dtatmilisecond - Number(new Date()) <= 0) {
+					console.log('sxal amsativ e Yntrvats');
+					return;
+				}
 			case (this.state.time === null):
 				console.log('mutqagreq galu jamanaky');
 				break;
 			case (this.state.name === null):
 				console.log('mutqagreq dzer anuny');
 				break;
-			case (this.state.phone === null):
+			case ((this.state.phone === null) || (this.state.phone === '')):
 				console.log('mutqagreq heraxosahamy');
 				break;
+				
 			default:
-				this.sendDate();
+				this.checkDate();
 		}
 	}
 
-	sendDate = () => {
+	checkDate = () => {
+		if (this.state.date !== null) {
+			
+		}
+
 		if (+this.state.time[0] < 1) {
 			console.log('mutqagreq galu jamanaky');
 			return;
@@ -53,20 +74,37 @@ class Booking extends Component {
 	}
 
 	checkNumber = (inputtxt) => {
-		console.log(inputtxt);
 		var phoneno = /^\+?([0-9]{3})\)?[-. ]?([0-9]{2})[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/;
 		if (inputtxt.match(phoneno)) {
-			console.log('ashxatumaaaa', inputtxt);
-			return true;
+			this.props.tables &&
+				this.chechTables(this.props.tables);
 		}
 		else {
-			console.log('message');
+			console.log('message error');
 			return false;
 		}
 	}
 
+	chechTables = (tables) => {
+		let isReserved = false;
+
+		for (let i = 0; i < tables.length; i++) {
+			console.log(tables[i].status);
+			if (tables[i].status === 'free') {
+				this.props.changeStatus({ id: tables[i].id, info: this.state, status: 'reserve' });
+				isReserved = true;
+				break;
+			} else {
+				isReserved = false;
+			}
+		}
+
+		isReserved ? console.log('exav') : console.log('ays pahin azat tex chka');
+	}
+
 
 	render() {
+
 		return (
 			<section className="booking">
 				<div className="map">
@@ -153,15 +191,22 @@ class Booking extends Component {
 
 const mapStateToProps = (state) => {
 
-    return {
-        tables: state.firestore.ordered.tables,
-    }
-
+	return {
+		tables: state.firestore.ordered.tables,
+	}
 }
+const mapDispatchToProps = dispatch => {
+	return {
+		changeStatus: table => dispatch(changeStatus(table)),
+	};
+};
 
 
-
-export default connect(mapStateToProps)( Booking);
+export default compose(connect(mapStateToProps, mapDispatchToProps),
+	firestoreConnect([
+		{ collection: 'tables' }
+	])
+)(Booking);
 
 
 

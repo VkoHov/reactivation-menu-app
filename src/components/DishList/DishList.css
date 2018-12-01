@@ -1,0 +1,53 @@
+.dishes{
+	display: flex;
+	flex-wrap:wrap;
+}
+.dishes>div{
+	flex-basis: 31%;
+	padding: 0 1%;
+}
+.dishBlock {
+	height: 27vw;
+	cursor: pointer;
+}
+.dishBlock:hover .shape{
+	transform: scale(1);
+	transition: .5s;
+}
+
+.dishList h5{
+	font-size: 18px;
+	text-transform: uppercase;
+	position: relative;
+	text-align: center;
+}
+.dishList h5 span {
+	font-size: 20px; 
+	margin-left: 5px;
+	cursor: pointer;
+}
+.dishList h5 p{
+	position: absolute;
+	right: 0;
+	color:#FF9900;
+	top: -15px;
+}
+
+
+.dishList p{
+	font-size: 14px;
+	color: #707070;
+	text-align: center;
+}
+
+p.price {
+	font-weight: 600;
+	color: #FF9900;
+    font-size: 18px;
+}
+.source{
+	display: flex;
+	width:100%;
+	justify-content: space-between;
+
+}

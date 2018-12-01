@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import DishDetails from '../../DishDetails/DishDetails';
-
-
 class Dish extends Component {
 
     constructor(props) {
@@ -23,9 +21,19 @@ class Dish extends Component {
 
     render() {
 
+let style = {backgroundImage: 'url(' + this.props.dish.url + ')',}
+     
+
         return (
             <div onClick = {this.showPopUp}>
                 <div >
+
+            <div className="dishBlock" style={style} onClick={this.showPopUp}>
+                <div className='shape'>
+                    { this.props.dish.description }
+                </div>
+                <div  >
+
                     {
                         this.props.dish.title
                     }
