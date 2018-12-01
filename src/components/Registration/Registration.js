@@ -65,7 +65,7 @@ class Registration extends Component {
         if (this.props.auth.uid) return <Redirect to="/" />;
         return (
             <section className="register paddingTop">
-                <div>
+                <div >
                     <div className="account">
                         <h4>create <span>accout</span></h4>
                         <form onSubmit={this.handleSubmit}>
@@ -94,6 +94,9 @@ class Registration extends Component {
                             </div>
                             <div className="orLogIn">
                                 Or<Link to="/login"> LOG IN</Link>
+                            </div> 
+                            <div className="">
+                                <button onclick={this.handleClick}>register</button>
                             </div>
                         </form>
                     </div>

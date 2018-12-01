@@ -1,7 +1,7 @@
 nav{
 	background: rgba(0,0,0,.8);
 	padding: 24px 0;
-	/*position: fixed;*/
+	position: fixed;
 	width: 100%;
 	top:0;
 	z-index: 300;
@@ -11,10 +11,12 @@ nav{
 	align-items: center;
 }
 
-.navbar a{
+.navbar a,
+.navItem{
 	font-size: 17px;
 	text-transform: uppercase;
 	color: #fff;
+	margin: 0;
 }
 
 a.logo{

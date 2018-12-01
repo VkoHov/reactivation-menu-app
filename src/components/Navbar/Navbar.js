@@ -17,13 +17,13 @@ class Navbar extends Component {
 
                                 <Link to="/">home</Link>
                                 <span>|</span>
-                                <p id='ourmenu' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>our menu</p>
+                                <p className='navItem' id='ourmenu' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>our menu</p>
                                 <span>|</span>
-                                <p id='reservation' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>reservation</p>
+                                <p  className='navItem'id='reservation' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>reservation</p>
                                 <span>|</span>
-                                <p id='contact' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>contact</p>
+                                <p  className='navItem'id='contact' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>contact</p>
                                 <span>|</span>
-                                <p id='aboutus' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>about</p>
+                                <p  className='navItem'id='aboutus' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>about</p>
                             </div>
                             <div className="layout">
                                 <AccountLayout/>
