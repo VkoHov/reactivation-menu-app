@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LoginLayout from '../LoginLayout/LoginLayout';
 import LogoutLayout from '../LogoutLayout/LogoutLayout';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom';
@@ -8,9 +7,13 @@ import './AccountLayout.css';
 class AccountLayout extends Component{
 
     render(){
+
         const links = this.props.authID
             ? <LogoutLayout/>
-            : <LoginLayout/>;
+            : <div>
+                <Link to='/login'>login</Link>
+                <Link to='/registration'>register</Link>
+            </div>
         const accountLink = this.props.authID
             ? <p><i className="far fa-user"></i></p>
             : <Link to = '/login'> <i className="far fa-user"></i> </Link>;
@@ -31,6 +34,7 @@ class AccountLayout extends Component{
 const mapStateToProps = state => {
     return{
         authID: state.firebase.auth.uid,
+
     }
-}
+};
 export default connect(mapStateToProps)(AccountLayout);

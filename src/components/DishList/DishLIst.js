@@ -10,13 +10,12 @@ import './DishList.css';
 class DishList extends Component {
 
     render() {
-        console.log("dish List", this.props);
+
         let dishes = this.props.dishes && this.props.dishes;
         let allDish = [];
 
         if (this.props.categoryName !== 'all menu') {
             for (let i = 0; i < dishes.length; i++) {
-                console.log('diqsjhagfjksgaj',dishes);
                 if (dishes[i].category === this.props.categoryName) {
                     allDish.push(dishes[i]);
                 }

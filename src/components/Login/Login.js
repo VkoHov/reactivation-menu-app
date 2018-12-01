@@ -62,6 +62,21 @@ class Login extends Component {
                 </div>
        
             </section>
+            <div>
+                <form  onSubmit={this.handleSubmit}>
+                    <div >
+                        <label htmlFor="email">Email</label>
+                        <input type="email" id='email' onChange={this.handleChange} />
+                    </div>
+                    <div >
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id='password' onChange={this.handleChange} />
+                    </div>
+                    <div>
+                        <button onClick={this.handleClick}>Login</button>
+                    </div>
+                </form>
+            </div>
         )
     }
 }

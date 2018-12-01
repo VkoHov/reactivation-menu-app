@@ -47,6 +47,7 @@ class CategoryList extends Component {
                     </div>
                 </div>
             </section>
+
         );
     }
 }
@@ -55,13 +56,12 @@ const mapStateToProps = state => {
     return {
         categories: state.firestore.ordered.categories,
     }
-
-}
+};
 
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'categories' },
+        {collection: 'categories'},
     ]),
 )(CategoryList);
 

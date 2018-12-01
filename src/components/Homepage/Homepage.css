@@ -8,4 +8,17 @@
 }
  h1 span{
 	color:#FF9900;
+ }
+ 
+.carousel .slider-wrapper{
+	height: 44vw;
+}
+.carousel .control-dots .dot{
+	width:12px !important;
+	height: 12px !important;
+	border:1px solid #ff9900;
+	background: none;
+}
+.carousel .control-dots .dot.selected{
+	background: #ff9900 !important;
 }

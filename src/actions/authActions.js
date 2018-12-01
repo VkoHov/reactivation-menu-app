@@ -26,18 +26,19 @@ export const SignUp = (newUser) => {
         const firebase = getFirebase();
         const firestore = getFirestore();
         firebase.auth().createUserWithEmailAndPassword(
-            newUser.regemail,
-            newUser.regpassword,
+            newUser.email,
+            newUser.password,
         ).then((resp) => {
-            return firestore.collection('users').doc(resp.user.uid).set({
+            return firestore.collection(newUser.collection).doc(resp.user.uid).set({
                 name: newUser.name,
                 lastname: newUser.lastname,
-                email: newUser.regemail,
-                password: newUser.regpassword,
+                email: newUser.email,
+                password: newUser.password,
             })
         }).then(() => {
             dispatch({type: 'SIGNUP_SUCCESS'})
         }).catch(err => {
+
             dispatch({type: "SIGNUP_ERROR" , err})
         })
     }

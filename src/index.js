@@ -12,7 +12,6 @@ import { reactReduxFirebase, getFirebase} from 'react-redux-firebase';
 import fbConfig from './config/fbConfig';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-
 const store = createStore(rootReducer,
     composeWithDevTools(
         applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
@@ -30,8 +29,7 @@ const app = (
 store.firebaseAuthIsReady.then(() => {
         ReactDOM.render(app, document.getElementById('root'));
     }
-)
-
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

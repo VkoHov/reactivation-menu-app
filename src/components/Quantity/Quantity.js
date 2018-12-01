@@ -1,0 +1,36 @@
+import React, {Component} from 'react';
+
+class Quantity extends Component {
+    state = {
+        count: this.props.count,
+        price: this.props.price,
+    };
+    minusCount = () => {
+        if (this.state.count > 1) {
+            this.setState({
+                count: this.state.count - 1
+            });
+        }
+    };
+
+    plusCount = () => {
+        this.setState({
+            count: this.state.count + 1
+        });
+    };
+
+    render() {
+        return (
+            <div>
+                <span>SUBTOTAL: {this.state.price * this.state.count}(AMD)</span>
+                <button className="count-button" onClick={this.minusCount}> -
+                </button>
+                <button className="count-button">{this.state.count}</button>
+                <button className="count-button" onClick={this.plusCount}> +
+                </button>
+            </div>
+        );
+    }
+}
+
+export default Quantity;

@@ -20,9 +20,7 @@ class Category extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         changeCategoryName: (catName) => dispatch(changeCategoryName(catName)),
-
     }
-
 }
 
 

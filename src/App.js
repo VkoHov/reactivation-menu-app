@@ -10,9 +10,9 @@ import EditManu from './components/Editmanu/EditManu';
 import TableInfo from './components/AdminHomePage/Tablelist/TableInfo/TableInfo';
 import Listing from './components/Listing/Listing';
 import AddNewDish from './components/AddNewDish/AddNewDish';
-import DishDetails from './components/DishDetails/DishDetails';
+import ShoppingCart from './components/ShopingCart/ShoppingCart';
 import Registration from "./components/Registration/Registration";
-
+import AdminRegistration from "./components/AdminRegistration/AdminRegistration";
 
 class App extends Component {
     render() {
@@ -24,19 +24,19 @@ class App extends Component {
                         <Route exact path='/' component={Homepage} />
                         <Route path='/login' component={Login} />
                         <Route path='/registration' component={Registration}/>
-                        <Route  path='/admin' component={AdminHomePage} />
+                        <Route path='/adminregistration' component={AdminRegistration}/>
+                        <Route exact path='/admin' component={AdminHomePage} />
                         <Route path='/admin/editadmin' component={EditAdmin} />
                         <Route path='/admin/editmanu' component={EditManu} />
                         <Route path='/admin/table/:tableId' component={TableInfo} />
                         <Route path='/listing'  component={Listing} />
                         <Route path='/newDish' component={AddNewDish}/>
-                        <Route path='/dish' component={DishDetails} />
+                        <Route path='/shoppingcart' component = {ShoppingCart}/>
                     </Switch>
                 </div>
             </Router>
         );
     }
 }
-
 
 export default App;
