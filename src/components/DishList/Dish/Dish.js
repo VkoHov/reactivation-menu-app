@@ -23,15 +23,15 @@ class Dish extends Component {
 
     render() {
 
-let style = {backgroundImage: 'url(' + this.props.url + ')',} 
+let style = {backgroundImage: 'url(' + this.props.dish.url + ')',}
      
 
         return (
-            <div className="dishBlock" style={style}>
+            <div className="dishBlock" style={style} onClick={this.showPopUp}>
                 <div className='shape'>
                     { this.props.dish.description }
                 </div>
-                <div onClick={this.showPopUp} >
+                <div  >
                     {
                         this.props.dish.title
                     }
