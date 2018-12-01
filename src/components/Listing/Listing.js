@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ListingBaner from './ListingBaner';
 import CategoryList from '../CategoryList/CategoryList';
 import DishList from '../DishList/DishLIst';
 
@@ -9,8 +10,8 @@ class Listing extends Component {
         return (
 
             <div>
+                <ListingBaner/>
                 <CategoryList />
-                <div> ##########</div>
                 <DishList />
             </div>
         );

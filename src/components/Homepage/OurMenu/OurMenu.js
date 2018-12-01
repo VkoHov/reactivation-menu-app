@@ -36,11 +36,22 @@ class OurMenu extends Component {
                     <h1> our <span>menu</span></h1>
                     <div className="ourMenu">
                         {
+        let categoryss = this.props.categories && Object.values( this.props.categories[0]);
+             categoryss&&categoryss.shift();
+    	// let style = { backgroundImage: `url(${this.props.dish.url})`}
+console.log('jjj',categoryss)
 
-                            categoryss && categoryss.map((category, index) => {
-                                return (<MenuItem text={category} key={index}/>)
-                            })
-                        }
+        return(
+            <section >
+	            <div className="container">
+	            	<h1> our <span>menu</span></h1>
+	            	<div className="ourMenu">
+	            		{
+	            			
+                            categoryss && categoryss[0].map((category, index) => {
+	            			return (<MenuItem text={category} key={index}/>)
+	            		})
+	            		}
 
                     </div>
                 </div>

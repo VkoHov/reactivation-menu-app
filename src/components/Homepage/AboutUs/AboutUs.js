@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-import Baner2 from '../images/baner2.jpg'
 import './../Homepage.css';
 import './AboutUs.css';
 
@@ -12,7 +10,7 @@ class AboutAs extends Component {
             		<h1>about <span>us</span></h1>
             		<div className="about">
             			<div>
-            				<img src={Baner2} alt='banner'/>
+            				<img src='https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner3.jpg?alt=media&token=2fbe95dc-36fe-453a-825f-14ee8e78d4a3' alt='banner'/>
             			</div>
             			<ul>
             				<li>
