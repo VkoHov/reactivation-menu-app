@@ -18,7 +18,7 @@ class AddNewDish extends Component {
             ingredients: [],
             category: "category",
             price: null,
-            rating: [0],
+            rating: [],
             doneness: [],
         }
     }
@@ -47,7 +47,7 @@ class AddNewDish extends Component {
                 ingredients: [],
                 category: "category",
                 price: null,
-                rating: [0],
+                rating: [],
                 doneness: [],
             })
             console.log('exav')

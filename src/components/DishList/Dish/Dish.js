@@ -14,8 +14,6 @@ class Dish extends Component {
         this.showPopUp = this.showPopUp.bind(this);
     }
 
-
-
     showPopUp = () => {
         this.setState({
             popUpIsOpen: !this.state.popUpIsOpen,
@@ -26,15 +24,17 @@ class Dish extends Component {
     render() {
 
         return (
-            <div>
-                <div onClick={this.showPopUp} >
+            <div onClick = {this.showPopUp}>
+                <div >
                     {
                         this.props.dish.title
                     }
                 </div>
-                {
-                    this.state.popUpIsOpen && <DishDetails dish={this.props} />
-                }
+                {this.state.popUpIsOpen && <div onClick={(e)=> {e.stopPropagation()}}><DishDetails dish={this.props} /></div> }
+                {this.state.popUpIsOpen &&   <div className = "overlay"></div>}
+                
+                
+               
             </div>
         );
     }
