@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import TableLIst from './Tablelist/TableList';
 
-
-
 class AdminHomePage extends Component {
 
     render() {

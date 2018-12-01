@@ -214,6 +214,7 @@ class DishDetails extends React.Component {
                         Select All
                     </label>
                 </div>
+                <img src={this.props.dish.dish.url} alt="dish"/>
             </div>
         );
     }

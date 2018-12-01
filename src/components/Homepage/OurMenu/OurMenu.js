@@ -28,19 +28,20 @@ class OurMenu extends Component {
 
 
     render() {
-        let categoryss = this.props.categories && Object.values(this.props.categories[0]);
-        categoryss && categoryss.shift();
-        return (
-            <section>
-                <div className="container">
-                    <h1> our <span>menu</span></h1>
-                    <div className="ourMenu">
-                        {
+    
+        let categoryss = this.props.categories && Object.values( this.props.categories[0]);
+             categoryss&&categoryss.shift();
 
-                            categoryss && categoryss.map((category, index) => {
-                                return (<MenuItem text={category} key={index}/>)
-                            })
-                        }
+        return(
+            <section >
+	            <div className="container">
+	            	<h1> our <span>menu</span></h1>
+	            	<div className="ourMenu">
+	            		{
+                            categoryss && categoryss[0].map((category, index) => {
+                               return category !== 'all menu' &&  <MenuItem text={category} key={index}/>
+	            		     })
+	            		}
 
                     </div>
                 </div>

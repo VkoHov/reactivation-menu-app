@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {changeCategoryName} from '../../../actions/listingAction'; 
 
-
+import '../CategoryList.css';
 
 class Category extends Component {
 
     render() {
 
         return (
-            <div  onClick={()=>{ this.props.changeCategoryName(this.props.category)} }>
+            <div  onClick={()=>{ this.props.changeCategoryName(this.props.category);} }>
                 {
                     this.props.category
                 }

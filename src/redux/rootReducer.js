@@ -5,7 +5,8 @@ import authReducer from './reducers/authReducer';
 import tableReducer from './reducers/tableReducer';
 import rateReducer from './reducers/rateReducer';
 import dishDetailReducer from './reducers/dishDetailReducer';
-import listingReducer from './reducers/listingReducer'
+import listingReducer from './reducers/listingReducer';
+import navbarReducer from './reducers/navbarReducer';
 export default combineReducers({
     login: authReducer,
     tableInfo: tableReducer,
@@ -14,4 +15,5 @@ export default combineReducers({
     firebase: firebaseReducer,
     dishInfo: dishDetailReducer,
     listing: listingReducer,
+    navbar: navbarReducer,
 })
