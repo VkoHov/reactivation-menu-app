@@ -5,7 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import Homepage from './components/Homepage/Homepage';
 import Login from './components/Login/Login';
 import AdminHomePage from './components/AdminHomePage/AdminHomePage';
-import TableInfo from './components/AdminHomePage/Tablelgit ist/TableInfo/TableInfo';
+import TableInfo from './components/AdminHomePage/Tablelist/TableInfo/TableInfo';
 import Listing from './components/Listing/Listing';
 import AddNewDish from './components/AddNewDish/AddNewDish';
 import ShoppingCart from './components/ShopingCart/ShoppingCart';
@@ -39,4 +39,3 @@ class App extends Component {
 
 export default App;
 
-                        {/* <Route path='admin/editadmin' component={EditAdmin}/> */}
