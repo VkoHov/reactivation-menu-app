@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import Baner1 from '../images/baner1.jpg'
 import './../Homepage.css';
 import './Booking.css';
 
@@ -30,7 +29,7 @@ class Booking extends Component {
             		<div className="mapShape">
             			<div>
             				<div>
-            					<img src={Baner1} alt='banner'/>
+            					<img src='https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner3.jpg?alt=media&token=2fbe95dc-36fe-453a-825f-14ee8e78d4a3' alt='banner'/>
             				</div>
             				<div>
             					<p> <span>Address</span>Yerevan Abovyan 23/3 </p>

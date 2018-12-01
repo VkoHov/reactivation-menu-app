@@ -24,7 +24,7 @@ class App extends Component {
                         <Route exact path='/' component={Homepage} />
                         <Route path='/login' component={Login} />
                         <Route path='/registration' component={Registration}/>
-                        <Route exact path='/admin' component={AdminHomePage} />
+                        <Route  path='/admin' component={AdminHomePage} />
                         <Route path='/admin/editadmin' component={EditAdmin} />
                         <Route path='/admin/editmanu' component={EditManu} />
                         <Route path='/admin/table/:tableId' component={TableInfo} />

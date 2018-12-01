@@ -17,7 +17,12 @@ class AccountLayout extends Component{
         return(
             <div>
                 { accountLink }
-                { links }
+                {/* { links } */}
+                <div className="loginRegHover">
+                    <p><Link to='/login'> log in</Link></p>
+                    <p><Link to='/registration'>register</Link></p>
+
+                </div>
             </div>
         )
     }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import Dish from './Dish/Dish';
-
+import './DishList.css';
 
 
 class DishList extends Component {
@@ -24,13 +25,25 @@ class DishList extends Component {
             allDish = dishes;
         }
         return (
-            <div>
-                {
-                    allDish &&
-                    allDish.map((dish, index) => <Dish key={dish.id} dish={dish} />)
-                }
-
-            </div>
+            <section  className="dishList">
+             
+                <div  className="container">
+                    <div className="source">
+                        <p>
+                            <Link to="/">Home</Link>
+                            <span>/</span>
+                            {this.props.categoryName}
+                        </p>
+                        <p>18 of 125</p>
+                    </div>
+                <div className='dishes'>
+                    {
+                        allDish &&
+                        allDish.map((dish, index) => <Dish key={dish.id} dish={dish} />)
+                    }
+                </div>
+                </div>
+            </section>
         );
     }
 }

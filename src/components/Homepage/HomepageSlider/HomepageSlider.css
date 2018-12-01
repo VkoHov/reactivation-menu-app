@@ -1,0 +1,25 @@
+
+
+ h1{
+	text-align: center;
+	font-size: 36px;
+	text-transform: uppercase;
+	font-weight: 600;
+	margin: 90px 0 60px;
+}
+ h1 span{
+	color:#FF9900;
+ }
+ 
+.carousel .slider-wrapper{
+	height: 44vw;
+}
+.carousel .control-dots .dot{
+	width:12px !important;
+	height: 12px !important;
+	border:1px solid #ff9900;
+	background: none;
+}
+.carousel .control-dots .dot.selected{
+	background: #ff9900 !important;
+}

@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-
+import '../DishList.css';
 class Dish extends Component {
     render() {
       
-console.log('esi dishi propsna jhvgk ftfuctc ',this.props);
+console.log('esi dishi propsna  ',this.props);
+
+let style = {backgroundImage: 'url(' + this.props.url + ')',} 
         return (
-            <div>
-           {  this.props.dish.description}
-               
+            <div className="dishBlock" style={style}>
+                <div className='shape'>
+                    { this.props.dish.description }
+                </div>
             </div>
         );
     }

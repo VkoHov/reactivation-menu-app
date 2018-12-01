@@ -1,0 +1,80 @@
+.paddingTop{
+    padding-top: 96px;
+}
+.register {
+    width:100%;
+    height: 100vh;
+    background:url(../../images/baner1.jpg); 
+}
+.register>div {
+    background:rgba(0, 0, 0, .5); 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.register h4 {
+   font-size: 24px;
+   color:#fff;
+   text-transform: uppercase;
+   font-weight: 300;
+   text-align: center;
+   margin: 15px 0;
+}
+.register h4 span{
+   color:#ff9900;
+}
+
+.account{
+    width:38vw;
+    box-sizing: border-box;
+    padding:2% 4% 4%;
+    background: rgba(0,0,0,.7);
+}
+.account input{
+    width:100%;
+    outline:none;
+    padding:9px;
+    box-sizing: border-box;
+    font-size: 20px;
+    border:0.5px solid #ff9900;
+    margin: 5px 0 8px;
+}
+#remember{
+    width:20px;
+    
+}
+.account label{
+    font-size: 14px;
+    color: #ff9900;
+}
+.account button{
+    font-size: 18px;
+    background: #ff9900;
+    text-transform: uppercase;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    padding: 2% 9%;
+    cursor: pointer;
+    border:1px solid #ff9900;
+}
+.account button:hover{
+    background: #fff;
+   color:#ff9900;
+   transition: .5s;
+}
+
+.orLogIn {
+    text-align: right;
+    font-size: 14px;
+    color:#ff9900;
+    padding:10px 0 0 ;
+}
+.orLogIn a{
+    text-decoration: underline;
+    color:#ff9900;
+}

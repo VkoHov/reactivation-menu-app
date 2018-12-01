@@ -33,7 +33,7 @@ class OurMenu extends Component {
         let categoryss = this.props.categories && Object.values( this.props.categories[0]);
              categoryss&&categoryss.shift();
     	// let style = { backgroundImage: `url(${this.props.dish.url})`}
-
+console.log('jjj',categoryss)
 
         return(
             <section >
@@ -42,7 +42,7 @@ class OurMenu extends Component {
 	            	<div className="ourMenu">
 	            		{
 	            			
-                            categoryss && categoryss.map((category, index) => {
+                            categoryss && categoryss[0].map((category, index) => {
 	            			return (<MenuItem text={category} key={index}/>)
 	            		})
 	            		}
