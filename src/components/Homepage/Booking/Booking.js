@@ -24,6 +24,7 @@ class Booking extends Component {
 				dtatmilisecond: myDate,
 			})
 		}
+
 		this.setState({
 			[e.target.id]: e.target.value,
 		})
@@ -37,11 +38,6 @@ class Booking extends Component {
 			case (this.state.date === null):
 				console.log('mutqagreq amsativy');
 				break;
-				case (this.state.date !== null):
-				if (this.state.dtatmilisecond - Number(new Date()) <= 0) {
-					console.log('sxal amsativ e Yntrvats');
-					return;
-				}
 			case (this.state.time === null):
 				console.log('mutqagreq galu jamanaky');
 				break;
@@ -51,7 +47,6 @@ class Booking extends Component {
 			case ((this.state.phone === null) || (this.state.phone === '')):
 				console.log('mutqagreq heraxosahamy');
 				break;
-				
 			default:
 				this.checkDate();
 		}
@@ -59,7 +54,10 @@ class Booking extends Component {
 
 	checkDate = () => {
 		if (this.state.date !== null) {
-			
+			if (this.state.dtatmilisecond - Number(new Date()) <= 0) {
+				console.log('sxal amsativ e Yntrvats');
+				return;
+			}
 		}
 
 		if (+this.state.time[0] < 1) {
@@ -104,7 +102,7 @@ class Booking extends Component {
 
 
 	render() {
-
+		console.log(this.state && this.state, 'q	hufuiqwgiuvqw');
 		return (
 			<section className="booking">
 				<div className="map">
