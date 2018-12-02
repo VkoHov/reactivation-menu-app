@@ -13,7 +13,7 @@ class LogoutLayout extends Component{
                 return user.userId === this.props.firebaseInfo.auth.uid
             });
             return(
-                <div>
+                <div className='loginRegHover'>
                     <p>Deer { user[0] && user[0].name + ' ' + user[0].surname} welcome to our Restaurant </p>
                     <p>{this.props.firebaseInfo.auth.email}</p>
                     <button onClick={() => {this.props.LogoutAction()}}> logout</button>

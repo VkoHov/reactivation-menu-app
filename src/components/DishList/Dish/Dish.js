@@ -46,7 +46,6 @@ class Dish extends Component {
                         <img className="star" alt="star" src={this.state.starUrl}/>
                     </div>
                    <p className="dishDesc">{ this.props.dish.description }</p> 
-
                 </div>
                 {this.state.popUpIsOpen && <div onClick={(e)=> {e.stopPropagation()}}><DishDetails dish={this.props} /></div> }
                 {this.state.popUpIsOpen &&   <div className = "overlay"></div>}
