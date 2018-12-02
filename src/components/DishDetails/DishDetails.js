@@ -6,7 +6,7 @@ import { compose } from "redux";
 import { changeData } from "../../actions/rateAction";
 import { addToCart } from "../../actions/dishDetailAction";
 import "./DishDetails.css";
-import Quantity from "../Quantity/Quantity";
+
 
 class DishDetails extends React.Component {
     state = {
@@ -14,7 +14,7 @@ class DishDetails extends React.Component {
         isRated: false,
         doneness: null,
         count: 1,
-        ingredients: null,
+        ingredients: [],
         starUrl:
             "https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/star.png?alt=media&token=361e13d4-7882-4400-90f1-b72278a8a382"
     };
@@ -28,6 +28,19 @@ class DishDetails extends React.Component {
             });
         }
     };
+    minusCount = () => {
+        if (this.state.count > 1) {
+            this.setState({
+                count: this.state.count - 1
+            });
+        }
+    };
+
+    plusCount = () => {
+        this.setState({
+            count: this.state.count + 1
+        });
+    };
 
     onClickToStars(e) {
         this.setState({
@@ -37,7 +50,7 @@ class DishDetails extends React.Component {
         this.props.changeData({
             rating:
                 (this.state.mouseOnWidth * 100) / e.currentTarget.offsetWidth / 20,
-            id: this.props.dishInfo.dish.id
+            id: this.props.dish.dish.id
         });
     }
 
@@ -55,9 +68,12 @@ class DishDetails extends React.Component {
         });
     };
     changeIngredient = e => {
-        this.setState({
-            ingredients: e.target.value
-        });
+        let selectedIng = [e.target.value];
+            this.setState({
+                ingredients: this.state.ingredients.concat(selectedIng),
+            });
+        
+        
     };
 
     SaveDataToSessionStorage = (info) => {
@@ -77,13 +93,14 @@ class DishDetails extends React.Component {
     }
 
     selectAll = e => {
-        this.setState({
-            ingredients: e.target.value
+        
+        
+         this.setState({
+            ingredients: [e.target.value],
         });
     };
 
     render() {
-        console.log('gago', this.props)
         const id = this.props.dish.dish.id;
 
         const dish = this.props.dishes
@@ -151,6 +168,7 @@ class DishDetails extends React.Component {
                     <div
                         className="rating-container"
                         style={{ right: "0" }}
+
                         onMouseMove={e => {
                             this.countRating(e);
                         }}
@@ -233,21 +251,17 @@ class DishDetails extends React.Component {
                                 console.log(info);
                                 this.SaveDataToSessionStorage(info)
                             }}
+
                         > Add to cart
                         </button>
                         <button type="button" className="add-to-favorites">
                             Add to favorites
                         </button>
+
                  </div>
 
                     </div>
 
-
-
-
-
-                 
-                    
               </div>
             </section >
         );

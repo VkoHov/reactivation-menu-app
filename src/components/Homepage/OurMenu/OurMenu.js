@@ -39,10 +39,9 @@ class OurMenu extends Component {
 	            	<div className="ourMenu">
 	            		{
                             categoryss && categoryss[0].map((category, index) => {
-                                if(category!='all menu'){
-                                    return (<MenuItem text={category} key={index}/>)
-                                }
-	            		})
+
+                               return category !== 'all menu' &&  <MenuItem text={category} key={index}/>
+	            		     })
 	            		}
 
                     </div>
