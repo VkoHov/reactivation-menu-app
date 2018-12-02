@@ -16,13 +16,13 @@ class Homepage extends Component {
     componentDidUpdate(){
         switch (this.props.sliderstatus){
             case 'ourmenu':
-                scrollToComponent(this.OurMenu, {});
+                scrollToComponent(this.OurMenu, {offset:-100,align:'top'});
                 break;
             case 'reservation':
-                scrollToComponent(this.Booking, {});
+                scrollToComponent(this.Booking, {offset:-100,align:'top'});
                 break;
             case 'aboutus':
-                scrollToComponent(this.AboutUs, {});
+                scrollToComponent(this.AboutUs, {offset:-100,align:'top'});
                 break;
             case 'contact':
                 scrollToComponent(this.Footer, {});

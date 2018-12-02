@@ -9,7 +9,7 @@ class Category extends Component {
     render() {
 
         return (
-            <div  onClick={()=>{ this.props.changeCategoryName(this.props.category);} }>
+            <div  onClick={()=>{ this.props.changeCategoryName(this.props.category);}}>
                 {
                     this.props.category
                 }
