@@ -1,9 +1,10 @@
 import React from "react";
-import {connect} from "react-redux";
-import {firestoreConnect} from "react-redux-firebase";
-import {compose} from "redux";
-import {changeData} from "../../actions/rateAction";
-import {addToCart} from "../../actions/dishDetailAction";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { Link } from 'react-router-dom';
+import { compose } from "redux";
+import { changeData } from "../../actions/rateAction";
+import { addToCart } from "../../actions/dishDetailAction";
 import "./DishDetails.css";
 import Quantity from "../Quantity/Quantity";
 
@@ -82,7 +83,7 @@ class DishDetails extends React.Component {
     };
 
     render() {
-        console.log('gago',this.props)
+        console.log('gago', this.props)
         const id = this.props.dish.dish.id;
 
         const dish = this.props.dishes
@@ -95,8 +96,8 @@ class DishDetails extends React.Component {
         const dishDescription = dish ? dish[0].description : null;
         let rates = dish
             ? dish[0].rating.reduce(function (a, b) {
-            return a + b;
-        }) / dish[0].rating.length
+                return a + b;
+            }) / dish[0].rating.length
             : 0;
         let info = {
             id: id,
@@ -125,25 +126,44 @@ class DishDetails extends React.Component {
             0;
 
         return (
-            <div className="pop-Up-inner">
-                <div>Title: {dishTitile} </div>
-                <div>Description: {dish && dish[0].description}</div>
-                <div
-                    className="rating-container"
-                    style={{left: "70%"}}
-                    onMouseMove={e => {
-                        this.countRating(e);
-                    }}
-                    onClick={e => {
-                        this.onClickToStars(e);
-                    }}
-                    onMouseLeave={() => {
-                        this.mouseLeaving();
-                    }}
-                >
-                    <div>Rating: {Math.round(parseFloat(rates / 20) * 100) / 100}</div>
-                    <div className="rating" style={{width: width}}/>
-                    <div className="star-container">
+            <section className="dishDetails">
+                <div className="pop-Up-inner">
+                    <div>
+                        <div>
+                            <img src={this.props.dish.dish.url} alt="dish" />
+                        </div>
+                        <div className="socIcon">
+                            <Link to="">
+                                <i className="fab fa-facebook-square"></i>
+                                <span> facebook </span>
+                            </Link>
+                            <Link to="">
+                                <i className="fab fa-instagram"></i>
+                                <span> instagram</span>
+                            </Link>
+                            <Link to="">
+                                <i classame="fab fa-twitter"></i>
+                                <span> twitter</span>
+                            </Link>
+                        </div>
+                    </div>
+                    <div>
+                    <div
+                        className="rating-container"
+                        style={{ right: "0" }}
+                        onMouseMove={e => {
+                            this.countRating(e);
+                        }}
+                        onClick={e => {
+                            this.onClickToStars(e);
+                        }}
+                        onMouseLeave={() => {
+                            this.mouseLeaving();
+                        }}
+                    >
+                        <div>Rating: {Math.round(parseFloat(rates / 20) * 100) / 100}</div>
+                        <div className="rating" style={{ width: width }} />
+                        <div className="star-container">
                         <img className="star" alt="star" src={this.state.starUrl}/>
                         <img className="star" alt="star" src={this.state.starUrl}/>
                         <img className="star" alt="star" src={this.state.starUrl}/>
@@ -152,68 +172,84 @@ class DishDetails extends React.Component {
                     </div>
 
 
-                </div>
-                <div> Unit Price: {dishPrice} (AMD)</div>
-                <Quantity count={this.state.count} price={dishPrice}/>
+                </div> 
 
-                <div>
-                    <button type="button" className="add-to-cart-button"
+            
+               
+                  
+                        <h4>{dishTitile} </h4>
+                        <p className="decs">{dish && dish[0].description}</p>
+                        <h4 className="price">${dishPrice}</h4>
+                        <h5>Choose your Ingredients</h5>
+                        <div>
+                            {ingredients.map((ingredient, index) => {
+                                return (
+                                    <label key={index}>
+                                        <input
+                                            className="select-checkbox ingredients-drop-down"
+                                            type="checkbox"
+                                            value={ingredient}
+                                            onChange={this.changeIngredient}
+                                        />
+                                        {ingredient}
+                                    </label>
+                                );
+                            })}
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    className="select-checkbox"
+                                    value={ingredients}
+                                    onChange={this.selectAll}
+                                />
+                                Select All
+                             </label>
+                        </div>
+
+                        <h5>Doneness</h5>
+                        <select
+
+                            className="doneness-drop-down"
+                            onChange={this.changeDoneness}
+                            defaultValue="Select Value"
+                        >
+                            {donenes.map((level, index) => {
+                                return (
+                                    <option value={level} key={index}>
+                                        {level}
+                                    </option>
+                                );
+                            })}
+                            <option value="Select Value" style={{ display: "none" }} disabled>
+                                Select Level
+                             </option>
+                        </select>  
+                        <div className="addBlock">
+                            
+                        <Quantity count={this.state.count} price={dishPrice} />
+                        <button type="button" className="add-to-cart-button" 
                             onClick={() => {
                                 this.props.addToCart(info);
                                 console.log(info);
                                 this.SaveDataToSessionStorage(info)
                             }}
-                    > Add to cart
-                    </button>
-                    <button type="button" className="add-to-favorites">
-                        Add to favorites
-                    </button>
-                </div>
+                        > Add to cart
+                        </button>
+                        <button type="button" className="add-to-favorites">
+                            Add to favorites
+                        </button>
+                 </div>
 
-                <div>Doneness:</div>
-                <select
-                    className="doneness-drop-down"
-                    onChange={this.changeDoneness}
-                    defaultValue="Select Value"
-                >
-                    {donenes.map((level, index) => {
-                        return (
-                            <option value={level} key={index}>
-                                {level}
-                            </option>
-                        );
-                    })}
-                    <option value="Select Value" style={{display: "none"}} disabled>
-                        Select Level
-                    </option>
-                </select>
-                <p>Choose Ingredient</p>
-                <div>
-                    {ingredients.map((ingredient, index) => {
-                        return (
-                            <label key={index}>
-                                <input
-                                    className="select-checkbox ingredients-drop-down"
-                                    type="checkbox"
-                                    value={ingredient}
-                                    onChange={this.changeIngredient}
-                                />
-                                {ingredient}
-                            </label>
-                        );
-                    })}
-                    <label>
-                        <input
-                            type="checkbox"
-                            className="select-checkbox"
-                            value={ingredients}
-                            onChange={this.selectAll}
-                        />
-                        Select All
-                    </label>
-                </div>
-                <img src={this.props.dish.dish.url} alt="dish"/>
-            </div>
+                    </div>
+
+
+
+
+
+                 
+                    
+              </div>
+            </section >
         );
     }
 }
@@ -232,6 +268,6 @@ const mapDispatchToProps = dispatch => {
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
-        {collection: "dishes"}
+        { collection: "dishes" }
     ])
 )(DishDetails);

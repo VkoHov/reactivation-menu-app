@@ -21,7 +21,7 @@ class Quantity extends Component {
 
     render() {
         return (
-            <div>
+            <div className="countDish">
                 <span>SUBTOTAL: {this.state.price * this.state.count}(AMD)</span>
                 <button className="count-button" onClick={this.minusCount}> -
                 </button>

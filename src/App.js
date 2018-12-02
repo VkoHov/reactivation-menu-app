@@ -31,7 +31,7 @@ class App extends Component {
                         <Route path='/admin/table/:tableId' component={TableInfo} />
                         <Route path='/listing'  component={Listing} />
                         <Route path='/newDish' component={AddNewDish}/>
-                        <Route path='/shoppingcart' component = {ShoppingCart}/>
+                        <Route path='/shoppingcart' component = {ShoppingCart}/> */}
                     </Switch>
                 </div>
             </Router>

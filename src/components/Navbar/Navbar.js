@@ -3,7 +3,9 @@ import {Link} from 'react-router-dom';
 import AccountLayout from '../Layout/AccountLayout/AccountLayout'
 import './Navbar.css';
 import {connect} from 'react-redux';
-import {SlideToComponent} from '../../actions/navbarAction'
+import {SlideToComponent} from '../../actions/navbarAction';
+import FavoriteLayout from '../Layout/FavoriteLayout/FavoriteLayout';
+import CartLayout from '../Layout/CartLayout/CartLayout';
 
 class Navbar extends Component {
     render() {
@@ -21,14 +23,14 @@ class Navbar extends Component {
                                 <span>|</span>
                                 <p  className='navItem'id='reservation' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>reservation</p>
                                 <span>|</span>
-                                <p  className='navItem'id='contact' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>contact</p>
-                                <span>|</span>
                                 <p  className='navItem'id='aboutus' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>about</p>
+                                <span>|</span>
+                                <p  className='navItem'id='contact' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>contact</p>
                             </div>
                             <div className="layout">
-                                <AccountLayout/>
-                                <Link to=""><i className="far fa-heart"></i></Link>
-                                <Link to=""><i className="fas fa-shopping-cart"></i></Link>
+                                <AccountLayout />
+                                <FavoriteLayout />
+                                <CartLayout />
                             </div>
                         </div>
                     </div>

@@ -30,7 +30,7 @@ class OurMenu extends Component {
     render() {
     
         let categoryss = this.props.categories && Object.values( this.props.categories[0]);
-             categoryss&&categoryss.shift();
+            categoryss&&categoryss.shift();
 
         return(
             <section >
@@ -38,12 +38,10 @@ class OurMenu extends Component {
 	            	<h1> our <span>menu</span></h1>
 	            	<div className="ourMenu">
 	            		{
-	            			
                             categoryss && categoryss[0].map((category, index) => {
                                 if(category!='all menu'){
                                     return (<MenuItem text={category} key={index}/>)
                                 }
-	            		
 	            		})
 	            		}
 
