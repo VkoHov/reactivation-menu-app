@@ -10,11 +10,16 @@ import './CategoryList.css';
 class CategoryList extends Component {
     constructor(props) {
         super(props);
-        this.state = {addClass: false}
+        this.state = {
+            addClass: false,
+        }
+        this.toggle = this.toggle.bind(this);
       }
 
       toggle() {
-        this.setState({addClass: !this.state.addClass});
+        this.setState({
+            addClass: !this.state.addClass,
+        });
       }
 
     render() {
@@ -36,7 +41,7 @@ class CategoryList extends Component {
                             categoryss &&
                             categoryss[0].map((category, index) => {
                                 return (
-                                    <li className={classActive} key={index} onClick={this.toggle.bind(this)}>
+                                    <li className={classActive} key={index} onClick={this.toggle}>
                                         <Category  key={index} category={category} />
                                     </li>
                                 );
