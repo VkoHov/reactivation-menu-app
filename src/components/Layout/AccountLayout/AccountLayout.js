@@ -6,28 +6,23 @@ import './AccountLayout.css';
 
 class AccountLayout extends Component{
 
-    render(){
+    render() {
 
-        const links = this.props.authID
-            ? <LogoutLayout/>
-            : <div>
-                <Link to='/login'>login</Link>
-                <Link to='/registration'>register</Link>
-            </div>
-        const accountLink = this.props.authID
-            ? <p><i className="far fa-user"></i></p>
-            : <Link to = '/login'> <i className="far fa-user"></i> </Link>;
-        return(
-            <div>
-                { accountLink }
-                 { links }
-                <div className="loginRegHover">
+            const links = this.props.authID
+                ? <LogoutLayout/>
+                : <div className="loginRegHover">
                     <p><Link to='/login'> log in</Link></p>
                     <p><Link to='/registration'>register</Link></p>
 
+                </div>;
+            return (
+                <div>
+                    <p> <i className="far fa-user"></i> </p>
+                    {links}
+
                 </div>
-            </div>
-        )
+            )
+
     }
 }
 

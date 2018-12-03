@@ -4,6 +4,7 @@
 	flex-wrap: wrap;
 }
 .ourMenu > div{
+	margin:1.5% 0;
 	flex-basis: 32%;
 	height: 29.3vw;
 	background-size: 100% 100%;
@@ -26,11 +27,21 @@
 }
 .ourMenu > div:nth-of-type(2){
 
-	margin: 0 1.5%;
+	margin:  1.5%;
 	
 	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner2.jpg?alt=media&token=bb832b1e-7cf0-4c1d-bb97-58fabd7ce3a6');
 }
 .ourMenu > div:nth-of-type(3){
+	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner2.jpg?alt=media&token=bb832b1e-7cf0-4c1d-bb97-58fabd7ce3a6');
+}
+.ourMenu > div:nth-of-type(4){
+	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner2.jpg?alt=media&token=bb832b1e-7cf0-4c1d-bb97-58fabd7ce3a6');
+}
+.ourMenu > div:nth-of-type(5){
+	margin:  1.5%;
+	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner2.jpg?alt=media&token=bb832b1e-7cf0-4c1d-bb97-58fabd7ce3a6');
+}
+.ourMenu > div:nth-of-type(6){
 	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner2.jpg?alt=media&token=bb832b1e-7cf0-4c1d-bb97-58fabd7ce3a6');
 }
 .ourMenu p{

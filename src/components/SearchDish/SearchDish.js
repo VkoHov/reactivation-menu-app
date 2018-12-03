@@ -21,8 +21,6 @@ class SearchDish extends Component {
         })
     }
     render() {
-        console.log(this.props.dishes);
-        console.log(this.state.inputVal)
         return (
             <div>
                 <input type="text" value={this.state.inputVal} onFocus={this.triggerSearchTab.bind(this)} onChange={this.hendleChange.bind(this)}/>

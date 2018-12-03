@@ -109,6 +109,7 @@ class Booking extends Component {
 					<div className="mapShape">
 						<div>
 							<div>
+								<img src='https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/dishimages%2Fbeef-cheeseburger.jpg?alt=media&token=4934c523-ff08-4fa0-8497-5b68c42f3bd8' alt="address"/>
 							</div>
 							<div>
 								<p> <span>Address</span>Yerevan Abovyan 23/3 </p>

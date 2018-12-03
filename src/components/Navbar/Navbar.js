@@ -3,11 +3,18 @@ import {Link} from 'react-router-dom';
 import AccountLayout from '../Layout/AccountLayout/AccountLayout'
 import './Navbar.css';
 import {connect} from 'react-redux';
-import {SlideToComponent} from '../../actions/navbarAction'
-
+import {SlideToComponent} from '../../actions/navbarAction';
 class Navbar extends Component {
-    render() {
-        return (
+     constructor(props){
+         super(props)
+     this.state = {
+            count:  JSON.parse(sessionStorage.getItem('dishInfo')),
+        }
+     }
+  render() {
+    let storage = JSON.parse(sessionStorage.getItem("shoppingCartCount"));
+    console.log("storage.count",storage && storage.count) ;
+     return (
             <header>
                 <nav>
                     <div className="container">
@@ -21,14 +28,21 @@ class Navbar extends Component {
                                 <span>|</span>
                                 <p  className='navItem'id='reservation' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>reservation</p>
                                 <span>|</span>
-                                <p  className='navItem'id='contact' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>contact</p>
-                                <span>|</span>
                                 <p  className='navItem'id='aboutus' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>about</p>
+                                <span>|</span>
+                                <p  className='navItem'id='contact' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>contact</p>
                             </div>
                             <div className="layout">
                                 <AccountLayout/>
                                 <Link to=""><i className="far fa-heart"></i></Link>
-                                <Link to=""><i className="fas fa-shopping-cart"></i></Link>
+                                <Link to="/shoppingcart"><i className="fas fa-shopping-cart"><p>{
+                            
+                                storage && storage.count || null
+                          
+                           
+                                }</p></i></Link>
+                                
+
                             </div>
                         </div>
                     </div>
@@ -38,10 +52,15 @@ class Navbar extends Component {
         )
     }
 }
-
-const  mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
     return {
-        SlideToComponent: (sliderId) => {dispatch(SlideToComponent(sliderId))}
+        shoppingCartCount: state.shoppingCart.shoppingCartCount,
     }
 }
-export default connect(null, mapDispatchToProps)(Navbar);
+const  mapDispatchToProps = dispatch => {
+    return {
+        SlideToComponent: (sliderId) => {dispatch(SlideToComponent(sliderId))},
+      
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
