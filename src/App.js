@@ -15,7 +15,8 @@ import Registration from "./components/Registration/Registration";
 import AdminList from './components/AdminList/AdminList';
 import MenuList from './components/MenueList/MenuList';
 import AdminRegistration from "./components/AdminRegistration/AdminRegistration";
-import Footer from './components/Homepage/Footer/Footer'
+import Footer from './components/Homepage/Footer/Footer';
+import Favorites from "./components/Favorites/Favorite";
 
 
 class App extends Component {
@@ -38,6 +39,8 @@ class App extends Component {
                         <Route path='/admin/table/:tableId' component={TableInfo} />
                         <Route path='/listing'  component={Listing} />
                         <Route path='/newDish' component={AddNewDish}/>
+                        <Route path='/favorites' component={Favorites}/>
+                        
                         <Route path='/shoppingcart' component = {ShoppingCart}/> */}
                     </Switch>
 
