@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Quantity from "../Quantity/Quantity";
 import { Link } from "react-router-dom";
 import Status from "../Status/Status";
+import {shoppingCartMinusAction} from "../../actions/shoppingCartAction";
 
 class ShoppingCart extends Component {
   constructor(props){
@@ -21,7 +22,14 @@ class ShoppingCart extends Component {
     })
 }
   removeDish() {
-    this.setState({
+    let storageCount = JSON.parse(sessionStorage.getItem('shoppingCartCount'))
+    let shopCartCount = this.props.shoppingCartCount;
+ shopCartCount = shopCartCount-1;
+      storageCount.count --;
+      
+      this.props.shoppingCartMinusAction(shopCartCount);
+      sessionStorage.setItem("shoppingCartCount",JSON.stringify({count:storageCount.count }))
+      this.setState({
       removed: !this.state.removed
     });
   }
@@ -68,7 +76,6 @@ class ShoppingCart extends Component {
                         (item.id !== dish.id && item)
                       );
                     });
-
                     if (disharr.length === 0) {
                       sessionStorage.setItem("dishInfo", null);
                     } else {
@@ -95,18 +102,26 @@ class ShoppingCart extends Component {
     } else {
       return (
         <div>
-          SHOPPING CART IS EMPTY TO ADD SOMETHING CLICK{" "}
-          <Link to="/listing">HERE</Link>
+          SHOPPING CART IS EMPTY TO ADD SOMETHING CLICK
+          <Link to="/listing"> HERE</Link>
         </div>
       );
     }
   }
 }
-
+const  mapDispatchToProps = dispatch => {
+  return {
+    
+ shoppingCartMinusAction: count => {
+      dispatch(shoppingCartMinusAction(count));
+    }
+  };
+};
 const mapStateToProps = state => {
   return {
-    dishInfo: state
+    dishInfo: state,
+    shoppingCartCount: state.shoppingCart.shoppingCartCount,
   };
 };
 
-export default connect(mapStateToProps)(ShoppingCart);
+export default connect(mapStateToProps,mapDispatchToProps)(ShoppingCart);

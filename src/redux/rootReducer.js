@@ -7,6 +7,7 @@ import rateReducer from './reducers/rateReducer';
 import dishDetailReducer from './reducers/dishDetailReducer';
 import listingReducer from './reducers/listingReducer';
 import navbarReducer from './reducers/navbarReducer';
+import shoppingCartCount from './reducers/shoppingCartReducer';
 export default combineReducers({
     login: authReducer,
     tableInfo: tableReducer,
@@ -16,4 +17,5 @@ export default combineReducers({
     dishInfo: dishDetailReducer,
     listing: listingReducer,
     navbar: navbarReducer,
+    shoppingCart:shoppingCartCount,
 })
