@@ -25,9 +25,7 @@ let style = {backgroundImage: 'url(' + this.props.dish.url + ')',}
      
 
         return (
-            <div onClick = {this.showPopUp}>
-                <div >
-
+            
             <div className="dishBlock" style={style} onClick={this.showPopUp}>
                 <div className='shape'>
                     { this.props.dish.description }

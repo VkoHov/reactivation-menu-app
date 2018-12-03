@@ -20,23 +20,21 @@ class MenuList extends Component {
 
         this.props.dishes && this.props.dishes.map(dish => {
             if (dish.category === 'sallads') {
-                saladArr.push(dish);
+                return saladArr.push(dish);
             }
             if (dish.category === 'burger') {
-                burgerArr.push(dish);
+                return burgerArr.push(dish);
             }
             if (dish.category === 'wurst'){
-                wurstArr.push(dish);
+                return wurstArr.push(dish);
             }
             if(dish.category === 'grill'){
-                grillArr.push(dish);
+                return  grillArr.push(dish);
             }
             if(dish.category === 'drinks'){
-                drinkArr.push(dish);
+                return drinkArr.push(dish);
             }
-            if(dish.category === 'steaks'){
-                steaksArr.push(dish);
-            }
+            return steaksArr.push(dish);
         })
 
         return (
