@@ -300,6 +300,7 @@ class DishDetails extends React.Component {
 
         <img src={this.props.dish.dish.url} alt="dishimage" />
       </div>
+      </section>
     );
   }
 
