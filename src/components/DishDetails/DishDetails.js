@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { compose } from "redux";
 import { changeData } from "../../actions/rateAction";
 import { addToCart } from "../../actions/dishDetailAction";
+import Quantity from '../Quantity/Quantity'
 import "./DishDetails.css";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
 import _ from "lodash";
@@ -151,7 +152,9 @@ class DishDetails extends React.Component {
       0;
 
     return (
-      <div className="pop-Up-inner">
+       <section className="dishDetails" onClick={this.props.closePopup}>
+                <div className="pop-Up-inner" onClick={(e) => e.stopPropagation()}>
+                   
         <div>Title: {dishTitile} </div>
         <div>Description: {dish && dish[0].description}</div>
         <div
