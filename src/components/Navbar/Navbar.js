@@ -4,9 +4,6 @@ import AccountLayout from '../Layout/AccountLayout/AccountLayout'
 import './Navbar.css';
 import {connect} from 'react-redux';
 import {SlideToComponent} from '../../actions/navbarAction';
-import FavoriteLayout from '../Layout/FavoriteLayout/FavoriteLayout';
-import CartLayout from '../Layout/CartLayout/CartLayout';
-
 class Navbar extends Component {
      constructor(props){
          super(props)
