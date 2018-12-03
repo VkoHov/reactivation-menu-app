@@ -94,6 +94,7 @@
 .addBlock{
     display: flex;
     margin-top: 3vw;
+}
 .pop-Up{
     position: absolute;
   width: 100%;
