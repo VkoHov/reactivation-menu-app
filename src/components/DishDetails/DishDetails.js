@@ -4,7 +4,6 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { changeData } from "../../actions/rateAction";
 import { addToCart } from "../../actions/dishDetailAction";
-import Quantity from "../Quantity/Quantity";
 import "./DishDetails.css";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
 import _ from "lodash";
@@ -232,6 +231,7 @@ class DishDetails extends React.Component {
                       JSON.stringify({ count: storageCount.count })
                     );
                   }
+
                 } else {
                   this.props.addToCart(info);
                   this.SaveDataToSessionStorage(info);
@@ -241,6 +241,7 @@ class DishDetails extends React.Component {
                     JSON.stringify({ count: 1 })
                   );
                 }
+
               }}
             >
               Add to cart

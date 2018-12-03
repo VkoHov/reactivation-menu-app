@@ -102,7 +102,6 @@ class Booking extends Component {
 
 
 	render() {
-		console.log(this.state && this.state, 'q	hufuiqwgiuvqw');
 		return (
 			<section className="booking">
 				<div className="map">
