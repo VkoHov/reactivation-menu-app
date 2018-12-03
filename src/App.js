@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {LogoutAction} from "./actions/authActions";
+import {connect} from 'react-redux';
 import Navbar from './components/Navbar/Navbar';
 import Homepage from './components/Homepage/Homepage';
 import Login from './components/Login/Login';
@@ -15,6 +17,9 @@ import MenuList from './components/MenueList/MenuList';
 import AdminRegistration from "./components/AdminRegistration/AdminRegistration";
 
 class App extends Component {
+    componentWillUnmount(){
+        this.props.LogoutAction();
+    }
     render() {
         return (
             <Router>
@@ -31,13 +36,17 @@ class App extends Component {
                         <Route path='/admin/table/:tableId' component={TableInfo} />
                         <Route path='/listing'  component={Listing} />
                         <Route path='/newDish' component={AddNewDish}/>
-                        <Route path='/shoppingcart' component = {ShoppingCart}/>
+                        <Route path='/shoppingcart' component = {ShoppingCart}/> */}
                     </Switch>
                 </div>
             </Router>
         );
     }
 }
-
-export default App;
+const mapDispatchToProps = dispatch => {
+    return {
+        LogoutAction: () => dispatch(LogoutAction()),
+    }
+}
+export default connect(null,mapDispatchToProps)(App);
 

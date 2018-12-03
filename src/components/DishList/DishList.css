@@ -20,6 +20,7 @@
 	text-transform: uppercase;
 	position: relative;
 	text-align: center;
+	margin: 10px 0;
 }
 .dishList h5 span {
 	font-size: 20px; 
@@ -27,8 +28,9 @@
 	cursor: pointer;
 }
 .dishList h5 p{
+	cursor: pointer;
 	position: absolute;
-	right: 0;
+	right: 10px;
 	color:#FF9900;
 	top: -15px;
 }
@@ -50,4 +52,12 @@ p.price {
 	width:100%;
 	justify-content: space-between;
 
+}
+.dishDesc {
+	font-size: 14px;
+	color: #707070;
+	text-align: center;
+}
+.dishBl .star-container {
+	text-align: center;
 }

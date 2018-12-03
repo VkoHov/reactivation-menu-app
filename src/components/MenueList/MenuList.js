@@ -5,86 +5,48 @@ import { compose } from "redux";
 import { Link } from 'react-router-dom';
 import Dish from './Menu/Menu';
 
-
 class MenuList extends Component {
 
     render() {
-        console.log('esi admin manui propsnakjguyi', this.props.dishes);
-
-        let saladArr = [];
-        let burgerArr = [];
-        let grillArr = [];
-        let wurstArr = [];
-        let drinkArr = [];
-        let steaksArr = [];
-
-        this.props.dishes && this.props.dishes.map(dish => {
-            if (dish.category === 'sallads') {
-                return saladArr.push(dish);
-            }
-            if (dish.category === 'burger') {
-                return burgerArr.push(dish);
-            }
-            if (dish.category === 'wurst'){
-                return wurstArr.push(dish);
-            }
-            if(dish.category === 'grill'){
-                return  grillArr.push(dish);
-            }
-            if(dish.category === 'drinks'){
-                return drinkArr.push(dish);
-            }
-            return steaksArr.push(dish);
-        })
 
         return (
             <div>
-
-                <div>
-                    <h2>Sallads</h2>
-                    {
-                        this.props.dishes && saladArr.map((dish, index) => {
-                            return (
-                                <Dish key={`${index}1`} dish={dish} />
-                            )
-                        })
-                    }
-                </div>
-                <div>
-                    <h2>Burger</h2>
-                    {
-                        this.props.dishes && burgerArr.map((dish, index) => {
-                            return (
-                                <Dish key={`${index}2`} dish={dish} />
-                            )
-                        })
-                    }
-                </div>
-                <div>
-                    <h2>Burger</h2>
-                    {
-                        this.props.dishes && burgerArr.map((dish, index) => {
-                            return (
-                                <Dish key={`${index}2`} dish={dish} />
-                            )
-                        })
-                    }
-                </div>
+                {
+                    this.props.categories && 
+                    this.props.categories[0].categories.map((category,index) => {
+                        if (category === 'all menu') {
+                            return;
+                        }
+                        return (
+                            <div key={index} >
+                                <h2 > {category}</h2>
+                                    {
+                                        this.props.dishes && this.props.dishes.map(dish  =>{
+                                            if(dish.category===category){
+                                                return(
+                                                    <Dish key={dish.id}  dish={dish}/>
+                                                )
+                                            }
+                                               return ; 
+                                        })
+                                    }
+                                
+                            </div>
+                        );
+                    })
+                }
                 <Link to='/newDish'> <button>Add Dish</button>
                 </Link>
             </div>
         );
     }
 }
-
-
 const mapStateToProps = (state) => {
     return {
         dishes: state.firestore.ordered.dishes,
         categories: state.firestore.ordered.categories,
     }
 }
-
 export default compose(connect(mapStateToProps),
     firestoreConnect([
         {

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
+import { Link } from 'react-router-dom';
 import { compose } from "redux";
 import { changeData } from "../../actions/rateAction";
 import { addToCart } from "../../actions/dishDetailAction";
@@ -298,6 +299,7 @@ class DishDetails extends React.Component {
       </div>
     );
   }
+
 }
 
 const mapStateToProps = state => {
@@ -316,9 +318,8 @@ const mapDispatchToProps = dispatch => {
   };
 };
 export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  firestoreConnect([{ collection: "dishes" }])
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([
+        { collection: "dishes" }
+    ])
 )(DishDetails);
