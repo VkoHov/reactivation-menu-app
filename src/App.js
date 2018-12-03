@@ -15,6 +15,8 @@ import Registration from "./components/Registration/Registration";
 import AdminList from './components/AdminList/AdminList';
 import MenuList from './components/MenueList/MenuList';
 import AdminRegistration from "./components/AdminRegistration/AdminRegistration";
+import Footer from './components/Homepage/Footer/Footer'
+
 
 class App extends Component {
     componentWillUnmount(){
@@ -38,6 +40,8 @@ class App extends Component {
                         <Route path='/newDish' component={AddNewDish}/>
                         <Route path='/shoppingcart' component = {ShoppingCart}/> */}
                     </Switch>
+
+                    {window.location.pathname !== '/' && <Footer/>}
                 </div>
             </Router>
         );

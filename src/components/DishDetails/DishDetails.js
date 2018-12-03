@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { compose } from "redux";
 import { changeData } from "../../actions/rateAction";
 import { addToCart } from "../../actions/dishDetailAction";
+import Quantity from '../Quantity/Quantity'
 import "./DishDetails.css";
 
 
@@ -111,7 +112,7 @@ class DishDetails extends React.Component {
         const dishTitile = dish ? dish[0].title : null;
         const dishPrice = dish ? dish[0].price : null;
         const dishDescription = dish ? dish[0].description : null;
-        let rates = dish
+        let rates = dish.legend > 0
             ? dish[0].rating.reduce(function (a, b) {
                 return a + b;
             }) / dish[0].rating.length
@@ -143,8 +144,8 @@ class DishDetails extends React.Component {
             0;
 
         return (
-            <section className="dishDetails">
-                <div className="pop-Up-inner">
+            <section className="dishDetails" onClick={this.props.closePopup}>
+                <div className="pop-Up-inner" onClick={(e) => e.stopPropagation()}>
                     <div>
                         <div>
                             <img src={this.props.dish.dish.url} alt="dish" />
