@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { compose } from "redux";
 import { changeData } from "../../actions/rateAction";
 import { addToCart } from "../../actions/dishDetailAction";
+import Quantity from '../Quantity/Quantity';
 import "./DishDetails.css";
 
 
@@ -111,6 +112,7 @@ class DishDetails extends React.Component {
         const dishTitile = dish ? dish[0].title : null;
         const dishPrice = dish ? dish[0].price : null;
         const dishDescription = dish ? dish[0].description : null;
+        const dishUrl = dish ? dish[0].url : null;
         let rates = dish
             ? dish[0].rating.reduce(function (a, b) {
                 return a + b;
@@ -125,6 +127,7 @@ class DishDetails extends React.Component {
             count: this.state.count,
             description: dishDescription,
             rating: rates,
+            url:dishUrl,
         };
 
 
@@ -197,12 +200,13 @@ class DishDetails extends React.Component {
                   
                         <h4>{dishTitile} </h4>
                         <p className="decs">{dish && dish[0].description}</p>
-                        <h4 className="price">${dishPrice}</h4>
+                        <h4 className="price">AMD{dishPrice}</h4>
                         <h5>Choose your Ingredients</h5>
-                        <div>
+                        <div className="selIng">
                             {ingredients.map((ingredient, index) => {
                                 return (
-                                    <label key={index}>
+                                    <p key={index}>
+                                    <label >
                                         <input
                                             className="select-checkbox ingredients-drop-down"
                                             type="checkbox"
@@ -211,10 +215,12 @@ class DishDetails extends React.Component {
                                         />
                                         {ingredient}
                                     </label>
+                                    </p>
                                 );
                             })}
-                            <label>
-                                <input
+                             <p>
+                                 <label>
+                               <input
                                     type="checkbox"
                                     className="select-checkbox"
                                     value={ingredients}
@@ -222,6 +228,7 @@ class DishDetails extends React.Component {
                                 />
                                 Select All
                              </label>
+                             </p>
                         </div>
 
                         <h5>Doneness</h5>

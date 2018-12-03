@@ -12,6 +12,10 @@
     align-items: center;
     padding-bottom: 9%;
   }
+  .selIng{
+      display: flex;
+      flex-wrap: wrap;
+  }
   .pop-Up-inner{
     flex-basis: 65vw;
     position: relative;
@@ -94,6 +98,7 @@
 .addBlock{
     display: flex;
     margin-top: 3vw;
+}
 .pop-Up{
     position: absolute;
   width: 100%;

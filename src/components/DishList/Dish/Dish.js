@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+
 import DishDetails from '../../DishDetails/DishDetails';
+import StarRatingComponent from 'react-star-rating-component';
 
 class Dish extends Component {
-
+   
+   
     constructor(props) {
         super(props);
 
@@ -19,31 +22,37 @@ class Dish extends Component {
             popUpIsOpen: !this.state.popUpIsOpen,
         })
     }
-
-
+    
     render() {
+        let style = {backgroundImage:`url(${this.props.dish.url })`,} 
 
-
-        let style = {backgroundImage: 'url(' + this.props.dish.url + ')',} 
+        let rating = this.props.dish.rating.reduce((i,acum) => {
+            return acum += i;
+        },0);
+        let ratingg = rating /this.props.dish.rating.length;
+        
         
         return (
             <div className="dishBl">
             <div className="dishBlock" style={style} onClick={this.showPopUp} >
-                {/* <div className='shape'>
-                </div> */}
+                <div className='shape'>
+                </div>
             </div>
                 <div >
                     <h5>
                         { this.props.dish.title }
                         <p><i className="far fa-heart"></i></p>
                     </h5>
-
-                      <div className="star-container">
-                        <img className="star" alt="star" src={this.state.starUrl}/>
-                        <img className="star" alt="star" src={this.state.starUrl}/>
-                        <img className="star" alt="star" src={this.state.starUrl}/>
-                        <img className="star" alt="star" src={this.state.starUrl}/>
-                        <img className="star" alt="star" src={this.state.starUrl}/>
+                    <div className="starBox">
+                      <div className="star-container " >
+                      <StarRatingComponent 
+                        name="rate1" 
+                        starCount={5}
+                        value={ratingg }
+                        starColor={'#ff9900'}
+                        emptyStarColor={'#707070'}
+                        />
+                    </div>
                     </div>
                    <p className="dishDesc">{ this.props.dish.description }</p> 
                 </div>

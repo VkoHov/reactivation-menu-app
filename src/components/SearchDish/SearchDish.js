@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {firestoreConnect} from 'react-redux-firebase';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
+import './SearchDish.css';
 
 class SearchDish extends Component {
 
@@ -24,13 +25,20 @@ class SearchDish extends Component {
         console.log(this.props.dishes);
         console.log(this.state.inputVal)
         return (
-            <div>
-                <input type="text" value={this.state.inputVal} onFocus={this.triggerSearchTab.bind(this)} onChange={this.hendleChange.bind(this)}/>
-                {this.state.isOpen && <div>
+            <div className=" container">
+            <div className="searchBar">
+                <input type="text" 
+                    value={this.state.inputVal} 
+                    onFocus={this.triggerSearchTab.bind(this)} 
+                    onChange={this.hendleChange.bind(this)}
+                    placeholder="Search Dish"
+                />
+                {this.state.isOpen && <div className='searchBox'>
                     {this.props.dishes && this.props.dishes.map((dish, index) => {
                         return dish.title.toLowerCase().includes(this.state.inputVal.toLowerCase()) &&this.state.inputVal && <p key={index}>{dish.title}</p>;
                     })}
                 </div>}
+            </div>
             </div>
         )
     }

@@ -33,7 +33,6 @@ class DishList extends Component {
                             <span>/</span>
                             {this.props.categoryName}
                         </p>
-                        <p>18 of 125</p>
                     </div>
                 <div className='dishes'>
                     {
