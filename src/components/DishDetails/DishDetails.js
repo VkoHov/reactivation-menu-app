@@ -116,6 +116,7 @@ class DishDetails extends React.Component {
       : null;
     const dishTitile = dish ? dish[0].title : null;
     const dishPrice = dish ? dish[0].price : null;
+    const dishUrl = dish ? dish[0].url : null;
     const dishDescription = dish ? dish[0].description : null;
     let rates;
     if (dish[0].rating.length) {
@@ -134,7 +135,9 @@ class DishDetails extends React.Component {
       ingredient: this.state.ingredients,
       count: this.state.count,
       description: dishDescription,
-      rating: rates
+      rating: rates,
+      url: dishUrl,
+
     };
 
     let donenes = [];
