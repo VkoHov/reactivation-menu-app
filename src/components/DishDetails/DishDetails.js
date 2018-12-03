@@ -1,11 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
-import { Link } from 'react-router-dom';
 import { compose } from "redux";
 import { changeData } from "../../actions/rateAction";
 import { addToCart } from "../../actions/dishDetailAction";
-import Quantity from '../Quantity/Quantity'
 import "./DishDetails.css";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
 import _ from "lodash";
@@ -222,6 +220,7 @@ class DishDetails extends React.Component {
                   ) {
                     count++;
                   }
+                  return "";
                 });
                 if (count === 0) {
                   this.props.addToCart(info);
@@ -238,6 +237,7 @@ class DishDetails extends React.Component {
                   "shoppingCartCount",
                   JSON.stringify({ count: 1 })
                 );
+                  return "";
               }
             }}
           >
