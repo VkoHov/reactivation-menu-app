@@ -6,7 +6,6 @@ import {compose} from "redux";
 import '../Table/Table.css';
 
 const Table = props => {
-    console.log(this.props)
     return (
         <div className={`${props.className}`}>
             <Link to={`/admin/table/${props.tablee.tableId}`}>

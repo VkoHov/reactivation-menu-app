@@ -86,6 +86,7 @@ class DishDetails extends React.Component {
     }
   };
 
+
   SaveDataToSessionStorage = info => {
     let infoArr = JSON.parse(sessionStorage.getItem("dishInfo"));
 
@@ -124,6 +125,7 @@ class DishDetails extends React.Component {
           return a + b;
         }) / dish[0].rating.length;
     }
+
 
     let info = {
       id: id,
@@ -324,9 +326,8 @@ const mapDispatchToProps = dispatch => {
   };
 };
 export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  firestoreConnect([{ collection: "dishes" }])
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([
+        { collection: "dishes" }
+    ])
 )(DishDetails);
