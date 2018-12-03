@@ -85,6 +85,7 @@ class DishDetails extends React.Component {
     }
   };
 
+
   SaveDataToSessionStorage = info => {
     let infoArr = JSON.parse(sessionStorage.getItem("dishInfo"));
 
@@ -124,6 +125,7 @@ class DishDetails extends React.Component {
         }) / dish[0].rating.length;
     }
 
+
     let info = {
       id: id,
       title: dishTitile,
@@ -150,162 +152,165 @@ class DishDetails extends React.Component {
       0;
 
     return (
-       <section className="dishDetails" onClick={this.props.closePopup}>
-                <div className="pop-Up-inner" onClick={(e) => e.stopPropagation()}>
-                   
-        <div>Title: {dishTitile} </div>
-        <div>Description: {dish && dish[0].description}</div>
-        <div
-          className="rating-container"
-          style={{ left: "70%" }}
-          onMouseMove={e => {
-            this.countRating(e);
-          }}
-          onClick={e => {
-            this.onClickToStars(e);
-          }}
-          onMouseLeave={() => {
-            this.mouseLeaving();
-          }}
-        >
+      <section className="dishDetails" onClick={this.props.closePopup}>
+        <div className="pop-Up-inner" onClick={e => e.stopPropagation()}>
+          <div>Title: {dishTitile} </div>
+          <div>Description: {dish && dish[0].description}</div>
+          <div
+            className="rating-container"
+            style={{ left: "70%" }}
+            onMouseMove={e => {
+              this.countRating(e);
+            }}
+            onClick={e => {
+              this.onClickToStars(e);
+            }}
+            onMouseLeave={() => {
+              this.mouseLeaving();
+            }}
+          >
+            <div>
+              Rating:
+              {rates ? Math.round(parseFloat(rates / 20) * 100) / 100 : null}
+            </div>
+            <div className="rating" style={{ width: width }} />
+            <div className="star-container">
+              <img className="star" alt="star" src={this.state.starUrl} />
+              <img className="star" alt="star" src={this.state.starUrl} />
+              <img className="star" alt="star" src={this.state.starUrl} />
+              <img className="star" alt="star" src={this.state.starUrl} />
+              <img className="star" alt="star" src={this.state.starUrl} />
+            </div>
+          </div>
+          <div> Unit Price: {dishPrice} (AMD)</div>
+
           <div>
-            Rating:
-            {rates ? Math.round(parseFloat(rates / 20) * 100) / 100 : null}
+            <button className="count-button" onClick={this.minusCount}>
+              -
+            </button>
+            <button className="count-button">{this.state.count}</button>
+            <button className="count-button" onClick={this.plusCount}>
+              +
+            </button>
           </div>
-          <div className="rating" style={{ width: width }} />
-          <div className="star-container">
-            <img className="star" alt="star" src={this.state.starUrl} />
-            <img className="star" alt="star" src={this.state.starUrl} />
-            <img className="star" alt="star" src={this.state.starUrl} />
-            <img className="star" alt="star" src={this.state.starUrl} />
-            <img className="star" alt="star" src={this.state.starUrl} />
-          </div>
-        </div>
-        <div> Unit Price: {dishPrice} (AMD)</div>
-
-        <div>
-          <button className="count-button" onClick={this.minusCount}>
-            {" "}
-            -
-          </button>
-          <button className="count-button">{this.state.count}</button>
-          <button className="count-button" onClick={this.plusCount}>
-            {" "}
-            +
-          </button>
-        </div>
-
-        <div>
-          <button
-            type="button"
-            className="add-to-cart-button"
-            onClick={() => {
-              let dishes = JSON.parse(sessionStorage.getItem("dishInfo"));
-              let storageCount = JSON.parse(
-                sessionStorage.getItem("shoppingCartCount")
-              );
-              
-              let shopCartCount = this.props.shoppingCartCount;
-              shopCartCount++;
-              if (dishes) {
-                let count = 0;
-                dishes.map(item => {
-                  if (
-                    item.id === info.id &&
-                    _.isEqual(
-                      _.sortBy(item.ingredient),
-                      _.sortBy(info.ingredient)
-                    ) &&
-                    _.isEqual(_.sortBy(item.doneness), _.sortBy(info.doneness))
-                  ) {
-                    count++;
+            <div>
+            <button
+              type="button"
+              className="add-to-cart-button"
+              onClick={() => {
+                let dishes = JSON.parse(sessionStorage.getItem("dishInfo"));
+                let storageCount = JSON.parse(
+                  sessionStorage.getItem("shoppingCartCount")
+                );
+                let shopCartCount = this.props.shoppingCartCount;
+                shopCartCount++;
+                if (dishes) {
+                  let count = 0;
+                  dishes.map(item => {
+                    if (
+                      item.id === info.id &&
+                      _.isEqual(
+                        _.sortBy(item.ingredient),
+                        _.sortBy(info.ingredient)
+                      ) &&
+                      _.isEqual(
+                        _.sortBy(item.doneness),
+                        _.sortBy(info.doneness)
+                      )
+                    ) {
+                      count++;
+                    }
+                  });
+                  if (count === 0) {
+                    this.props.addToCart(info);
+                    this.SaveDataToSessionStorage(info);
+                    this.props.shoppingCartPlusAction(shopCartCount);
+                    storageCount.count++;
+                    sessionStorage.setItem(
+                      "shoppingCartCount",
+                      JSON.stringify({ count: storageCount.count })
+                    );
                   }
-                  return "";
-                });
-                if (count === 0) {
+
+                } else {
                   this.props.addToCart(info);
                   this.SaveDataToSessionStorage(info);
                   this.props.shoppingCartPlusAction(shopCartCount);
-                  storageCount.count++;
-                  sessionStorage.setItem("shoppingCartCount",JSON.stringify({count:storageCount.count}))
+                  sessionStorage.setItem(
+                    "shoppingCartCount",
+                    JSON.stringify({ count: 1 })
+                  );
                 }
-              } else {
-                this.props.addToCart(info);
-                this.SaveDataToSessionStorage(info);
-                this.props.shoppingCartPlusAction(shopCartCount);
-                sessionStorage.setItem(
-                  "shoppingCartCount",
-                  JSON.stringify({ count: 1 })
-                );
-                  return "";
-              }
-            }}
-          >
-            Add to cart
-          </button>
-          <button type="button" className="add-to-favorites">
-            Add to favorites
-          </button>
-        </div>
-        {dish[0].doneness.length !== 0 && (
-          <div>
-            <div>Doneness:</div>
-            <select
-              className="doneness-drop-down"
-              onChange={this.changeDoneness}
-              defaultValue="Select Value"
-            >
-              {donenes.map((level, index) => {
-                return (
-                  <option value={level} key={index}>
-                    {level}
-                  </option>
-                );
-              })}
-              <option value="Select Value" style={{ display: "none" }} disabled>
-                Select Level
-              </option>
-            </select>
-          </div>
-        )}
-        {dish[0].ingredients.length !== 0 && (
-          <div>
-            <div>Choose Ingredient</div>
-            <div>
-              {ingredients.map((ingredient, index) => {
-                return (
-                  <label key={index}>
-                    <input
-                      className="select-checkbox ingredients-drop-down"
-                      type="checkbox"
-                      value={ingredient}
-                      onChange={e => this.changeIngredient(e)}
-                    />
-                    {ingredient}
-                  </label>
-                );
-              })}
-              <label>
-                <input
-                  type="checkbox"
-                  className="select-checkbox"
-                  value={ingredients}
-                  onChange={this.selectAll}
-                />
-                Select All
-              </label>
-            </div>
-          </div>
-        )}
 
-        <img src={this.props.dish.dish.url} alt="dishimage" />
-      </div>
+              }}
+            >
+              Add to cart
+            </button>
+            <button type="button" className="add-to-favorites">
+              Add to favorites
+            </button>
+          </div>
+          {dish[0].doneness.length !== 0 && (
+            <div>
+              <div>Doneness:</div>
+              <select
+                className="doneness-drop-down"
+                onChange={this.changeDoneness}
+                defaultValue="Select Value"
+              >
+                {donenes.map((level, index) => {
+                  return (
+                    <option value={level} key={index}>
+                      {level}
+                    </option>
+                  );
+                })}
+                <option
+                  value="Select Value"
+                  style={{ display: "none" }}
+                  disabled
+                >
+                  Select Level
+                </option>
+              </select>
+            </div>
+          )}
+          {dish[0].ingredients.length !== 0 && (
+            <div>
+              <div>Choose Ingredient</div>
+              <div>
+                {ingredients.map((ingredient, index) => {
+                  return (
+                    <label key={index}>
+                      <input
+                        className="select-checkbox ingredients-drop-down"
+                        type="checkbox"
+                        value={ingredient}
+                        onChange={e => this.changeIngredient(e)}
+                      />
+                      {ingredient}
+                    </label>
+                  );
+                })}
+                <label>
+                  <input
+                    type="checkbox"
+                    className="select-checkbox"
+                    value={ingredients}
+                    onChange={this.selectAll}
+                  />
+                  Select All
+                </label>
+              </div>
+            </div>
+          )}
+
+          <img src={this.props.dish.dish.url} alt="dishimage" />
+        </div>
       </section>
     );
   }
-
 }
-
 const mapStateToProps = state => {
   return {
     shoppingCartCount: state.shoppingCart.shoppingCartCount,
