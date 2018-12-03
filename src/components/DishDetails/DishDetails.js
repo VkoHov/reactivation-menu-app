@@ -1,9 +1,9 @@
 import React from "react";
-import {connect} from "react-redux";
-import {firestoreConnect} from "react-redux-firebase";
-import {compose} from "redux";
-import {changeData} from "../../actions/rateAction";
-import {addToCart} from "../../actions/dishDetailAction";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
+import { changeData } from "../../actions/rateAction";
+import { addToCart } from "../../actions/dishDetailAction";
 import "./DishDetails.css";
 
 
@@ -68,11 +68,11 @@ class DishDetails extends React.Component {
     };
     changeIngredient = e => {
         let selectedIng = [e.target.value];
-            this.setState({
-                ingredients: this.state.ingredients.concat(selectedIng),
-            });
-        
-        
+        this.setState({
+            ingredients: this.state.ingredients.concat(selectedIng),
+        });
+
+
     };
 
     SaveDataToSessionStorage = (info) => {
@@ -92,15 +92,15 @@ class DishDetails extends React.Component {
     }
 
     selectAll = e => {
-        
-        
-         this.setState({
+
+
+        this.setState({
             ingredients: [e.target.value],
         });
     };
 
     render() {
-        
+
         const id = this.props.dish.dish.id;
 
         const dish = this.props.dishes
@@ -113,8 +113,8 @@ class DishDetails extends React.Component {
         const dishDescription = dish ? dish[0].description : null;
         let rates = dish
             ? dish[0].rating.reduce(function (a, b) {
-            return a + b;
-        }) / dish[0].rating.length
+                return a + b;
+            }) / dish[0].rating.length
             : 0;
         let info = {
             id: id,
@@ -141,114 +141,114 @@ class DishDetails extends React.Component {
             (this.state.mouseOnWidth && this.state.mouseOnWidth) ||
             (!this.state.mouseOnWidth && rates && rates + "%") ||
             0;
-        
-            return (
-                <div className="pop-Up-inner">
-                    <div>Title: {dishTitile} </div>
-                    <div>Description: {dish && dish[0].description}</div>
-                    <div
-                        className="rating-container"
-                        style={{left: "70%"}}
-                        onMouseMove={e => {
-                            this.countRating(e);
-                        }}
-                        onClick={e => {
-                            this.onClickToStars(e);
-                        }}
-                        onMouseLeave={() => {
-                            this.mouseLeaving();
-                        }}
-                    >
-                        <div>Rating: {Math.round(parseFloat(rates / 20) * 100) / 100}</div>
-                        <div className="rating" style={{width: width}}/>
-                        <div className="star-container">
-                            <img className="star" alt="star" src={this.state.starUrl}/>
-                            <img className="star" alt="star" src={this.state.starUrl}/>
-                            <img className="star" alt="star" src={this.state.starUrl}/>
-                            <img className="star" alt="star" src={this.state.starUrl}/>
-                            <img className="star" alt="star" src={this.state.starUrl}/>
-                        </div>
-    
-    
+
+        return (
+            <div className="pop-Up-inner">
+                <div>Title: {dishTitile} </div>
+                <div>Description: {dish && dish[0].description}</div>
+                <div
+                    className="rating-container"
+                    style={{ left: "70%" }}
+                    onMouseMove={e => {
+                        this.countRating(e);
+                    }}
+                    onClick={e => {
+                        this.onClickToStars(e);
+                    }}
+                    onMouseLeave={() => {
+                        this.mouseLeaving();
+                    }}
+                >
+                    <div>Rating: {Math.round(parseFloat(rates / 20) * 100) / 100}</div>
+                    <div className="rating" style={{ width: width }} />
+                    <div className="star-container">
+                        <img className="star" alt="star" src={this.state.starUrl} />
+                        <img className="star" alt="star" src={this.state.starUrl} />
+                        <img className="star" alt="star" src={this.state.starUrl} />
+                        <img className="star" alt="star" src={this.state.starUrl} />
+                        <img className="star" alt="star" src={this.state.starUrl} />
                     </div>
-                    <div> Unit Price: {dishPrice} (AMD)</div>
-                  
-                    <div>
-                <span>SUBTOTAL: {this.state.price * this.state.count}(AMD)</span>
-                <button className="count-button" onClick={this.minusCount}> -
-                </button>
-                <button className="count-button">{this.state.count}</button>
-                <button className="count-button" onClick={this.plusCount}> +
-                </button>
-            </div>
-    
-                    <div>
-                        <button type="button" className="add-to-cart-button"
-                                onClick={() => {
-                                    this.props.addToCart(info);
-                                    console.log("taht",info);
-                                    this.SaveDataToSessionStorage(info)
-                                }}
-                        > Add to cart
-                        </button>
-                        <button type="button" className="add-to-favorites">
-                            Add to favorites
-                        </button>
-                    </div>
-    {(dish[0].doneness && <div>
-        <div>Doneness:</div>
-        <select
-            className="doneness-drop-down"
-            onChange={this.changeDoneness}
-            defaultValue="Select Value"
-        >
-            {donenes.map((level, index) => {
-                return (
-                    <option value={level} key={index}>
-                        {level}
-                    </option>
-                );
-            })}
-            <option value="Select Value" style={{display: "none"}} disabled>
-                Select Level
-            </option>
-        </select>
-    </div>
-    )
-        
-}
-{dish[0].ingredients && <div>
-           <p>Choose Ingredient</p>
-      <div>
-          {ingredients.map((ingredient, index) => {
-              return (
-                  <label key={index}>
-                      <input
-                          className="select-checkbox ingredients-drop-down"
-                          type="checkbox"
-                          value={ingredient}
-                          onChange={this.changeIngredient}
-                      />
-                      {ingredient}
-                  </label>
-              );
-              })}
-          <label>
-              <input
-                  type="checkbox"
-                  className="select-checkbox"
-                  value={ingredients}
-                  onChange={this.selectAll}
-              />
-              Select All
-          </label>
-      </div>          
-    </div>}
-      
-                  
-                    <img src = {this.props.dish.dish.url} alt ="dishimage"></img>
+
+
                 </div>
-            );
+                <div> Unit Price: {dishPrice} (AMD)</div>
+
+                <div>
+                    <span>SUBTOTAL: {this.state.price * this.state.count}(AMD)</span>
+                    <button className="count-button" onClick={this.minusCount}> -
+                </button>
+                    <button className="count-button">{this.state.count}</button>
+                    <button className="count-button" onClick={this.plusCount}> +
+                </button>
+                </div>
+
+                <div>
+                    <button type="button" className="add-to-cart-button"
+                        onClick={() => {
+                            this.props.addToCart(info);
+                            console.log("taht", info);
+                            this.SaveDataToSessionStorage(info)
+                        }}
+                    > Add to cart
+                        </button>
+                    <button type="button" className="add-to-favorites">
+                        Add to favorites
+                        </button>
+                </div>
+                {(dish[0].doneness && <div>
+                    <div>Doneness:</div>
+                    <select
+                        className="doneness-drop-down"
+                        onChange={this.changeDoneness}
+                        defaultValue="Select Value"
+                    >
+                        {donenes.map((level, index) => {
+                            return (
+                                <option value={level} key={index}>
+                                    {level}
+                                </option>
+                            );
+                        })}
+                        <option value="Select Value" style={{ display: "none" }} disabled>
+                            Select Level
+            </option>
+                    </select>
+                </div>
+                )
+
+                }
+                {dish[0].ingredients && <div>
+                    <p>Choose Ingredient</p>
+                    <div>
+                        {ingredients.map((ingredient, index) => {
+                            return (
+                                <label key={index}>
+                                    <input
+                                        className="select-checkbox ingredients-drop-down"
+                                        type="checkbox"
+                                        value={ingredient}
+                                        onChange={this.changeIngredient}
+                                    />
+                                    {ingredient}
+                                </label>
+                            );
+                        })}
+                        <label>
+                            <input
+                                type="checkbox"
+                                className="select-checkbox"
+                                value={ingredients}
+                                onChange={this.selectAll}
+                            />
+                            Select All
+          </label>
+                    </div>
+                </div>}
+
+
+                <img src={this.props.dish.dish.url} alt="dishimage"></img>
+            </div>
+        );
     }
 }
 
@@ -266,6 +266,6 @@ const mapDispatchToProps = dispatch => {
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
-        {collection: "dishes"}
+        { collection: "dishes" }
     ])
 )(DishDetails);

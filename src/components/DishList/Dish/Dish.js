@@ -21,28 +21,29 @@ class Dish extends Component {
 
     render() {
 
-let style = {backgroundImage: 'url(' + this.props.dish.url + ')',}
-     
+        let style = { backgroundImage: 'url(' + this.props.dish.url + ')', }
+
 
         return (
-            <div onClick = {this.showPopUp}>
+            <div onClick={this.showPopUp}>
                 <div >
 
-            <div className="dishBlock" style={style} onClick={this.showPopUp}>
-                <div className='shape'>
-                    { this.props.dish.description }
-                </div>
-                <div  >
+                    <div className="dishBlock" style={style} onClick={this.showPopUp}>
+                        <div className='shape'>
+                            {this.props.dish.description}
+                        </div>
+                        <div  >
 
-                    {
-                        this.props.dish.title
-                    }
+                            {
+                                this.props.dish.title
+                            }
+                        </div>
+                        {this.state.popUpIsOpen && <div onClick={(e) => { e.stopPropagation() }}><DishDetails dish={this.props} /></div>}
+                        {this.state.popUpIsOpen && <div className="overlay"></div>}
+
+
+                    </div>
                 </div>
-                {this.state.popUpIsOpen && <div onClick={(e)=> {e.stopPropagation()}}><DishDetails dish={this.props} /></div> }
-                {this.state.popUpIsOpen &&   <div className = "overlay"></div>}
-                
-                
-               
             </div>
         );
     }
