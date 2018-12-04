@@ -11,9 +11,14 @@
     overflow-y: auto;
     align-items: center;
     padding-bottom: 9%;
-}
 
-.pop-Up-inner {
+  }
+  .selIng{
+      display: flex;
+      flex-wrap: wrap;
+  }
+  .pop-Up-inner{
+
     flex-basis: 65vw;
     position: relative;
     overflow-y: auto;

@@ -4,6 +4,7 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { changeData } from "../../actions/rateAction";
 import { addToCart } from "../../actions/dishDetailAction";
+import Quantity from '../Quantity/Quantity';
 import "./DishDetails.css";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
 import _ from "lodash";
@@ -88,6 +89,7 @@ class DishDetails extends React.Component {
 
   SaveDataToSessionStorage = info => {
     let infoArr = JSON.parse(sessionStorage.getItem("dishInfo"));
+
 
     if (infoArr) {
       let dishArr = [info];
