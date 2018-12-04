@@ -12,7 +12,7 @@ class TableLIst extends Component {
                 {this.props.firestoreInfo &&
                 this.props.firestoreInfo.map((tablee, index) => {
                         return (
-                            < Table key={index} tablee={tablee} className={`${tablee.tabelStatus}`} />
+                            < Table key={index} tablee={tablee} className={`${tablee.tabelStatus}`} index={index} />
                         );
                     })
                 }
