@@ -8,7 +8,7 @@ class Favorites extends Component {
     render() { 
         let userId = this.props.auth.uid;
         
-        let favorites = this.props.firestoreInfo && this.props.firestoreInfo[userId].favorites;
+        let favorites = this.props.firestoreInfo && this.props.firestoreInfo[userId] && this.props.firestoreInfo[userId].favorites || null;
         console.log("afef", favorites )
          return !this.props.auth.uid && <Redirect to="/login"/> ||
          <div>
