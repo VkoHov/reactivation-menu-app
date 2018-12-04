@@ -8,25 +8,19 @@ import Dish from './Menu/Menu';
 class MenuList extends Component {
 
     render() {
+
         return (
             <div>
                 {
                     this.props.categories && 
                     this.props.categories[0].categories.map((category,index) => {
-                        if (category === 'all menu') {
-                            return;
-                        }
-                        return (
+
+                        return category !== 'all menu' && (
                             <div key={index} >
                                 <h2 > {category}</h2>
                                     {
                                         this.props.dishes && this.props.dishes.map(dish  =>{
-                                            if(dish.category===category){
-                                                return(
-                                                    <Dish key={dish.id}  dish={dish}/>
-                                                )
-                                            }
-                                               return ; 
+                                           return dish.category===category && <Dish key={dish.id}  dish={dish}/>;
                                         })
                                     }
                                 

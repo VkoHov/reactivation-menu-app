@@ -7,6 +7,9 @@ import SearchDish from "../SearchDish/SearchDish";
 
 class Listing extends Component {
 
+    
+
+
     render() {
         return (
 
@@ -15,6 +18,7 @@ class Listing extends Component {
                 <SearchDish/>
                 <CategoryList />
                 <DishList />
+                
             </div>
         );
     }

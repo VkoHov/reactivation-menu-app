@@ -22,8 +22,6 @@ class SearchDish extends Component {
         })
     }
     render() {
-        console.log(this.props.dishes);
-        console.log(this.state.inputVal)
         return (
             <div className=" container">
             <div className="searchBar">
