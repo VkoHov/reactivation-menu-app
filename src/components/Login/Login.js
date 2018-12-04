@@ -55,7 +55,7 @@ class Login extends Component {
                                 Or<Link to="/registration"> CREATE ACCOUNT</Link>
                             </div>
                             <div>
-                                <button onClick={this.handleClick}>Login</button>
+                                <button type="button" onClick={this.handleClick}>Login</button>
                             </div>
                         </form>
                     </div>
