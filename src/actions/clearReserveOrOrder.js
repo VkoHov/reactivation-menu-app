@@ -1,10 +1,11 @@
-export const changeStatus = (table) => {
+export const clearReserveOrOrder = (table) => {
     console.log(table)
     return (dispatch, getState, { getFirestore }) => {
         const firestore = getFirestore();
+
         firestore.collection('tables').doc(table.id).update({
-            status: table.status,
-            orders: firestore.FieldValue.arrayUnion(table.info),
+            status: 'free',
+            orders: [],
         }).then(() => {
             dispatch({ type: 'CHANGEINFO_SUCCESS' });
         }).catch(err => {
