@@ -4,6 +4,7 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { changeData } from "../../actions/rateAction";
 import { addToCart } from "../../actions/dishDetailAction";
+import {addFavToFireStore} from "../../actions/addToFavAction"
 import Quantity from "../Quantity/Quantity";
 import "./DishDetails.css";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
@@ -98,6 +99,19 @@ class DishDetails extends React.Component {
       sessionStorage.setItem("dishInfo", JSON.stringify([info]));
     }
   };
+  addToFavorites =() =>{
+    console.log('dish detail',this.state.ingredients);
+    console.log("donenes",this.props.dish);
+    this.props.addFavToFireStore({
+      id: this.props.favorite.uid,
+      favdoneness: this.state.doneness ,
+      favIngredient: this.state.ingredients,
+      count: this.state.count,
+      title: this.props.dish.dish.title,
+      description: this.props.dish.dish.description,
+      url: this.props.dish.dish.url,
+   })
+  }
 
   selectAll = e => {
     this.setState({
@@ -243,7 +257,7 @@ class DishDetails extends React.Component {
             >
               Add to cart
             </button>
-            <button type="button" className="add-to-favorites">
+            <button onClick = {this.addToFavorites} type="button" className="add-to-favorites">
               Add to favorites
             </button>
           </div>
@@ -311,13 +325,15 @@ class DishDetails extends React.Component {
 const mapStateToProps = state => {
   return {
     shoppingCartCount: state.shoppingCart.shoppingCartCount,
-    dishes: state.firestore.ordered.dishes
+    dishes: state.firestore.ordered.dishes,
+    favorite:  state.firebase.auth,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     changeData: project => dispatch(changeData(project)),
     addToCart: dishInfo => dispatch(addToCart(dishInfo)),
+    addFavToFireStore: favDishInfo => dispatch(addFavToFireStore(favDishInfo)),
     shoppingCartPlusAction: count => {
       dispatch(shoppingCartPlusAction(count));
     }
@@ -328,5 +344,5 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  firestoreConnect([{ collection: "dishes" }])
+  firestoreConnect([{ collection: "dishes" },{collection: "users"}])
 )(DishDetails);

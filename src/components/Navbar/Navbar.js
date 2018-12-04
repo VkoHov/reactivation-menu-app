@@ -34,7 +34,7 @@ class Navbar extends Component {
                             </div>
                             <div className="layout">
                                 <AccountLayout/>
-                                <Link to=""><i className="far fa-heart"></i></Link>
+                                <Link to="/favorites"><i className="far fa-heart"></i></Link>
                                 <Link to="/shoppingcart"><i className="fas fa-shopping-cart"><p>{
                             
                                 storage && storage.count || null

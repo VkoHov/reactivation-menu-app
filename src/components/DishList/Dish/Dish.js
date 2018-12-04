@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import DishDetails from '../../DishDetails/DishDetails';
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
+import {addFavToFireStore} from "../../../actions/addToFavAction"
 
 class Dish extends Component {
 
@@ -19,11 +23,19 @@ class Dish extends Component {
             popUpIsOpen: !this.state.popUpIsOpen,
         })
     };
-
+    addToFavorites =() => {
+        console.log("titlena", this.props.favorite);
+          this.props.favorite.uid && this.props.addFavToFireStore({
+            id: this.props.favorite.uid,
+            favoriteDish: this.props.dish,
+         })
+           
+        
+    }
 
     render() {
 
-
+            console.log("favorine propps",this.props.favorite)
         let style = {backgroundImage: 'url(' + this.props.dish.url + ')',};
 
         return (
@@ -34,7 +46,7 @@ class Dish extends Component {
                 <div>
                     <h5>
                         {this.props.dish.title}
-                        <p><i className="far fa-heart"/></p>
+                        <p onClick ={this.addToFavorites}><i className="far fa-heart"/></p>
                     </h5>
 
                     <div className="star-container">
@@ -52,6 +64,21 @@ class Dish extends Component {
         );
     }
 }
+const mapStateToProps = state =>{
+    return{
+        favorite:  state.firebase.auth,
+    }
+}
+const mapDispatchToProps = dispatch =>{
+    return {
+        addFavToFireStore: info => dispatch(addFavToFireStore(info))
+    }
+}
 
-
-export default Dish;
+export default compose(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    ),
+    firestoreConnect([{ collection: "users" }])
+  )(Dish);
