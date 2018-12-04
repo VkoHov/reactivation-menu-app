@@ -4,6 +4,7 @@ import Quantity from "../Quantity/Quantity";
 import {Link} from "react-router-dom";
 import Status from "../Status/Status";
 import Footer from "../Homepage/Footer/Footer";
+import {shoppingCartMinusAction} from "../../actions/shoppingCartAction"
 import './ShoppingCart.css';
 
 class ShoppingCart extends Component {
