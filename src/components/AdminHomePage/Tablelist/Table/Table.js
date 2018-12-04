@@ -1,30 +1,23 @@
-import React from 'react';
-import {Link} from "react-router-dom";
-import {connect} from "react-redux";
-import {firestoreConnect} from "react-redux-firebase";
-import {compose} from "redux";
+import React, { Component } from 'react';
+import { Link } from "react-router-dom";
+
 import '../Table/Table.css';
 
-const Table = props => {
-    return (
-        <div className={`${props.className}`}>
-            <Link to={`/admin/table/${props.tablee.tableId}`}>
-                Table
+class Table extends Component {
+    constructor(props){
+        super(props);
+    }
+    render() {
+     
+        return (
+            <div className={`${this.props.className}`}>
+                <Link to={`/admin/table/${this.props.tablee.id}`}>
+                    Table
             </Link>
-            
-        </div>
-    )
-
+                
+            </div>
+        )
+    }
 }
-const mapStateToProps = state => {
-    return {
-        tables: state.firestore.ordered.tables
-    };
-};
 
-export default compose(
-    connect(mapStateToProps),
-    firestoreConnect([
-        {collection: "dishes"}
-    ])
-)(Table);
+export default Table;
