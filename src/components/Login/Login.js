@@ -44,13 +44,7 @@ class Login extends Component {
                                 <label htmlFor="ppassword">Password</label>
                                 <input type="password" id='ppassword' onChange={this.handleChange} />
                             </div>
-                            <div className="remember">
-                                <p>    
-                                    <input type="checkbox" id='remember'  />
-                                    <label htmlFor="remember">Remember Me</label>
-                                </p>
-                                <Link to="">Forgot your password ?</Link>
-                            </div>
+                        
                             <div className="orLogIn">
                                 Or<Link to="/registration"> CREATE ACCOUNT</Link>
                             </div>

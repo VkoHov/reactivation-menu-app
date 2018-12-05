@@ -120,6 +120,13 @@ flex-basis: 29%;
     cursor:pointer;
     text-transform: uppercase;
 }
+
+.orderButton button:hover{
+    background: #FFf;
+    border: .1px solid #ff9900;
+    color:#ff9900;
+    transition: .5s;
+}
 .shopingDish em{
     color: #ff9900;
 }
