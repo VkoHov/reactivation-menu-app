@@ -43,8 +43,8 @@ class ShoppingCart extends Component {
         if (dishInfo) {
             return (
                 <div className="shoppingCart">
-                    <div className="paddingTop shoppingBaner">
-                        <div className='shoppigShape'></div>
+                    <div className=" shoppingBaner">
+                        <div className='  shoppigShape'></div>
                     </div>
 
                     <div className="container">
@@ -88,8 +88,6 @@ class ShoppingCart extends Component {
                                                 <p><em>Doneness:</em> {dish.doneness}</p>
                                                 <p><em>Rating:</em> {dish.rating}</p>
                                                 <p>
-                                                    <span>edit</span>
-                                                    <span>Favorit</span>
                                                     <span
                                                         onClick={() => {
                                                             this.removeDish();
