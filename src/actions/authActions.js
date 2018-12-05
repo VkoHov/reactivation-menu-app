@@ -34,6 +34,7 @@ export const SignUp = (newUser) => {
                 lastname: newUser.lastname,
                 email: newUser.email,
                 password: newUser.password,
+                favorites:[],
             })
         }).then(() => {
             dispatch({type: 'SIGNUP_SUCCESS'})

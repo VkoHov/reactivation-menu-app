@@ -20,9 +20,10 @@ class Login extends Component {
     };
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.LoginAction(this.state);
+
     };
     handleClick = () => {
+        this.props.LoginAction(this.state);
         if (this.props.firebase.auth.uid){
             this.props.history.push('/');
         }

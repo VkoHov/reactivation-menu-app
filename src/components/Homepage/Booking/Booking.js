@@ -4,6 +4,7 @@ import { firestoreConnect } from "react-redux-firebase";
 import { changeStatus } from '../../../actions/changeTableInfo';
 import { compose } from "redux";
 
+
 import './../Homepage.css';
 import './Booking.css';
 
@@ -15,6 +16,9 @@ class Booking extends Component {
 		name: null,
 		phone: null,
 		dtatmilisecond: null,
+		message: null,
+		flag: true,
+		className: null,
 	}
 
 	handleChange = (e) => {
@@ -87,7 +91,6 @@ class Booking extends Component {
 		let isReserved = false;
 
 		for (let i = 0; i < tables.length; i++) {
-			console.log(tables[i].status);
 			if (tables[i].status === 'free') {
 				this.props.changeStatus({ id: tables[i].id, info: this.state, status: 'reserve' });
 				isReserved = true;
@@ -97,7 +100,20 @@ class Booking extends Component {
 			}
 		}
 
-		isReserved ? console.log('exav') : console.log('ays pahin azat tex chka');
+
+		if (isReserved) {
+			this.setState({
+				className: 'green',
+				message: 'Exav',
+			});
+			console.log('exav')
+		} else {
+			this.setState({
+				className: 'red',
+				message: 'CHEXAV'
+			});
+			console.log('chexav');
+		}
 	}
 
 
@@ -108,11 +124,11 @@ class Booking extends Component {
 					<div className="mapShape">
 						<div>
 							<div>
-								<img src='https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/dishimages%2Fbeef-cheeseburger.jpg?alt=media&token=4934c523-ff08-4fa0-8497-5b68c42f3bd8' alt="address"/>
+								<img src='https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/dishimages%2Fbeef-cheeseburger.jpg?alt=media&token=4934c523-ff08-4fa0-8497-5b68c42f3bd8' alt="address" />
 							</div>
 							<div>
 								<p> <span>Address</span>Yerevan Abovyan 23/3 </p>
-								<p> <span>Hours </span>Mon Thu 09:00 23:00, Fri Sun 09:00 24:00</p>
+								<p> <span>Hours </span>Mon Thu 10:00 23:00, Fri Sun 10:00 24:00</p>
 								<p> <span>Phone</span> +37495659865 </p>
 							</div>
 						</div>
@@ -179,6 +195,9 @@ class Booking extends Component {
 							<p>
 								<button type="button" onClick={this.findTable}>find a table</button>
 							</p>
+							<div className={this.state.className&&this.state.className}> {
+								this.state.flag && this.state.message
+							} </div>
 						</form>
 					</div>
 				</div>
