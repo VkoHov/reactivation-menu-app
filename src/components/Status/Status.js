@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import {connect} from "react-redux";
-import {compose} from "redux";
-import {firestoreConnect} from "react-redux-firebase";
-import {addToFirestore} from "../../actions/addToFireStoreAction";
-import './Status.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { addToFirestore } from "../../actions/addToFireStoreAction";
+import "./Status.css";
 
 class Status extends Component {
   constructor(props) {
@@ -33,17 +33,25 @@ class Status extends Component {
         ) {
           alert("urishi sexanin patver mi ara,kamel es sexanin patver ka");
         }
-        return(
-             <div>
-                <label className="status">
-                    <input min = "1" max = "6" onChange = {(e)=>this.hendleChange(e)} type = 'number'  placeholder="Choose the number of table"/>
-                    <button onClick={()=> this.handleClick(info)}>Order</button>
-                    <button> Buy Online</button>
-                </label>
-             </div>
-        )
+        return (
+          <div>
+            <label className="status">
+              <input
+                min="1"
+                max="6"
+                onChange={e => this.hendleChange(e)}
+                type="number"
+                placeholder="Choose the number of table"
+              />
+              <button onClick={() => this.handleClick(info)}>Order</button>
+              <button> Buy Online</button>
+            </label>
+          </div>
+        );
+      });
     }
   }
+
   showPopUp = () => {
     this.setState({
       popUpIsOpen: !this.state.popUpIsOpen
