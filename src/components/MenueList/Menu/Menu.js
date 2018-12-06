@@ -13,14 +13,22 @@ class Dish extends Component {
     }
 
     render() {
+        let info= this.props.dish;
+        let bgcolor = this.props.idd % 2 ==  0 ? " #FFF2DF": '#fff'  ;
         return (
             <div >
-                {
-                    this.props.dish.title
-                }
-                <div onClick={this.deleteDish}>
-                    Delete Dish
-                 </div>
+
+                <ul className="tableRow "  style={{background:`${bgcolor}`}}>
+                    <li>{this.props.idd}</li>
+                    <li>{info.title}</li>
+                    <li>{info.description}</li>
+                    <li>{info.ingredients.join(',')}</li>
+                    <li>{info.price} (AMD)</li>
+                    <li onClick={this.deleteDish} style={ {'width':'80px'}}>
+                    <i className="far fa-trash-alt"></i>
+                    </li>
+                </ul>
+                
             </div>
         );
     }

@@ -97,28 +97,37 @@ class AddNewDish extends Component {
 
     render() {
         return (
-            <div className="add-new-dish">
+            <section className="new-dish">
+            <div  className="add-new-dish">
+            <h3>Create a new users and add them to the site</h3>
                 <form>
+                    <p>
+                        <label htmlFor="title">dish title</label>
                     <input
                         id="title"
                         type="text"
+                        className ="and"
                         placeholder="Dish title"
                         onChange={this.handleChange}
                     />
-                    <textarea
+                    </p>
+                   <p>
+                       <label htmlFor="description">Short description</label>
+                       <textarea
                         id="description"
+                        className ="and"
                         placeholder="Short description"
                         onChange={this.handleChange}>
                 		</textarea>
+                    
+                   </p>
                     <p>
-                        <input
-                            id="image"
-                            type="file"
-                            onChange={this.addImage}
-                        />
-                        <button type="button" onClick={this.handleUpload}>Upload</button>
-                    </p>
-                    <select id="category" onChange={this.handleChange} value={this.state.category}>
+                        <label htmlFor="Category">Category</label>
+                        <select
+                         id="category" onChange={this.handleChange} 
+                        className ="and" 
+                        value={this.state.category}
+                        >
                         <option value="category" disabled style={{display: 'none'}}> Category</option>
                         {
                             this.props.categories
@@ -127,16 +136,43 @@ class AddNewDish extends Component {
                             })
                         }
                     </select>
-                    <ChangableIngredient changedIngArr={this.addingridientArrToState}/>
-                    <Doneness changedDonnesArr={this.addDonenessArrToState}/>
-                    <input id="price"
+                    </p>
+                    
+                    <p>
+                        <label htmlFor="cahngeIng">changeble ingredient</label>
+                        <ChangableIngredient changedIngArr={this.addingridientArrToState} id="cahngeIng" 
+                       />
+                    </p>
+
+                    <p>
+                        <label htmlFor="doneness">doneness</label>
+                        <Doneness changedDonnesArr={this.addDonenessArrToState} id="doneness"
+                       />
+                    </p>
+                  <p>
+                      <label htmlFor="price">price</label>
+                      <input id="price"
                            type="text"
+                           className ="and"
                            placeholder="Price"
                            onChange={this.handleChange}
                     />
-                    <button type="button" onClick={this.handleAdd}> Add</button>
+                  </p>
+   
+                     <p>
+                         <label htmlFor="image">upload <span>a</span> Photo</label>
+                        <input
+                            id="image"
+                            type="file"
+                            className ="and"
+                            onChange={this.addImage}
+                        />
+                        <button type="button" className ="upload" onClick={this.handleUpload}>Upload</button>
+                    </p>
+                    <button type="button" className="add" onClick={this.handleAdd}> Add</button>
                 </form>
-            </div>
+                </div>
+            </section>
         )
     }
 }

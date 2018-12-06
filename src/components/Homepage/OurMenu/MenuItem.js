@@ -13,7 +13,7 @@ class MenuItem extends Component {
 
         return(
 
-				<div onClick={() => this.changeCatName()}>
+				<div onClick={() => this.changeCatName()} className="catImg">
                     <Link to="/listing">
 					<div className="shape">
 						<p><i className="fas fa-utensils"></i></p>

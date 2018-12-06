@@ -38,7 +38,6 @@ class Homepage extends Component {
                  <OurMenu ref={(section) => { this.OurMenu = section; }} />
                  <Booking ref={(section) => { this.Booking = section; }} />
                  <AboutUs ref={(section) => { this.AboutUs = section; }}/>
-                 <Footer ref={(section) => { this.Footer = section; }}/>
 
             </div>
         )

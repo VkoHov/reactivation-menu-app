@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import Quantity from "../Quantity/Quantity";
 import {Link} from "react-router-dom";
 import Status from "../Status/Status";
-import Footer from "../Homepage/Footer/Footer";
 import {shoppingCartMinusAction} from "../../actions/shoppingCartAction"
 import './ShoppingCart.css';
 
@@ -44,8 +43,8 @@ class ShoppingCart extends Component {
         if (dishInfo) {
             return (
                 <div className="shoppingCart">
-                    <div className="paddingTop shoppingBaner">
-                        <div className='shoppigShape'></div>
+                    <div className=" shoppingBaner">
+                        <div className='  shoppigShape'></div>
                     </div>
 
                     <div className="container">
@@ -89,8 +88,6 @@ class ShoppingCart extends Component {
                                                 <p><em>Doneness:</em> {dish.doneness}</p>
                                                 <p><em>Rating:</em> {dish.rating}</p>
                                                 <p>
-                                                    <span>edit</span>
-                                                    <span>Favorit</span>
                                                     <span
                                                         onClick={() => {
                                                             this.removeDish();
@@ -150,7 +147,6 @@ class ShoppingCart extends Component {
                             </p>
                         </div>
                     </section>
-                    <Footer/>
 
                 </div>
             );

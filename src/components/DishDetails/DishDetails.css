@@ -1,8 +1,8 @@
-.dishDetails {
+.dishDetails{
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, .7);
+    background: rgba(0,0,0,.7);
     top: 0;
     left: 0;
     z-index: 1000;
@@ -11,118 +11,131 @@
     overflow-y: auto;
     align-items: center;
     padding-bottom: 9%;
-
   }
   .selIng{
       display: flex;
       flex-wrap: wrap;
   }
+  .pop-Up-inner select>option:hover{
+      background: #ff9900 !important;
+      color:#fff !important;
+      transition:.5s;
+  }
   .pop-Up-inner{
-
     flex-basis: 65vw;
     position: relative;
     overflow-y: auto;
     background: white;
     display: flex;
-    max-height: 500px;
+    max-height:500px;
     height: inherit;
 
-}
-
-.pop-Up-inner > div {
-    flex: 1;
-    padding: 15px;
-}
-
-.pop-Up-inner input[type="checkbox"] {
-    background: #fff;
-    border: .5px solid #ff9900;
-}
-
-.pop-Up-inner h4 {
+  }
+  .pop-Up-inner > div{
+     flex:1;
+     padding: 15px;
+  }
+  
+  .pop-Up-inner input[type="checkbox"] {
+      background: #fff;
+      border: .5px solid #ff9900;
+  }
+  .pop-Up-inner h4{
     font-size: 24px;
     margin: 10px 0;
     font-weight: 400;
-    text-transform: uppercase;
+    text-transform:  uppercase;
 }
 
-.pop-Up-inner div h5 {
+.pop-Up-inner div h5{
     font-size: 16px;
     font-weight: 600;
-    margin: 10px 0;
-    text-transform: uppercase;
+    margin:10px 0;
+    text-transform:  uppercase;
     text-align: left;
 }
 
-.pop-Up-inner div p {
-    text-align: left;
+.pop-Up-inner div p{
+ text-align: left;
 }
 
-.pop-Up-inner .price {
-    font-size: 24px;
+.pop-Up-inner .price{
+ font-size: 24px;
 }
+  .desc{
+      font-size: 14px;
+      color:#707070;
+  }
 
-.desc {
-    font-size: 14px;
-    color: #707070;
-}
-
-.socIcon {
-    margin-top: 20px;
-}
-
-.socIcon a {
+  .socIcon  {
+      margin: 20px 0;
+  }
+  .socIcon a{
     font-size: 18px;
     color: #ff9900;
     margin: 0 10px;
 }
-
-.socIcon span {
-    margin-left: 10px;
+.socIcon span{
+   margin-left: 10px;
 }
 
-.countDish button {
-    color: #707070;
+.countDish button{
+    color:#707070;
     border: .5px solid #ff9900;
     background-color: #fff;
     outline: none;
+    font-size: 15px;
+    padding: 6px 9px;
 }
-
 .add-to-cart-button,
-.add-to-favorites {
-    font-size: 8px;
+.add-to-favorites{
+    font-size: 13px;
     background: #ff9900;
     color: #fff;
     margin-left: 10px;
+    outline: none;
     border: none;
-    padding: 5px 10px;
+    padding: 2.5% 2%;
     cursor: pointer;
     text-transform: uppercase;
 }
-
-.countDish span {
+.disPhoto{
+    height: 20vw;
+}
+.disPhoto img{
+    height:100%;
+}
+.countDish span{
     font-size: 13px;
     margin-right: 5px;
 }
-
-.addBlock {
+.addBlock{
     display: flex;
-    margin-top: 3vw;
+    margin-top: 3vw;  
+    justify-content: flex-end;
+    align-items: center;
+}
+.addBlock > div:first-of-type{
+    flex: 1;
+    text-align: right;
+}
+.addBlock > div:last-of-type{
+    text-align: right;
+    flex: 1.1;
 }
 .pop-Up{
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    background-color: rgba(0, 0, 0, 10);
-    opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0,0,0, 10);
+  opacity: 0.5;
 }
-
-.overlay {
+.overlay{
     left: 0;
     right: 0;
     top: 0;
@@ -132,36 +145,41 @@
     background: black;
     z-index: 100;
 }
-
+.pop-Up-inner{
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    top: 15%;
+    bottom: 15%;
+    margin: auto;
+    background: white;
+    z-index: 1000;
+}
 .doneness-drop-down {
     height: 30px;
     width: 160px;
     border-radius: 5px;
-    border: 1px solid #ff9900;
-    outline: none;
+    border:1px solid #ff9900;
+    outline :none;
 }
-
-.rating-container {
+ .rating-container{
     height: 30px;
     width: 150px;
     position: absolute;
     z-index: 0;
 }
-
-.rating {
+.rating{
     position: absolute;
     height: 30px;
     max-width: 150px;
+
+    left: 0;
     background-color: #ff9900;
     z-index: -1;
 }
 
-.star {
+.star{
     height: 30px;
-    width: 30px;
+    width:30px;
 }
 
-.rating-container {
-    position: absolute;
-    right: 0;
-}

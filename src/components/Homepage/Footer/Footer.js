@@ -17,7 +17,7 @@ class Footer extends Component {
 	               				</a>
                				</div>
                				<div>
-               					<h4>cotact info</h4>
+               					<h4>contact info</h4>
                					<ul>
                						<li>
                							<span><i className="fas fa-map-marker-alt"></i></span>
@@ -34,14 +34,14 @@ class Footer extends Component {
                					</ul>
                				</div>	
                				<div>
-               					<h4>opeig hours</h4>
+               					<h4>opening hours</h4>
                					<ul>
                						<li>
-               							Mon-Thu:09:00-24:00
+               							Mon-Thu:10:00-24:00
 
                						</li>
                						<li>
-               							Fri-Sun:09:00-24:00
+               							Fri-Sun:10:00-24:00
                						</li>
                						
                					</ul>

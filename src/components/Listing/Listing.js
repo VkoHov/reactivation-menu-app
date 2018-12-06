@@ -3,6 +3,8 @@ import ListingBaner from './ListingBaner';
 import CategoryList from '../CategoryList/CategoryList';
 import DishList from '../DishList/DishLIst';
 import SearchDish from "../SearchDish/SearchDish";
+import {searchPopUpToggle} from '../../actions/searchAction';
+import {connect} from 'react-redux';
 
 
 class Listing extends Component {
@@ -13,7 +15,7 @@ class Listing extends Component {
     render() {
         return (
 
-            <div>
+            <div onClick={() => this.props.searchPopUpToggle(false)}>
                 <ListingBaner/>
                 <SearchDish/>
                 <CategoryList />
@@ -27,6 +29,10 @@ class Listing extends Component {
 
 
 
+const mapDispatchToProps = dispatch => {
+    return {
+        searchPopUpToggle: (toggle) => dispatch(searchPopUpToggle(toggle)),
+    }
+}
 
-
-export default Listing;
+export default connect(null,mapDispatchToProps)(Listing);
