@@ -6,7 +6,6 @@ import { compose } from "redux";
 import '../Table/Table.css';
 
 class Table extends Component {
-
     render() {
         let src="";
         if(this.props.tablee.status =="free" ){

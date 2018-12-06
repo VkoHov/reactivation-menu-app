@@ -104,13 +104,13 @@ class Booking extends Component {
 		if (isReserved) {
 			this.setState({
 				className: 'green',
-				message: 'Exav',
+				message: 'Your reservation has been confirmed Thank you',
 			});
 			console.log('exav')
 		} else {
 			this.setState({
 				className: 'red',
-				message: 'CHEXAV'
+				message: 'Sorry! Your reservation is not confirmed. not plase yeat'
 			});
 			console.log('chexav');
 		}
@@ -195,12 +195,15 @@ class Booking extends Component {
 							<p>
 								<button type="button" onClick={this.findTable}>find a table</button>
 							</p>
-							<div className={this.state.className&&this.state.className}> {
+							
+						</form>
+						<div className={this.state.className&&this.state.className}> {
 								this.state.flag && this.state.message
 							} </div>
-						</form>
 					</div>
+				
 				</div>
+				
 			</section>
 		)
 	}
