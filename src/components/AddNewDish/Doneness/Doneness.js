@@ -24,11 +24,11 @@ class Doneness extends Component {
     }
     render() {
         return (
-            <div className="doneness">
+            <div className="doneness chanIng">
                 {this.state.doneness.map((inp,index)  => {
                     return (
                     <p key={index}>
-                        <input
+                        <input className ="and"
                             inpid = {index}
                             id = {"doneness " + index}
                             type = "text"

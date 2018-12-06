@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import TableLIst from './Tablelist/TableList';
-
+import "./AdminHomePage.css";
 class AdminHomePage extends Component {
 
     render() {
         return (
-            <div>
-                <Link to='/admin/editadmin'><li>Edit Admin </li> </Link>
-                <Link to='/admin/editmanu'> <li>Edit Meniu </li> </Link>
-                <TableLIst />
-            </div>
+            <section className="adminPage paddingTop">
+                <div className="container">
+                    <div className="edit">
+                        <Link to='/admin/editadmin'><p>Edit Admin </p> </Link>
+                        <Link to='/admin/editmanu'> <p>Edit Menu </p> </Link>
+                    </div>
+                    <TableLIst />
+                </div>
+            </section>
         );
     }
 
