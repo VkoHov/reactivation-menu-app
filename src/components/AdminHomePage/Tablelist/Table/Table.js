@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import '../Table/Table.css';
 
 class Table extends Component {
-    constructor(props){
-        super(props);
-    }
+   
+      
     render() {
      
         return (

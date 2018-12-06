@@ -17,19 +17,27 @@ class TableInfo extends Component {
 
 
 
-
     render() {
+
 
         let index = this.props.match.params && +this.props.match.params.tableId;
         let valuOfOrderskeys = [];
         let valuOfOrdersValue = [];
 
         if (this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status === 'reserve') {
-            valuOfOrderskeys = this.props.firestoreInfo && Object.keys(this.props.firestoreInfo[index - 1].orders[0]);
-            valuOfOrdersValue = this.props.firestoreInfo && Object.values(this.props.firestoreInfo[index - 1].orders[0]);
+            valuOfOrderskeys = this.props.firestoreInfo && Object.keys(this.props.firestoreInfo[index-1 ].orders[0]);
+            valuOfOrdersValue = this.props.firestoreInfo && Object.values(this.props.firestoreInfo[index-1].orders[0]);
         } else if (this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status === 'busy') {
-            valuOfOrderskeys = this.props.firestoreInfo && Object.keys(this.props.firestoreInfo[index - 1].orders[0][0]);
-            valuOfOrdersValue = this.props.firestoreInfo && Object.values(this.props.firestoreInfo[index - 1].orders[0][0]);
+            valuOfOrderskeys = ['title', 'ingridient', 'count', 'price'];
+            this.props.firestoreInfo && this.props.firestoreInfo[0].orders.map(order => {
+                for (let key in order) {
+                    for (let kay in order[key]) {
+                        if (kay === 'title' || kay === 'price' || kay === 'count' || kay === 'ingredient') {
+                            valuOfOrdersValue.push(order[key][kay]);
+                        }
+                    }
+                }
+            })
         }
 
         return (
@@ -40,9 +48,11 @@ class TableInfo extends Component {
                 <div className={'info'}>
                     {
                         valuOfOrderskeys && valuOfOrderskeys.map((key, i) => {
+
                             return (
                                 <div key={i + '0ll'} >
                                     {
+
                                         key
                                     }
                                 </div>
