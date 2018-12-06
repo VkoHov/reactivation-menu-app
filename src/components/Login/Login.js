@@ -20,9 +20,10 @@ class Login extends Component {
     };
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.LoginAction(this.state);
+
     };
     handleClick = () => {
+        this.props.LoginAction(this.state);
         if (this.props.firebase.auth.uid){
             this.props.history.push('/');
         }
@@ -44,18 +45,12 @@ class Login extends Component {
                                 <label htmlFor="ppassword">Password</label>
                                 <input type="password" id='ppassword' onChange={this.handleChange} />
                             </div>
-                            <div className="remember">
-                                <p>    
-                                    <input type="checkbox" id='remember'  />
-                                    <label htmlFor="remember">Remember Me</label>
-                                </p>
-                                <Link to="">Forgot your password ?</Link>
-                            </div>
+                        
                             <div className="orLogIn">
                                 Or<Link to="/registration"> CREATE ACCOUNT</Link>
                             </div>
                             <div>
-                                <button onClick={this.handleClick}>Login</button>
+                                <button type="button" onClick={this.handleClick}>Login</button>
                             </div>
                         </form>
                     </div>

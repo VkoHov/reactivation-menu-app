@@ -13,7 +13,6 @@ class Dish extends Component {
     }
 
     render() {
-        console.log('lejhflkwlkwjvnn ewouhefiwuoh jnwjg', this.props);
         return (
             <div >
                 {

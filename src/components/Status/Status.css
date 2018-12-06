@@ -1,0 +1,9 @@
+.status button,
+    .status input{
+    background: #fff;
+    border: .1px solid #ff9900;
+    padding:3px;
+    outline:none;
+    cursor :pointer;
+    color:#707070;
+}

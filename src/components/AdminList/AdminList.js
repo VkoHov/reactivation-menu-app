@@ -21,7 +21,7 @@ console.log('esi admin listinaa',this.props)
 
                     })
                 }
-               <Link to='/registration'> <button>Add Admin</button>
+               <Link to='/adminregistration'> <button type='button'>Add Admin</button>
                </Link>
             </div>
         );

@@ -1,7 +1,7 @@
 nav{
 	background: rgba(0,0,0,.8);
 	padding: 24px 0;
-	/* position: fixed; */
+	position: fixed;
 	width: 100%;
 	top:0;
 	z-index: 300;
@@ -85,4 +85,18 @@ a.logo{
 }
 .loginRegHover:hover{
 	display: block;
+}
+
+.cartIcon{
+	position: relative;
+} 
+.cartIcon span{
+	position: absolute;
+    font-size: 11px;
+    background: #fff;
+    border: 1px solid #ff9900;
+    padding: 3px 5px;
+    border-radius: 50%;
+    right: 0;
+    top: 0;
 }

@@ -32,7 +32,6 @@ class Homepage extends Component {
         }
     }
     render() {
-        console.log(this.props.sliderstatus);
         return(
             <div className='homepage'>
                  <HeaderSlider ref={(section) => { this.HeaderSlider = section; }}/>
