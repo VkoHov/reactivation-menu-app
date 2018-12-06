@@ -92,23 +92,28 @@ class ShoppingCart extends Component {
                                                         onClick={() => {
                                                             this.removeDish();
                                                             let dishes = JSON.parse(sessionStorage.getItem("dishInfo"));
-
+                                                            let storageCount = JSON.parse(sessionStorage.getItem("shoppingCartCount"));
+                                                            let shopCartCount = this.props.shoppingCartCount;
+                                                            shopCartCount--;
                                                             let disharr = dishes.filter(item => {
                                                                 return (
                                                                     (item.ingredient !== dish.ingredient &&
                                                                         item.ingredient.length !== dish.ingredient.length) ||
                                                                     item.doneness !== dish.doneness ||
-                                                                    (item.id !== dish.id && item)
+                                                                    (item.title !== dish.title && item)
                                                                 );
                                                             });
 
                                                             if (disharr.length === 0) {
                                                                 sessionStorage.setItem("dishInfo", null);
+                                                                this.props.shoppingCartMinusAction(shopCartCount);
+                                                                sessionStorage.setItem("shoppingCartCount",JSON.stringify({ count: null }));
                                                             } else {
-                                                                sessionStorage.setItem(
-                                                                    "dishInfo",
-                                                                    JSON.stringify(disharr)
-                                                                );
+                                                                sessionStorage.setItem("dishInfo",JSON.stringify(disharr));
+                                                                this.props.shoppingCartMinusAction(shopCartCount);
+                                                                storageCount.count--;
+                                                                 sessionStorage.setItem("shoppingCartCount",JSON.stringify({ count: storageCount.count }));
+
                                                             }
                                                         }}>Remove </span>
 
@@ -164,8 +169,7 @@ class ShoppingCart extends Component {
 const mapDispatchToProps = dispatch => {
     return {
 
-        shoppingCartMinusAction: count => {
-            dispatch(shoppingCartMinusAction(count));
+        shoppingCartMinusAction: count => { dispatch(shoppingCartMinusAction(count));
         }
     };
 };
