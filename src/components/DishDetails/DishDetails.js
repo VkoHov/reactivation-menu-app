@@ -4,11 +4,12 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { changeData } from "../../actions/rateAction";
 import { addToCart } from "../../actions/dishDetailAction";
-import {addFavToFireStore} from "../../actions/addToFavAction"
-import Quantity from "../Quantity/Quantity";
+import {addFavToFireStore} from "../../actions/addToFavAction";
+import _ from "lodash";
+
 import "./DishDetails.css";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
-import _ from "lodash";
+ 
 
 class DishDetails extends React.Component {
   state = {
@@ -101,13 +102,15 @@ class DishDetails extends React.Component {
   };
   addToFavorites =() =>{
     console.log('dish detail',this.state.ingredients);
-    console.log("donenes",this.props.dish);
+    console.log("donenes",this.props);
     this.props.addFavToFireStore({
-      id: this.props.favorite.uid,
+     id: this.props.favorite.uid,
       favdoneness: this.state.doneness ,
       favIngredient: this.state.ingredients,
       count: this.state.count,
+      // id: this.props.dish.dish.id,
       title: this.props.dish.dish.title,
+      price: this.props.dish.dish.price,
       description: this.props.dish.dish.description,
       url: this.props.dish.dish.url,
    })

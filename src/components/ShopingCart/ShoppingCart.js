@@ -41,48 +41,54 @@ class ShoppingCart extends Component {
   }
  
   render() {
-    let dishInfo = JSON.parse(sessionStorage.getItem("dishInfo"));
-  let totalPirce = 0;
+    const dishInfo = JSON.parse(sessionStorage.getItem("dishInfo"));
+    console.log("shopping carti propsna",this.props.dishInfo)
+    let totalPirce = 0;
     if (dishInfo) {
       return (
         <div>
           My CART
-          <div>Total Price: </div>
+          
           {dishInfo.map((dish, index) => {
-            totalPirce += dish.count * dish.price;
-            
+             
+            let price = dish && dish.price;
+            let count = dish && dish.count;
+             totalPirce = totalPirce + count * price;
+
+            console.log("our dish",totalPirce,count,price);
             return (
               
               <div key={index}>
                 <div>{dish.title}</div>
                <Quantity update = {this.updateCount.bind(this)} index = {index} count = {dish.count} price = {dish.price}/>
-               
-               <div>SUBTOTAL: {dish.count * dish.price}</div>
+          
                 <div>Description: {dish.description}</div>
-                <div>Unit Price: {dish.price}</div>
+                <div>Unit Price: {dish && dish.price}</div>
                 
-                <div>Ingrediens: {dish.ingredient.join(" , ")}</div>
-                <div>Doneness: {dish.doneness}</div>
+                <div>Ingrediens: {dish.ingredient && dish.ingredient.join(" , ") || null}</div>
+                <div>Doneness: {dish.doneness && dish.doneness || null}</div>
                 <span
-                  onClick={() => {
+                   onClick={() => {
                     this.removeDish();
+                    
                     let dishes = JSON.parse(sessionStorage.getItem("dishInfo"));
-
+                    console.log("remove rabotatet",dishes)
                     let disharr = dishes.filter(item => {
-                      return (
-                        (item.ingredient !== dish.ingredient &&
-                          item.ingredient.length !== dish.ingredient.length) ||
-                        item.doneness !== dish.doneness ||
-                        (item.id !== dish.id && item)
-                      );
+                         return (
+                            (item.ingredient !== dish.ingredient &&
+                                item.ingredient.length !== dish.ingredient.length) ||
+                          item.doneness !== dish.doneness ||
+                           (item.title !== dish.title && item)
+                       );
                     });
-                    if (disharr.length === 0) {
-                      sessionStorage.setItem("dishInfo", null);
-                    } else {
-                      sessionStorage.setItem(
-                        "dishInfo",
-                        JSON.stringify(disharr)
-                      );
+
+                     if (disharr.length === 0) {
+                        sessionStorage.setItem("dishInfo", null);
+                   } else {
+                       sessionStorage.setItem(
+                            "dishInfo",
+                          JSON.stringify(disharr)
+                        );
                     }
                   }} >Remove </span>
 

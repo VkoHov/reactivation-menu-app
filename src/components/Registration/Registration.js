@@ -96,7 +96,7 @@ class Registration extends Component {
                                 Or<Link to="/login"> LOG IN</Link>
                             </div> 
                             <div className="">
-                                <button onclick={this.handleClick}>register</button>
+                                <button onClick={this.handleClick}>register</button>
                             </div>
                         </form>
                     </div>
