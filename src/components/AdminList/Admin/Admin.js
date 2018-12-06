@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { deleteAdmin } from  '../../../actions/deleteAdminAction';
+import { deleteAdmin } from '../../../actions/deleteAdminAction';
 import { compose } from 'redux';
 
 
@@ -13,22 +13,30 @@ class Admin extends Component {
 
     deleteAdmin = () => {
 
-        this.props.deleteAdmin({ id:this.props.admin} );
+        this.props.deleteAdmin({ id: this.props.admin });
     }
 
+
     render() {
-        console.log('esi admini propsnkSBHC', this.props)
+        let info = this.props.admin;
+        console.log(info)
+        let bgcolor = this.props.idd % 2 == 0 ? " #FFF2DF" : '#fff';
         return (
             <div >
-                {
-                    this.props.admin.name
-                }
 
-                <div onClick={this.deleteAdmin}>
-                    Delete Admin
-                    </div>
-                    
+                <ul className="tableRow " style={{ background: `${bgcolor}` }}>
+                    <li>{this.props.idd}</li>
+                    <li>{info.name}</li>
+                    <li>{info.lastname}</li>
+                    <li>{info.mail}</li>
+                    <li>Admin</li>
+                    <li onClick={this.deleteAdmin} style={{ 'width': '80px' }}>
+                        <i className="far fa-trash-alt"></i>
+                    </li>
+                </ul>
+
             </div>
+
         );
     }
 }
@@ -39,18 +47,17 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = dispatch => {
-	return {
-		deleteAdmin: admin => dispatch(deleteAdmin(admin.id)),
-	};
+    return {
+        deleteAdmin: admin => dispatch(deleteAdmin(admin.id)),
+    };
 };
 
 
 
-export default compose(connect(mapStateToProps,mapDispatchToProps),
+export default compose(connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
         { collection: 'administrators' }
     ])
 )(Admin);
 
 
-// 
