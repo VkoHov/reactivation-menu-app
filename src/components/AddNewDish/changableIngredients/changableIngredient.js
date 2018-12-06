@@ -25,14 +25,14 @@ class ChangableIngredient extends Component {
     render() {
         console.log(this.state.ingredients)
         return (
-            <div className="changeIng">
+            <div className="chanIng">
                 {this.state.ingredients.map((inp,index)  => {
                        return (<p key={index}>
-                            <input
+                            <input className ="and"
                                 inpid = {index}
                                 id = {"changeIng " + index}
                                 type = "text"
-                                placeholder = "Changeable ingredients"
+                                placeholder = "Free"
                                 onChange = {(e) => {this.addIngredient(e)}}
                             />
 

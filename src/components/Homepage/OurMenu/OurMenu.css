@@ -3,12 +3,6 @@
 	margin-bottom: 1%;
 	flex-wrap: wrap;
 }
-.ourMenu > div{
-	margin:1.5% 0;
-	flex-basis: 32%;
-	height: 29.3vw;
-	background-size: 100% 100%;
-}
 .shape{
 	height: 100%;
 	background: rgba(255, 153, 0, .8);
@@ -23,26 +17,35 @@
 	transform: scale(1);
 }
 .ourMenu > div:nth-of-type(1){
-	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner3.jpg?alt=media&token=2fbe95dc-36fe-453a-825f-14ee8e78d4a3');
+	
+	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/category%20images%2Fsalade.jpg?alt=media&token=4d3ef555-954b-4e39-ad2c-377976a816de');
 }
 .ourMenu > div:nth-of-type(2){
-
 	margin:  1.5%;
-	
-	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner2.jpg?alt=media&token=bb832b1e-7cf0-4c1d-bb97-58fabd7ce3a6');
+	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/category%20images%2Fgrill.jpg?alt=media&token=cfe02a9f-5d23-4472-b23e-88679dabe801');
 }
 .ourMenu > div:nth-of-type(3){
-	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner2.jpg?alt=media&token=bb832b1e-7cf0-4c1d-bb97-58fabd7ce3a6');
+	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/category%20images%2Fwurst.jpg?alt=media&token=cb23f80d-de18-47e6-a342-04693f868795');
 }
 .ourMenu > div:nth-of-type(4){
-	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner2.jpg?alt=media&token=bb832b1e-7cf0-4c1d-bb97-58fabd7ce3a6');
+	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/category%20images%2Fburger.jpg?alt=media&token=d203dbc4-7658-4861-8562-f5dfd209ef15');
 }
 .ourMenu > div:nth-of-type(5){
 	margin:  1.5%;
-	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner2.jpg?alt=media&token=bb832b1e-7cf0-4c1d-bb97-58fabd7ce3a6');
+	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/category%20images%2Fdrinks.jpg?alt=media&token=d5318cd9-e1cc-4874-8134-1bcce794aff2');
 }
 .ourMenu > div:nth-of-type(6){
-	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner2.jpg?alt=media&token=bb832b1e-7cf0-4c1d-bb97-58fabd7ce3a6');
+	background: url('https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/category%20images%2Fsteak.jpg?alt=media&token=edcd4a7b-6fb8-4f2e-aa89-6666b3dcd5ca');
+}
+
+.ourMenu > div.catImg{
+	margin-top:1.5%;
+	margin-bottom:1.5%;
+	flex-basis: 32%;
+	height: 29.3vw;	
+	background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 .ourMenu p{
 	margin: 0;

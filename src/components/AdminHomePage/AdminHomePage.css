@@ -1,0 +1,24 @@
+.adminPage{
+    background: #E8E8E8;  
+    padding-bottom: 5%;
+}
+
+.edit {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+.edit a:first-of-type p{
+    margin-top: 30px;
+}
+.edit p{
+    text-transform: uppercase;
+    background: #ff9900;
+    color:#000;
+    font-size: 18px;
+    flex-basis: 2vw;
+    width: 9vw;
+    padding: 9px 0px;
+    text-align: center;
+    margin: 10px 0 0;
+}

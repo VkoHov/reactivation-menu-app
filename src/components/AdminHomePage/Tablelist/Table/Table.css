@@ -9,4 +9,31 @@
 .reserved{
 
  background-color: blueviolet;
+}.free{
+    background-color: green;
+}
+
+.busy{
+    background-color: brown;
+}
+
+.reserved{
+
+ background-color: blueviolet;
+}
+.tableImg{
+    flex-basis: 26%;
+    position: relative;
+
+}
+.tableImg span{
+    position: absolute;
+    left: 0;
+    color:#fff;
+    right: 0;
+    top: 46%;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+
 }

@@ -8,7 +8,7 @@ import '../Tablelist/TableList.css';
 class TableLIst extends Component {
     render() {
         return (
-            <div>
+            <div className="tableList">
                 {this.props.firestoreInfo &&
                 this.props.firestoreInfo.map((tablee, index) => {
                         return (

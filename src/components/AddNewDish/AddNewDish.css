@@ -1,16 +1,72 @@
 .add-new-dish{
      width: 40%;
-     margin:30px auto;
-     border:1px solid black;
-     text-align: center;
+     margin: 0 auto;
  }
-.add-new-dish input,
-.add-new-dish textarea,
-.add-new-dish select,
-.add-new-dish button{
-    width: 90%;
-    border:1px solid black;
+.and{
+    background: #fff;
+    width: 100%;
     margin: 10px 0;
+    flex: 2;
+    height: 40px;
+    font-size: 18px;
     padding:5px 10px;
     outline:none;
+}
+.new-dish p{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.new-dish p +span{
+    position: absolute;
+    font-size: 20px;
+    right: 15px;
+    top: 24px;
+}
+.new-dish p label{
+    flex: 1;
+    font-size: 14px;
+    color:#000;
+    text-transform: capitalize;
+}
+
+.new-dish{
+    background: #efefef;
+    padding: 10% 0;
+}
+.new-dish span{
+    text-transform: lowercase;
+}
+.chanIng{
+    flex:2;
+}
+.chanIng p{
+   margin: 0;
+}
+.upload{
+    text-transform: uppercase;
+    color:#fff;
+    background: #ff9900;
+    border:none;
+    outline:none;
+    margin-left: 5px;
+    cursor :pointer;
+    padding: 12px 6px;
+
+}
+input[type="file"]{
+    padding:0;
+    margin: 0;
+}
+.add{
+    text-transform: uppercase;
+    color:#fff;
+    background: #ff9900;
+    border:none;
+    outline:none; 
+    cursor :pointer;
+    font-size: 20px;
+    padding: 9px 10%;
+    margin: 0 auto;
+    display: block;
 }

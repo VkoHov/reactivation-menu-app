@@ -4,17 +4,18 @@ import AccountLayout from '../Layout/AccountLayout/AccountLayout'
 import './Navbar.css';
 import {connect} from 'react-redux';
 import {SlideToComponent} from '../../actions/navbarAction';
+// import ReactSVG from 'react-svg';
 class Navbar extends Component {
-     constructor(props){
-         super(props)
-     this.state = {
-            count:  JSON.parse(sessionStorage.getItem('dishInfo')),
+    constructor(props) {
+        super(props)
+        this.state = {
+            count: JSON.parse(sessionStorage.getItem('dishInfo')),
         }
-     }
-  render() {
-    let storage = JSON.parse(sessionStorage.getItem("shoppingCartCount"));
-    console.log("storage.count",storage && storage.count) ;
-     return (
+    }
+
+    render() {
+        let storage = JSON.parse(sessionStorage.getItem("shoppingCartCount"));
+        return (
             <header>
                 <nav>
                     <div className="container">
@@ -24,24 +25,35 @@ class Navbar extends Component {
 
                                 <Link to="/">home</Link>
                                 <span>|</span>
-                                <p className='navItem' id='ourmenu' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>our menu</p>
+                                <p className='navItem' id='ourmenu' onClick={(e) => {
+                                    this.props.SlideToComponent(e.target.id)
+                                }}>our menu</p>
                                 <span>|</span>
-                                <p  className='navItem'id='reservation' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>reservation</p>
+                                <p className='navItem' id='reservation' onClick={(e) => {
+                                    this.props.SlideToComponent(e.target.id)
+                                }}>reservation</p>
                                 <span>|</span>
-                                <p  className='navItem'id='aboutus' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>about</p>
+                                <p className='navItem' id='aboutus' onClick={(e) => {
+                                    this.props.SlideToComponent(e.target.id)
+                                }}>about</p>
                                 <span>|</span>
-                                <p  className='navItem'id='contact' onClick={(e) => {this.props.SlideToComponent(e.target.id)}}>contact</p>
+                                <p className='navItem' id='contact' onClick={(e) => {
+                                    this.props.SlideToComponent(e.target.id)
+                                }}>contact</p>
                             </div>
                             <div className="layout">
                                 <AccountLayout/>
-                                <Link to="/favorites"><i className="far fa-heart"></i></Link>
-                                <Link to="/shoppingcart"><i className="fas fa-shopping-cart"><p>{
-                            
-                                storage && storage.count || null
-                          
-                           
-                                }</p></i></Link>
-                                
+
+                                <Link to=""><span><i className="far fa-heart"></i>
+                                {/* <ReactSVG src="https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/svg%2Ffork.svg?alt=media&token=7d146dfb-8dbc-44b3-a495-715ee71562d3"/> */}
+                                </span> </Link>
+                                <Link to="/shoppingcart"  className="cartIcon"><i className="fas fa-shopping-cart"><span>{
+
+                                    (storage && storage.count)|| null
+
+
+                                }</span></i></Link>
+
 
                             </div>
                         </div>
@@ -52,15 +64,18 @@ class Navbar extends Component {
         )
     }
 }
+
 const mapStateToProps = state => {
     return {
         shoppingCartCount: state.shoppingCart.shoppingCartCount,
     }
 }
-const  mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
     return {
-        SlideToComponent: (sliderId) => {dispatch(SlideToComponent(sliderId))},
-      
+        SlideToComponent: (sliderId) => {
+            dispatch(SlideToComponent(sliderId))
+        },
+
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

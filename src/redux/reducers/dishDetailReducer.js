@@ -12,4 +12,3 @@ const projectReducer = (state = initState, action) => {
   };
   
   export default projectReducer;
-   

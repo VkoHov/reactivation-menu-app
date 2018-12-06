@@ -8,6 +8,8 @@
 }
 .dishBlock {
 	height: 27vw;
+	background-repeat:no-repeat;
+	background-size: cover;
 	cursor: pointer;
 }
 .dishBlock:hover .shape{
@@ -60,4 +62,7 @@ p.price {
 }
 .dishBl .star-container {
 	text-align: center;
+}
+.dishBl > div{
+	background-size: cover;
 }
