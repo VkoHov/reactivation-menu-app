@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { clearReserveOrOrder } from '../../../../actions/clearReserveOrOrder';
@@ -9,10 +9,17 @@ import { clearReserveOrOrder } from '../../../../actions/clearReserveOrOrder';
 import './TableInfo.css';
 
 class TableInfo extends Component {
-
+    state={
+        empty: 0,
+    }
 
     clearReserveOrOrder = (table) => {
-        this.props.clearReserveOrOrder({ id: table.target.id });
+       let prom =  this.props.clearReserveOrOrder({ id: table.target.id });
+       prom.then(() => {
+            this.setState({
+                empty: 1,
+            })
+       })
     }
 
 
@@ -101,6 +108,7 @@ const mapDispatchToProps = dispatch => {
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
+    withRouter,
     firestoreConnect([
         { collection: 'tables' }
     ])
