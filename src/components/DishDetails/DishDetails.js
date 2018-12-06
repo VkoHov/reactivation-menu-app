@@ -181,7 +181,6 @@ class DishDetails extends React.Component {
           <div>
           <div
             className="rating-container"
-            style={{ right: "0%" }}
             onMouseMove={e => {
               this.countRating(e);
             }}

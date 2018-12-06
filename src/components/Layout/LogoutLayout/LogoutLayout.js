@@ -14,7 +14,7 @@ class LogoutLayout extends Component{
             });
             return(
                 <div className='loginRegHover logout'>
-                    <p>Deer { user[0] && user[0].name + ' ' + user[0].surname} welcome to our Restaurant </p>
+                    <p>  { user[0] && user[0].name + ' ' + user[0].surname}  </p>
                     <button onClick={() => {this.props.LogoutAction()}}> logout</button>
                 </div>
             )
