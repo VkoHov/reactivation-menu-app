@@ -39,9 +39,11 @@ class TableInfo extends Component {
             this.props.firestoreInfo && this.props.firestoreInfo[0].orders.map(order => {
                 for (let key in order) {
                     for (let kay in order[key]) {
-                        if (kay === 'title' || kay === 'price' || kay === 'count' || kay === 'ingredient') {
-                            valuOfOrdersValue.push(order[key][kay]);
-                        }
+                        return(( kay === 'title' 
+                        || kay === 'price' 
+                        || kay === 'count' 
+                        || kay === 'ingredient' )
+                        && valuOfOrdersValue.push(order[key][kay]));
                     }
                 }
             })

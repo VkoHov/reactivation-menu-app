@@ -22,7 +22,6 @@ class SearchDish extends Component {
         this.props.searchPopUpToggle(true);
     }
     render() {
-        console.log(this.props.isOpen)
         return (
             <div className=" container" >
             <div className="searchBar" onClick={e => e.stopPropagation()}>

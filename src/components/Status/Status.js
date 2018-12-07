@@ -24,12 +24,12 @@ class Status extends Component {
     if (this.state.tableNumber > 0 && this.state.tableNumber < 7) {
       let status = this.props.tables;
       status.map(table => {
-        if (table.id === this.state.tableNumber && table.status === "free") {
+        if (table.id === this.state.tableNumber && table.status === "free" ) {
           alert("Your order recieved");
           this.props.addToFirestore(info);
         } else if (
-          table.id === this.state.tableNumber &&
-          table.status === "busy"
+          (table.id === this.state.tableNumber) &&
+          (table.status === "busy" || table.status === "reserve" )
         ) {
           alert("urishi sexanin patver mi ara,kamel es sexanin patver ka");
         }
@@ -43,8 +43,11 @@ class Status extends Component {
                 type="number"
                 placeholder="Choose the number of table"
               />
-              <button onClick={() => this.handleClick(info)}>Order</button>
-              <button> Buy Online</button>
+              <p className="emptyCart">
+              <button  onClick={() => this.handleClick(info)}>Order</button>
+              </p>
+             
+              
             </label>
           </div>
         );
