@@ -31,46 +31,40 @@ class TableInfo extends Component {
             valuOfOrderskeys = this.props.firestoreInfo && Object.keys(this.props.firestoreInfo[index - 1].orders[0][0]);
             valuOfOrdersValue = this.props.firestoreInfo && Object.values(this.props.firestoreInfo[index - 1].orders[0][0]);
         }
-
         return (
-            <div>
-                <div>
-                    <h1>{this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status} </h1>
-                </div>
-                <div className={'info'}>
-                    {
-                        valuOfOrderskeys && valuOfOrderskeys.map((key, i) => {
-                            return (
-                                <div key={i + '0ll'} >
-                                    {
-                                        key
-                                    }
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-                <div className={'info'}>
-                    {
-                        valuOfOrdersValue && valuOfOrdersValue.map((val, i) => {
-                            return (
-                                <div key={i + '0l'} >
-                                    {val}
-                                </div>
-                            );
 
-                        })
-                    }
-                </div>
-                <div>
-                    <button id={index} onClick={(table) => this.clearReserveOrOrder(table)}>
-                        clear reserv/order
+            <section className="menuList paddingTop">
+                <div className="container">
+                    <div>
+                        <h1>{this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status} </h1>
+                    </div>
+
+
+
+
+                    <div className="" >
+                        <ul className="tableInfo">
+                            <li><span>{valuOfOrderskeys[0]}:</span><p>{valuOfOrdersValue[0]}</p></li>
+                            <li><span>{valuOfOrderskeys[7]}:</span><p>{valuOfOrdersValue[7]}</p></li>
+                            <li><span>{valuOfOrderskeys[1]}:</span><p>{valuOfOrdersValue[1]}</p></li>
+                            <li><span> {valuOfOrderskeys[4]}:</span><p>{valuOfOrdersValue[4]}</p></li>
+                            <li> <span>{valuOfOrderskeys[2]}:</span><p>{valuOfOrdersValue[2]}</p></li>
+                            <li> <span>{valuOfOrderskeys[5]}:</span><p>{valuOfOrdersValue[5]}</p></li>
+                        </ul>
+                    </div>
+
+
+                    <p class="addNewD">
+                        <a href="/admin">
+                        <button id={index} onClick={(table) => this.clearReserveOrOrder(table)}>
+                            clear reserv/order
                             </button>
+                        </a>
+                        <a href="/registration">
+                            <button>Add Admin</button></a>
+                    </p>
                 </div>
-                <div>
-                    <Link to={'/admin/'}> back to homePage </Link>
-                </div>
-            </div>
+            </section>
         )
     }
 }
