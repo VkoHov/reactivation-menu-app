@@ -26,9 +26,11 @@ class Navbar extends Component {
 
                                 <Link to="/">home</Link>
                                 <span>|</span>
+                                <Link to="/listing">
                                 <p className='navItem' id='ourmenu' onClick={(e) => {
                                     this.props.SlideToComponent(e.target.id)
-                                }}>our menu</p>
+                                }}>our menu</p></Link>
+                                
                                 <span>|</span>
                                 <p className='navItem' id='reservation' onClick={(e) => {
                                     this.props.SlideToComponent(e.target.id)
@@ -44,6 +46,7 @@ class Navbar extends Component {
                             </div>
                             <div className="layout">
                                 <AccountLayout/>
+
                                 <Link to=""><span><i className="far fa-heart"></i>
                                 </span> </Link>
                                 <Link to="/shoppingcart" className="cartIcon">
@@ -51,6 +54,7 @@ class Navbar extends Component {
                                         {storage && (<span> {storage.count} </span>)}
                                     </i>
                                 </Link>
+
 
 
                             </div>

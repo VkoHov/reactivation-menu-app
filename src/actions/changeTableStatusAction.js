@@ -1,9 +1,9 @@
-export const clearReserveOrOrder = (table) => {
+export const changeTableStatus = (status) => {
     return (dispatch, getState, { getFirestore }) => {
         const firestore = getFirestore();
-
-        return firestore.collection('tables').doc(table.id).update({
-            orders: [],
+console.log(typeof(status.id));
+        return firestore.collection('tables').doc(status.id+'').update({
+            status: status.status,
         }).then(() => {
             dispatch({ type: 'DELETE_INFO_SUCCESS' });
         }).catch(err => {

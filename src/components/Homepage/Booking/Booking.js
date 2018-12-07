@@ -8,6 +8,8 @@ import { compose } from "redux";
 import './../Homepage.css';
 import './Booking.css';
 
+
+
 class Booking extends Component {
 	state = {
 		people: null,
@@ -37,19 +39,29 @@ class Booking extends Component {
 	findTable = () => {
 		switch (true) {
 			case (this.state.people === null):
-				console.log('mutqagreq mardkanc qanaky');
+				this.setState({
+					people:'error'
+				})
 				break;
 			case (this.state.date === null):
-				console.log('mutqagreq amsativy');
+			this.setState({
+				date:'error'
+			})
 				break;
-			case (this.state.time === null):
-				console.log('mutqagreq galu jamanaky');
+			case (this.state.time === null):	
+			this.setState({
+				time:'error'
+			})
 				break;
 			case (this.state.name === null):
-				console.log('mutqagreq dzer anuny');
+			this.setState({
+				name:'error'
+			})
 				break;
 			case ((this.state.phone === null) || (this.state.phone === '')):
-				console.log('mutqagreq heraxosahamy');
+			this.setState({
+				phone:'error'
+			})
 				break;
 			default:
 				this.checkDate();
@@ -58,21 +70,27 @@ class Booking extends Component {
 
 	checkDate = () => {
 		if (this.state.date !== null) {
-			if (this.state.dtatmilisecond - Number(new Date()) <= 0) {
+
+			if (this.state.dtatmilisecond - Number(new Date()) < 0) {
 				console.log('sxal amsativ e Yntrvats');
+// =======
+// 			if (this.state.dtatmilisecond - Number(new Date()) <= 0) {
+// 				this.setState({
+// 					date:'error'
+// 				})
+// >>>>>>> develop
 				return;
 			}
 		}
-
 		if (+this.state.time[0] < 1) {
-			console.log('mutqagreq galu jamanaky');
+			this.setState({
+				time:'error'
+			})
 			return;
 		}
-
 		if (this.state.phone !== null) {
 			this.checkNumber(this.state.phone);
 		}
-
 	}
 
 	checkNumber = (inputtxt) => {
@@ -82,7 +100,9 @@ class Booking extends Component {
 				this.chechTables(this.props.tables);
 		}
 		else {
-			console.log('message error');
+			this.setState({
+				phone:'error'
+			})
 			return false;
 		}
 	}
@@ -104,15 +124,13 @@ class Booking extends Component {
 		if (isReserved) {
 			this.setState({
 				className: 'green',
-				message: 'Exav',
+				message: 'you have successfully reserved a table',
 			});
-			console.log('exav')
 		} else {
 			this.setState({
 				className: 'red',
-				message: 'CHEXAV'
+				message: 'no free tables'
 			});
-			console.log('chexav');
 		}
 	}
 
@@ -143,6 +161,7 @@ class Booking extends Component {
 								<div>
 									<p>
 										<select id="people" defaultValue="people"
+											className={this.state.people}
 											onChange={this.handleChange}>
 											<option value='people'
 												disabled
@@ -161,12 +180,14 @@ class Booking extends Component {
 										<input
 											id="date"
 											type="date"
-											placeholder='Date'
+											placeholder='Date'	
+											className={this.state.date}
 											onChange={this.handleChange}
 										/>
 									</p>
 									<p>
 										<input
+											className={this.state.time}
 											type="time"
 											id='time'
 											onChange={this.handleChange}
@@ -179,11 +200,13 @@ class Booking extends Component {
 											id="name"
 											type="text"
 											placeholder='Name'
+											className={this.state.name}
 											onChange={this.handleChange}
 										/>
 									</p>
 									<p>
 										<input
+											className={this.state.phone}
 											id="phone"
 											type="text"
 											placeholder='Phone'
@@ -195,9 +218,9 @@ class Booking extends Component {
 							<p>
 								<button type="button" onClick={this.findTable}>find a table</button>
 							</p>
-							<div className={this.state.className&&this.state.className}> {
+							<p className={this.state.className&&this.state.className}> {
 								this.state.flag && this.state.message
-							} </div>
+							} </p>
 						</form>
 					</div>
 				</div>
