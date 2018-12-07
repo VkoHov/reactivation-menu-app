@@ -90,7 +90,6 @@ class ShoppingCart extends Component {
                                                 <p>
                                                     <span
                                                         onClick={() => {
-                                                            this.removeDish();
                                                             let dishes = JSON.parse(sessionStorage.getItem("dishInfo"));
 
                                                             let disharr = dishes.filter(item => {
@@ -110,6 +109,7 @@ class ShoppingCart extends Component {
                                                                     JSON.stringify(disharr)
                                                                 );
                                                             }
+                                                            this.removeDish();
                                                         }}>Remove </span>
 
                                                 </p>
