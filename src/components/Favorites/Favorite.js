@@ -89,7 +89,7 @@ class Favorites extends Component {
                             if (dishes) {
                               let count = 0;
                               dishes.map(item => {
-                                if (
+                                return(
                                   item.url === info.url &&
                                   _.isEqual(
                                     _.sortBy(item.ingredient),
@@ -99,9 +99,9 @@ class Favorites extends Component {
                                     _.sortBy(item.doneness),
                                     _.sortBy(info.doneness)
                                   )
-                                ) {
+                                ) &&
                                   count++;
-                                }
+                                
                               });
                               if (count === 0) {
                                 this.props.addToCart(info);

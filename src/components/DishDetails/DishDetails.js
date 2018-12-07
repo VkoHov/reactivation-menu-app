@@ -6,7 +6,6 @@ import { changeData } from "../../actions/rateAction";
 import { addToCart } from "../../actions/dishDetailAction";
 import {addFavToFireStore} from "../../actions/addToFavAction";
 import _ from "lodash";
-import Quantity from '../Quantity/Quantity';
 import "./DishDetails.css";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
  
@@ -307,7 +306,7 @@ class DishDetails extends React.Component {
                 if (dishes) {
                   let count = 0;
                   dishes.map(item => {
-                    if (
+                    return(
                       item.id === info.id &&
                       _.isEqual(
                         _.sortBy(item.ingredient),
@@ -317,9 +316,7 @@ class DishDetails extends React.Component {
                         _.sortBy(item.doneness),
                         _.sortBy(info.doneness)
                       )
-                    ) {
-                      count++;
-                    }
+                    ) && count++
                   });
                   if (count === 0) {
                     this.props.addToCart(info);

@@ -28,8 +28,8 @@ class Status extends Component {
           alert("Your order recieved");
           this.props.addToFirestore(info);
         } else if (
-          table.id === this.state.tableNumber &&
-          table.status === "busy" || table.status === "reserve" 
+          (table.id === this.state.tableNumber) &&
+          (table.status === "busy" || table.status === "reserve" )
         ) {
           alert("urishi sexanin patver mi ara,kamel es sexanin patver ka");
         }
