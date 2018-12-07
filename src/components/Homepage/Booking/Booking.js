@@ -8,6 +8,8 @@ import { compose } from "redux";
 import './../Homepage.css';
 import './Booking.css';
 
+
+
 class Booking extends Component {
 	state = {
 		people: null,
@@ -68,25 +70,27 @@ class Booking extends Component {
 
 	checkDate = () => {
 		if (this.state.date !== null) {
-			if (this.state.dtatmilisecond - Number(new Date()) <= 0) {
-				this.setState({
-					date:'error'
-				})
+
+			if (this.state.dtatmilisecond - Number(new Date()) < 0) {
+				console.log('sxal amsativ e Yntrvats');
+// =======
+// 			if (this.state.dtatmilisecond - Number(new Date()) <= 0) {
+// 				this.setState({
+// 					date:'error'
+// 				})
+// >>>>>>> develop
 				return;
 			}
 		}
-
 		if (+this.state.time[0] < 1) {
 			this.setState({
 				time:'error'
 			})
 			return;
 		}
-
 		if (this.state.phone !== null) {
 			this.checkNumber(this.state.phone);
 		}
-
 	}
 
 	checkNumber = (inputtxt) => {
@@ -219,9 +223,7 @@ class Booking extends Component {
 							} </p>
 						</form>
 					</div>
-				
 				</div>
-				
 			</section>
 		)
 	}
