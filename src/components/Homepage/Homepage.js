@@ -3,7 +3,6 @@ import scrollToComponent from 'react-scroll-to-component';
 import OurMenu from './OurMenu/OurMenu';
 import Booking from './Booking/Booking';
 import AboutUs from './AboutUs/AboutUs';
-import Footer from './Footer/Footer';
 import HeaderSlider from './HomepageSlider/HomepageSlider';
 import {connect} from 'react-redux';
 import './Homepage.css';

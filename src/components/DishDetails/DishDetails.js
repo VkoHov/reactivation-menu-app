@@ -6,7 +6,6 @@ import { changeData } from "../../actions/rateAction";
 import { addToCart } from "../../actions/dishDetailAction";
 import {addFavToFireStore} from "../../actions/addToFavAction";
 import _ from "lodash";
-import Quantity from '../Quantity/Quantity';
 import "./DishDetails.css";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
  
@@ -198,7 +197,6 @@ class DishDetails extends React.Component {
           <div>
           <div
             className="rating-container"
-            style={{ right: "0%" }}
             onMouseMove={e => {
               this.countRating(e);
             }}
@@ -301,15 +299,13 @@ class DishDetails extends React.Component {
               className="add-to-cart-button"
               onClick={() => {
                 let dishes = JSON.parse(sessionStorage.getItem("dishInfo"));
-                let storageCount = JSON.parse(
-                  sessionStorage.getItem("shoppingCartCount")
-                );
+                let storageCount = JSON.parse(sessionStorage.getItem("shoppingCartCount"));
                 let shopCartCount = this.props.shoppingCartCount;
                 shopCartCount++;
                 if (dishes) {
                   let count = 0;
                   dishes.map(item => {
-                    if (
+                    return(
                       item.id === info.id &&
                       _.isEqual(
                         _.sortBy(item.ingredient),
@@ -319,28 +315,21 @@ class DishDetails extends React.Component {
                         _.sortBy(item.doneness),
                         _.sortBy(info.doneness)
                       )
-                    ) {
-                      count++;
-                    }
+                    ) && count++
                   });
                   if (count === 0) {
                     this.props.addToCart(info);
                     this.SaveDataToSessionStorage(info);
                     this.props.shoppingCartPlusAction(shopCartCount);
                     storageCount.count++;
-                    sessionStorage.setItem(
-                      "shoppingCartCount",
-                      JSON.stringify({ count: storageCount.count })
-                    );
+                    sessionStorage.setItem("shoppingCartCount",JSON.stringify({ count: storageCount.count }));
                   }
 
                 } else {
                   this.props.addToCart(info);
                   this.SaveDataToSessionStorage(info);
                   this.props.shoppingCartPlusAction(shopCartCount);
-                  sessionStorage.setItem(
-                    "shoppingCartCount",
-                    JSON.stringify({ count: 1 })
+                  sessionStorage.setItem("shoppingCartCount", JSON.stringify({ count: 1 })
                   );
                 }
 
