@@ -6,7 +6,11 @@ import { compose } from "redux";
 import { addToCart } from "../../actions/dishDetailAction";
 import { changeData } from "../../actions/rateAction";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
+
+import StarRatingComponent from 'react-star-rating-component';
+import { Link } from 'react-router-dom';
 import _ from "lodash";
+import './Favorites.css';
 
 class Favorites extends Component {
   state = {};
@@ -32,51 +36,127 @@ class Favorites extends Component {
         this.props.firestoreInfo[userId] &&
         this.props.firestoreInfo[userId].favorites) ||
       null;
-    console.log("afef", favorites);
-        if(favorites && favorites.length !== 0 && this.props.auth.uid ){
-          return (
-            
-              <div>
-                <div>MY FAVORITES</div>
-                {favorites &&
-                  favorites.map((dish, index) => {
-                    let info = {
-                      count: dish.count,
-                      description: dish.description,
-                      title: dish.title,
-                      url: dish.url,
-                      // id: dish.id,
-                      price: dish.price,
-                      doneness: dish.favdoneness,
-                      ingredient: dish.favIngredient || null
-                    };
-      
-                    return (
-                      <div key={index}>
-                        <p>
-                          {dish.favoriteDish ? dish.favoriteDish.title : dish.title}
-                        </p>
-                        <p>
-                          {dish.favoriteDish
+
+    return (
+      (!this.props.auth.uid && <Redirect to="/login" />) || (
+        <div className="shoppingCart">
+          <div className=" shoppingBaner">
+            <div className='  shoppigShape'></div>
+          </div>
+
+          <div className="container">
+            <div className="source">
+              <p>
+                <Link to="/">Home</Link>
+                <span>/</span>
+                my favorite
+                </p>
+            </div>
+            <h2>my <span>favorite</span></h2>
+
+          </div>
+
+          {favorites &&
+            favorites.map((dish, index) => {
+              let info = {
+                count: dish.count,
+                description: dish.description,
+                title: dish.title,
+                url: dish.url,
+                // id: dish.id,
+                price: dish.price,
+                doneness: dish.favdoneness,
+                ingredient: dish.favIngredient || null
+              };
+
+              return (
+
+                <section className="shopingList favorites" key={index}>
+                  <div className="container">
+                    <div className="shopTable">
+                      <div className="shopingDish">
+                        <div>
+                          <img src={info.url} alt={info.title} />
+                        </div>
+                        <div>
+                          <h3>{dish.favoriteDish ? dish.favoriteDish.title : dish.title}</h3>
+                          <p>  {dish.favoriteDish
                             ? dish.favoriteDish.description
-                            : dish.description}
-                        </p>
-                        <p>
-                          {" "}
-                          {dish.favoriteDish &&
-                          dish.favoriteDish.doneness.length !== 0
-                            ? dish.favoriteDish.doneness
-                            : dish.favdoneness}
-                        </p>
-                        <p>
-                          {" "}
-                          {dish.favoriteDish &&
-                          dish.favoriteDish.ingredients.length !== 0
-                            ? "With" + dish.favoriteDish.ingredients
-                            : dish.favIngredient}
-                        </p>
-                        <p>Price: {info.price}</p>
+                            : dish.description}</p>
+
+                          <p>{" "}
+                            {dish.favoriteDish &&
+                              dish.favoriteDish.ingredients.length !== 0
+                              ? "<em>Ingrediens:</em>" + dish.favoriteDish.ingredients
+                              : dish.favIngredient}</p>
+
+                          <p> {" "}
+                            {dish.favoriteDish &&
+                              dish.favoriteDish.doneness.length !== 0
+                              ? "<em>Doneness:</em>" + dish.favoriteDish.doneness
+                              : dish.favdoneness}</p>
+
+                        <p  className=" price">Price: {info.price}(AMD)</p>
+                          <p><em>Rating:</em>
+                            <StarRatingComponent
+                              name="rate1"
+                              starCount={5}
+                              value={dish.rating}
+                              starColor={'#ff9900'}
+                              emptyStarColor={'#707070'}
+                            /></p>
+                        </div>
+
+
+
                         <button
+                        className="addtoCart"
+// =======
+//         if(favorites && favorites.length !== 0 && this.props.auth.uid ){
+//           return (
+            
+//               <div>
+//                 <div>MY FAVORITES</div>
+//                 {favorites &&
+//                   favorites.map((dish, index) => {
+//                     let info = {
+//                       count: dish.count,
+//                       description: dish.description,
+//                       title: dish.title,
+//                       url: dish.url,
+//                       // id: dish.id,
+//                       price: dish.price,
+//                       doneness: dish.favdoneness,
+//                       ingredient: dish.favIngredient || null
+//                     };
+      
+//                     return (
+//                       <div key={index}>
+//                         <p>
+//                           {dish.favoriteDish ? dish.favoriteDish.title : dish.title}
+//                         </p>
+//                         <p>
+//                           {dish.favoriteDish
+//                             ? dish.favoriteDish.description
+//                             : dish.description}
+//                         </p>
+//                         <p>
+//                           {" "}
+//                           {dish.favoriteDish &&
+//                           dish.favoriteDish.doneness.length !== 0
+//                             ? dish.favoriteDish.doneness
+//                             : dish.favdoneness}
+//                         </p>
+//                         <p>
+//                           {" "}
+//                           {dish.favoriteDish &&
+//                           dish.favoriteDish.ingredients.length !== 0
+//                             ? "With" + dish.favoriteDish.ingredients
+//                             : dish.favIngredient}
+//                         </p>
+//                         <p>Price: {info.price}</p>
+//                         <button
+// >>>>>>> develop
                           onClick={() => {
                             let dishes = JSON.parse(
                               sessionStorage.getItem("dishInfo")
@@ -99,9 +179,9 @@ class Favorites extends Component {
                                     _.sortBy(item.doneness),
                                     _.sortBy(info.doneness)
                                   )
+
                                 ) &&
                                   count++;
-                                
                               });
                               if (count === 0) {
                                 this.props.addToCart(info);
@@ -127,6 +207,7 @@ class Favorites extends Component {
                           }}
                         >
                           Add To Cart
+
                         </button>
                       </div>
                     );
@@ -146,7 +227,6 @@ class Favorites extends Component {
             </div>
              )
         }
-   
   }
 }
 const mapStateToProps = state => {

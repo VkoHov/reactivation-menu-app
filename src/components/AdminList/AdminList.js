@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 class AdminList extends Component {
 
     render() {
-        console.log('esi admin listinaa', this.props);
         let id = 1;
         return (
             <section className="menuList paddingTop">

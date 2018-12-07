@@ -94,8 +94,18 @@
 
 .red{
 	color: red;
+	margin-top: 20px;
+	text-align: center;
+	text-transform: capitalize;
+	
 }
 
 .green{
 	color: green;
+	margin-top: 20px;
+	text-align: center;
+	text-transform: capitalize;
+}
+.booking .error{
+	border:1px solid red;
 }
