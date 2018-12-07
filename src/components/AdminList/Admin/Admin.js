@@ -20,7 +20,7 @@ class Admin extends Component {
     render() {
         let info = this.props.admin;
         console.log(info)
-        let bgcolor = this.props.idd % 2 == 0 ? " #FFF2DF" : '#fff';
+        let bgcolor = this.props.idd % 2 === 0 ? " #FFF2DF" : '#fff';
         return (
             <div >
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { clearReserveOrOrder } from '../../../../actions/clearReserveOrOrder';
@@ -9,27 +9,44 @@ import { clearReserveOrOrder } from '../../../../actions/clearReserveOrOrder';
 import './TableInfo.css';
 
 class TableInfo extends Component {
-
+    state={
+        empty: 0,
+    }
 
     clearReserveOrOrder = (table) => {
-        this.props.clearReserveOrOrder({ id: table.target.id });
+       let prom =  this.props.clearReserveOrOrder({ id: table.target.id });
+       prom.then(() => {
+            this.setState({
+                empty: 1,
+            })
+       })
     }
 
 
 
-
     render() {
+
 
         let index = this.props.match.params && +this.props.match.params.tableId;
         let valuOfOrderskeys = [];
         let valuOfOrdersValue = [];
 
         if (this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status === 'reserve') {
-            valuOfOrderskeys = this.props.firestoreInfo && Object.keys(this.props.firestoreInfo[index - 1].orders[0]);
-            valuOfOrdersValue = this.props.firestoreInfo && Object.values(this.props.firestoreInfo[index - 1].orders[0]);
+            valuOfOrderskeys = this.props.firestoreInfo && Object.keys(this.props.firestoreInfo[index-1 ].orders[0]);
+            valuOfOrdersValue = this.props.firestoreInfo && Object.values(this.props.firestoreInfo[index-1].orders[0]);
         } else if (this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status === 'busy') {
-            valuOfOrderskeys = this.props.firestoreInfo && Object.keys(this.props.firestoreInfo[index - 1].orders[0][0]);
-            valuOfOrdersValue = this.props.firestoreInfo && Object.values(this.props.firestoreInfo[index - 1].orders[0][0]);
+            valuOfOrderskeys = ['title', 'ingridient', 'count', 'price'];
+            this.props.firestoreInfo && this.props.firestoreInfo[0].orders.map(order => {
+                for (let key in order) {
+                    for (let kay in order[key]) {
+                        return(( kay === 'title' 
+                        || kay === 'price' 
+                        || kay === 'count' 
+                        || kay === 'ingredient' )
+                        && valuOfOrdersValue.push(order[key][kay]));
+                    }
+                }
+            })
         }
         return (
 
@@ -58,6 +75,42 @@ class TableInfo extends Component {
                         <a href="/admin">
                         <button id={index} onClick={(table) => this.clearReserveOrOrder(table)}>
                             clear reserv/order
+// =======
+//             <div>
+//                 <div>
+//                     <h1>{this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status} </h1>
+//                 </div>
+//                 <div className={'info'}>
+//                     {
+//                         valuOfOrderskeys && valuOfOrderskeys.map((key, i) => {
+
+//                             return (
+//                                 <div key={i + '0ll'} >
+//                                     {
+
+//                                         key
+//                                     }
+//                                 </div>
+//                             )
+//                         })
+//                     }
+//                 </div>
+//                 <div className={'info'}>
+//                     {
+//                         valuOfOrdersValue && valuOfOrdersValue.map((val, i) => {
+//                             return (
+//                                 <div key={i + '0l'} >
+//                                     {val}
+//                                 </div>
+//                             );
+
+//                         })
+//                     }
+//                 </div>
+//                 <div>
+//                     <button id={index} onClick={(table) => this.clearReserveOrOrder(table)}>
+//                         clear reserv/order
+// >>>>>>> develop
                             </button>
                         </a>
                         <a href="/registration">
@@ -85,6 +138,7 @@ const mapDispatchToProps = dispatch => {
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
+    withRouter,
     firestoreConnect([
         { collection: 'tables' }
     ])

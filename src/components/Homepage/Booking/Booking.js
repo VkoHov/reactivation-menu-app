@@ -219,7 +219,9 @@ class Booking extends Component {
 							} </p>
 						</form>
 					</div>
+				
 				</div>
+				
 			</section>
 		)
 	}

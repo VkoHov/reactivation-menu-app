@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
-import { Redirect } from "react-router-dom";
+import { Redirect,Link } from "react-router-dom";
 import { compose } from "redux";
 import { addToCart } from "../../actions/dishDetailAction";
 import { changeData } from "../../actions/rateAction";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
+
 import StarRatingComponent from 'react-star-rating-component';
 import { Link } from 'react-router-dom';
 import _ from "lodash";
@@ -35,7 +36,6 @@ class Favorites extends Component {
         this.props.firestoreInfo[userId] &&
         this.props.firestoreInfo[userId].favorites) ||
       null;
-    console.log("afef", favorites);
 
     return (
       (!this.props.auth.uid && <Redirect to="/login" />) || (
@@ -111,6 +111,52 @@ class Favorites extends Component {
 
                         <button
                         className="addtoCart"
+// =======
+//         if(favorites && favorites.length !== 0 && this.props.auth.uid ){
+//           return (
+            
+//               <div>
+//                 <div>MY FAVORITES</div>
+//                 {favorites &&
+//                   favorites.map((dish, index) => {
+//                     let info = {
+//                       count: dish.count,
+//                       description: dish.description,
+//                       title: dish.title,
+//                       url: dish.url,
+//                       // id: dish.id,
+//                       price: dish.price,
+//                       doneness: dish.favdoneness,
+//                       ingredient: dish.favIngredient || null
+//                     };
+      
+//                     return (
+//                       <div key={index}>
+//                         <p>
+//                           {dish.favoriteDish ? dish.favoriteDish.title : dish.title}
+//                         </p>
+//                         <p>
+//                           {dish.favoriteDish
+//                             ? dish.favoriteDish.description
+//                             : dish.description}
+//                         </p>
+//                         <p>
+//                           {" "}
+//                           {dish.favoriteDish &&
+//                           dish.favoriteDish.doneness.length !== 0
+//                             ? dish.favoriteDish.doneness
+//                             : dish.favdoneness}
+//                         </p>
+//                         <p>
+//                           {" "}
+//                           {dish.favoriteDish &&
+//                           dish.favoriteDish.ingredients.length !== 0
+//                             ? "With" + dish.favoriteDish.ingredients
+//                             : dish.favIngredient}
+//                         </p>
+//                         <p>Price: {info.price}</p>
+//                         <button
+// >>>>>>> develop
                           onClick={() => {
                             let dishes = JSON.parse(
                               sessionStorage.getItem("dishInfo")
@@ -123,7 +169,7 @@ class Favorites extends Component {
                             if (dishes) {
                               let count = 0;
                               dishes.map(item => {
-                                if (
+                                return(
                                   item.url === info.url &&
                                   _.isEqual(
                                     _.sortBy(item.ingredient),
@@ -133,9 +179,9 @@ class Favorites extends Component {
                                     _.sortBy(item.doneness),
                                     _.sortBy(info.doneness)
                                   )
-                                ) {
+
+                                ) &&
                                   count++;
-                                }
                               });
                               if (count === 0) {
                                 this.props.addToCart(info);
@@ -161,16 +207,26 @@ class Favorites extends Component {
                           }}
                         >
                           Add To Cart
-                  </button>
+
+                        </button>
                       </div>
-                    </div>
-                  </div>
-                </section>
-              );
-            })}
-        </div>
-      )
-    );
+                    );
+                  })}
+              </div>
+            
+          );
+        }else if( !this.props.auth.uid){
+          return(
+            <Redirect to="/login" />
+          )
+        } else{
+          return(
+            <div className="emptyCart">
+              YOUR FAVORITE LIST IS EMPTY YET,TO ADD FAVORITE DISHES CLICK{" "}
+              <Link to="/listing">HERE</Link>
+            </div>
+             )
+        }
   }
 }
 const mapStateToProps = state => {

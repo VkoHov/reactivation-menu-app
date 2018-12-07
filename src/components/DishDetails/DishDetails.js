@@ -4,10 +4,11 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { changeData } from "../../actions/rateAction";
 import { addToCart } from "../../actions/dishDetailAction";
-import Quantity from '../Quantity/Quantity';
+import {addFavToFireStore} from "../../actions/addToFavAction";
+import _ from "lodash";
 import "./DishDetails.css";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
-import _ from "lodash";
+ 
 
 import { Link } from 'react-router-dom'
 
@@ -102,6 +103,21 @@ class DishDetails extends React.Component {
       sessionStorage.setItem("dishInfo", JSON.stringify([info]));
     }
   };
+  addToFavorites =() =>{
+    console.log('dish detail',this.state.ingredients);
+    console.log("donenes",this.props);
+    this.props.addFavToFireStore({
+     id: this.props.favorite.uid,
+      favdoneness: this.state.doneness ,
+      favIngredient: this.state.ingredients,
+      count: this.state.count,
+      // id: this.props.dish.dish.id,
+      title: this.props.dish.dish.title,
+      price: this.props.dish.dish.price,
+      description: this.props.dish.dish.description,
+      url: this.props.dish.dish.url,
+   })
+  }
 
   selectAll = e => {
     this.setState({
@@ -283,15 +299,13 @@ class DishDetails extends React.Component {
               className="add-to-cart-button"
               onClick={() => {
                 let dishes = JSON.parse(sessionStorage.getItem("dishInfo"));
-                let storageCount = JSON.parse(
-                  sessionStorage.getItem("shoppingCartCount")
-                );
+                let storageCount = JSON.parse(sessionStorage.getItem("shoppingCartCount"));
                 let shopCartCount = this.props.shoppingCartCount;
                 shopCartCount++;
                 if (dishes) {
                   let count = 0;
                   dishes.map(item => {
-                    if (
+                    return(
                       item.id === info.id &&
                       _.isEqual(
                         _.sortBy(item.ingredient),
@@ -301,28 +315,21 @@ class DishDetails extends React.Component {
                         _.sortBy(item.doneness),
                         _.sortBy(info.doneness)
                       )
-                    ) {
-                      count++;
-                    }
+                    ) && count++
                   });
                   if (count === 0) {
                     this.props.addToCart(info);
                     this.SaveDataToSessionStorage(info);
                     this.props.shoppingCartPlusAction(shopCartCount);
                     storageCount.count++;
-                    sessionStorage.setItem(
-                      "shoppingCartCount",
-                      JSON.stringify({ count: storageCount.count })
-                    );
+                    sessionStorage.setItem("shoppingCartCount",JSON.stringify({ count: storageCount.count }));
                   }
 
                 } else {
                   this.props.addToCart(info);
                   this.SaveDataToSessionStorage(info);
                   this.props.shoppingCartPlusAction(shopCartCount);
-                  sessionStorage.setItem(
-                    "shoppingCartCount",
-                    JSON.stringify({ count: 1 })
+                  sessionStorage.setItem("shoppingCartCount", JSON.stringify({ count: 1 })
                   );
                 }
 
@@ -330,7 +337,7 @@ class DishDetails extends React.Component {
             >
               Add to cart
             </button>
-            <button type="button" className="add-to-favorites">
+            <button onClick = {this.addToFavorites} type="button" className="add-to-favorites">
               Add to favorites
             </button>
           </div>
@@ -346,21 +353,24 @@ class DishDetails extends React.Component {
 const mapStateToProps = state => {
   return {
     shoppingCartCount: state.shoppingCart.shoppingCartCount,
-    dishes: state.firestore.ordered.dishes
+    dishes: state.firestore.ordered.dishes,
+    favorite:  state.firebase.auth,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     changeData: project => dispatch(changeData(project)),
     addToCart: dishInfo => dispatch(addToCart(dishInfo)),
+    addFavToFireStore: favDishInfo => dispatch(addFavToFireStore(favDishInfo)),
     shoppingCartPlusAction: count => {
       dispatch(shoppingCartPlusAction(count));
     }
   };
 };
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([
-    { collection: "dishes" }
-  ])
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  firestoreConnect([{ collection: "dishes" },{collection: "users"}])
 )(DishDetails);

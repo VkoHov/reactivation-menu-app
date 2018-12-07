@@ -5,7 +5,8 @@ export const addToFirestore = (info) => {
         
        firestore.collection('tables').doc(info.tableNumber
             ).update({
-            orders: firestore.FieldValue.arrayUnion(info)
+            orders: firestore.FieldValue.arrayUnion(info),
+            status: "busy",
         }).then(() => {
             dispatch({ type: 'ADDDATA_SUCCESS' });
             console.log("its work")

@@ -25,9 +25,11 @@ class Navbar extends Component {
 
                                 <Link to="/">home</Link>
                                 <span>|</span>
+                                <Link to="/listing">
                                 <p className='navItem' id='ourmenu' onClick={(e) => {
                                     this.props.SlideToComponent(e.target.id)
-                                }}>our menu</p>
+                                }}>our menu</p></Link>
+                                
                                 <span>|</span>
                                 <p className='navItem' id='reservation' onClick={(e) => {
                                     this.props.SlideToComponent(e.target.id)
@@ -43,15 +45,13 @@ class Navbar extends Component {
                             </div>
                             <div className="layout">
                                 <AccountLayout/>
-                                <Link to=""><span><i class="far fa-heart"></i>
+
+                                <Link to="/favorites"><span><i className="far fa-heart"></i>
                                 {/* <ReactSVG src="https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/svg%2Ffork.svg?alt=media&token=7d146dfb-8dbc-44b3-a495-715ee71562d3"/> */}
                                 </span> </Link>
-                                <Link to="/shoppingcart"  className="cartIcon"><i className="fas fa-shopping-cart"><span>{
-
-                                    (storage && storage.count)|| null
-
-
-                                }</span></i></Link>
+                                <Link to="/shoppingcart"  className="cartIcon"><i className="fas fa-shopping-cart">
+                                {storage &&  (<span>{storage.count}</span>)}
+                                </i></Link>
 
 
                             </div>
