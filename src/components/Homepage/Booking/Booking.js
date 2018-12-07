@@ -8,6 +8,8 @@ import { compose } from "redux";
 import './../Homepage.css';
 import './Booking.css';
 
+
+
 class Booking extends Component {
 	state = {
 		people: null,
@@ -58,21 +60,18 @@ class Booking extends Component {
 
 	checkDate = () => {
 		if (this.state.date !== null) {
-			if (this.state.dtatmilisecond - Number(new Date()) <= 0) {
+			if (this.state.dtatmilisecond - Number(new Date()) < 0) {
 				console.log('sxal amsativ e Yntrvats');
 				return;
 			}
 		}
-
 		if (+this.state.time[0] < 1) {
 			console.log('mutqagreq galu jamanaky');
 			return;
 		}
-
 		if (this.state.phone !== null) {
 			this.checkNumber(this.state.phone);
 		}
-
 	}
 
 	checkNumber = (inputtxt) => {
@@ -106,13 +105,11 @@ class Booking extends Component {
 				className: 'green',
 				message: 'Your reservation has been confirmed Thank you',
 			});
-			console.log('exav')
 		} else {
 			this.setState({
 				className: 'red',
 				message: 'Sorry! Your reservation is not confirmed. not plase yeat'
 			});
-			console.log('chexav');
 		}
 	}
 
@@ -201,9 +198,7 @@ class Booking extends Component {
 								this.state.flag && this.state.message
 							} </div>
 					</div>
-				
 				</div>
-				
 			</section>
 		)
 	}
