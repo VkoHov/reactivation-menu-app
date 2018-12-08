@@ -110,11 +110,9 @@ class ShoppingCart extends Component {
                                                                 sessionStorage.setItem("dishInfo",JSON.stringify(disharr));
                                                                 this.props.shoppingCartMinusAction(shopCartCount);
                                                                 storageCount.count--;
-<<<<<<< HEAD
+
                                                                 sessionStorage.setItem("shoppingCartCount",JSON.stringify({ count: storageCount.count }));
-=======
-                                                                 sessionStorage.setItem("shoppingCartCount",JSON.stringify({ count: storageCount.count }));
->>>>>>> a7545c731d56c75de4f9f251aacb5aaa6a8e1871
+
 
                                                             }
                                                             this.removeDish();
