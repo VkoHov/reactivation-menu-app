@@ -38,7 +38,6 @@ class ShoppingCart extends Component {
 
     render() {
         let dishInfo = JSON.parse(sessionStorage.getItem("dishInfo"));
-        console.log(dishInfo)
         let totalPirce = 0;
         if (dishInfo) {
             return (
@@ -84,32 +83,37 @@ class ShoppingCart extends Component {
                                             <div>
                                                 <h3>{dish.title}</h3>
                                                 <p>{dish.description}</p>
-                                                <p><em>Ingrediens:</em> {dish.ingredient.join(" , ")}</p>
+                                                <p><em>Ingrediens:</em> {dish.ingredient}</p>
                                                 <p><em>Doneness:</em> {dish.doneness}</p>
                                                 <p><em>Rating:</em> {dish.rating}</p>
                                                 <p>
                                                     <span
                                                         onClick={() => {
-                                                            this.removeDish();
                                                             let dishes = JSON.parse(sessionStorage.getItem("dishInfo"));
-
+                                                            let storageCount = JSON.parse(sessionStorage.getItem("shoppingCartCount"));
+                                                            let shopCartCount = this.props.shoppingCartCount;
+                                                            shopCartCount--;
                                                             let disharr = dishes.filter(item => {
                                                                 return (
                                                                     (item.ingredient !== dish.ingredient &&
                                                                         item.ingredient.length !== dish.ingredient.length) ||
                                                                     item.doneness !== dish.doneness ||
-                                                                    (item.id !== dish.id && item)
+                                                                    (item.title !== dish.title && item)
                                                                 );
                                                             });
 
                                                             if (disharr.length === 0) {
                                                                 sessionStorage.setItem("dishInfo", null);
+                                                                this.props.shoppingCartMinusAction(shopCartCount);
+                                                                sessionStorage.setItem("shoppingCartCount",JSON.stringify(null));
                                                             } else {
-                                                                sessionStorage.setItem(
-                                                                    "dishInfo",
-                                                                    JSON.stringify(disharr)
-                                                                );
+                                                                sessionStorage.setItem("dishInfo",JSON.stringify(disharr));
+                                                                this.props.shoppingCartMinusAction(shopCartCount);
+                                                                storageCount.count--;
+                                                                sessionStorage.setItem("shoppingCartCount",JSON.stringify({ count: storageCount.count }));
+
                                                             }
+                                                            this.removeDish();
                                                         }}>Remove </span>
 
                                                 </p>
@@ -164,8 +168,7 @@ class ShoppingCart extends Component {
 const mapDispatchToProps = dispatch => {
     return {
 
-        shoppingCartMinusAction: count => {
-            dispatch(shoppingCartMinusAction(count));
+        shoppingCartMinusAction: count => { dispatch(shoppingCartMinusAction(count));
         }
     };
 };

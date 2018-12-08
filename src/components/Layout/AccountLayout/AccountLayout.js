@@ -17,7 +17,7 @@ class AccountLayout extends Component{
                 </div>;
             return (
                 <div>
-                    <p> {this.props.authID  ? <i class="fas fa-user"></i> : <i className="far fa-user"></i>}</p>
+                    <p> {this.props.authID  ? <i className="fas fa-user"></i> : <i className="far fa-user"></i>}</p>
                     {links}
 
                 </div>
