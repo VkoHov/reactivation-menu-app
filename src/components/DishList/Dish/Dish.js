@@ -48,8 +48,7 @@ class Dish extends Component {
         return (
             <div className="dishBl">
             <div className="dishBlock" style={style} onClick={this.showPopUp} >
-                <div className='shape'>
-                </div>
+           
             </div>
                 <div >
 

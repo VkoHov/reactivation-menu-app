@@ -163,14 +163,16 @@
     outline :none;
 }
  .rating-container{
-    height: 30px;
-    width: 150px;
+    height: 25px;
+    width: 125px;
     position: absolute;
     z-index: 0;
+    right: 15px;
 }
 .rating{
     position: absolute;
-    height: 30px;
+    height: 25px;
+    right: 15px;
     max-width: 150px;
 
     left: 0;
@@ -179,7 +181,7 @@
 }
 
 .star{
-    height: 30px;
-    width:30px;
+    height: 25px;
+    width:25px;
 }
 

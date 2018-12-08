@@ -89,7 +89,6 @@ class ShoppingCart extends Component {
                                                 <p>
                                                     <span
                                                         onClick={() => {
-                                                            this.removeDish();
                                                             let dishes = JSON.parse(sessionStorage.getItem("dishInfo"));
                                                             let storageCount = JSON.parse(sessionStorage.getItem("shoppingCartCount"));
                                                             let shopCartCount = this.props.shoppingCartCount;
@@ -114,6 +113,7 @@ class ShoppingCart extends Component {
                                                                  sessionStorage.setItem("shoppingCartCount",JSON.stringify({ count: storageCount.count }));
 
                                                             }
+                                                            this.removeDish();
                                                         }}>Remove </span>
 
                                                 </p>

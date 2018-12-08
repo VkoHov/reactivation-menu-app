@@ -4,6 +4,7 @@ import AccountLayout from '../Layout/AccountLayout/AccountLayout'
 import './Navbar.css';
 import {connect} from 'react-redux';
 import {SlideToComponent} from '../../actions/navbarAction';
+
 // import ReactSVG from 'react-svg';
 class Navbar extends Component {
     constructor(props) {
@@ -46,12 +47,14 @@ class Navbar extends Component {
                             <div className="layout">
                                 <AccountLayout/>
 
-                                <Link to="/favorites"><span><i className="far fa-heart"></i>
-                                {/* <ReactSVG src="https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/svg%2Ffork.svg?alt=media&token=7d146dfb-8dbc-44b3-a495-715ee71562d3"/> */}
+                                <Link to=""><span><i className="far fa-heart"></i>
                                 </span> </Link>
-                                <Link to="/shoppingcart"  className="cartIcon"><i className="fas fa-shopping-cart">
-                                {storage &&  (<span>{storage.count}</span>)}
-                                </i></Link>
+                                <Link to="/shoppingcart" className="cartIcon">
+                                    <i className="fas fa-shopping-cart">
+                                        {storage && (<span> {storage.count} </span>)}
+                                    </i>
+                                </Link>
+
 
 
                             </div>
@@ -74,7 +77,6 @@ const mapDispatchToProps = dispatch => {
         SlideToComponent: (sliderId) => {
             dispatch(SlideToComponent(sliderId))
         },
-
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
