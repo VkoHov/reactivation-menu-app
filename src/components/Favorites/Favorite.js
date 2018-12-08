@@ -6,10 +6,13 @@ import { compose } from "redux";
 import { addToCart } from "../../actions/dishDetailAction";
 import { changeData } from "../../actions/rateAction";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
+import {removeFromFirestore} from "../../actions/addToFavAction";
 import _ from "lodash";
 
 class Favorites extends Component {
-  state = {};
+  state = {
+    remove: false,
+  };
 
   SaveDataToSessionStorage = info => {
     let infoArr = JSON.parse(sessionStorage.getItem("dishInfo"));
@@ -24,6 +27,11 @@ class Favorites extends Component {
       sessionStorage.setItem("dishInfo", JSON.stringify([info]));
     }
   };
+  removeToggle =()=>{
+    this.setState({
+      remove: !this.state.remove,
+    })
+  }
   render() {
     let userId = this.props.auth.uid;
 
@@ -32,7 +40,6 @@ class Favorites extends Component {
         this.props.firestoreInfo[userId] &&
         this.props.firestoreInfo[userId].favorites) ||
       null;
-    console.log("afef", favorites);
         if(favorites && favorites.length !== 0 && this.props.auth.uid ){
           return (
             
@@ -45,7 +52,6 @@ class Favorites extends Component {
                       description: dish.description,
                       title: dish.title,
                       url: dish.url,
-                      // id: dish.id,
                       price: dish.price,
                       doneness: dish.favdoneness,
                       ingredient: dish.favIngredient || null
@@ -116,7 +122,6 @@ class Favorites extends Component {
                               }
                             } else {
                               this.props.addToCart(info);
-                              console.log("elsena mtnum");
                               this.SaveDataToSessionStorage(info);
                               this.props.shoppingCartPlusAction(shopCartCount);
                               sessionStorage.setItem(
@@ -128,6 +133,17 @@ class Favorites extends Component {
                         >
                           Add To Cart
                         </button>
+                        <button onClick = {()=> {
+                           let favorites = this.props.firestoreInfo[userId].favorites;
+                          let filteredFavs = favorites.filter((favorite)=>{
+                        return favorite.title !== info.title 
+                        })
+                        this.props.removeFromFirestore({
+                            filteredFavs,
+                             id: userId,
+                            });
+                            this.removeToggle()
+                          }}>Remove</button>
                       </div>
                     );
                   })}
@@ -153,14 +169,15 @@ const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
     firestoreInfo: state.firestore.data.users,
-    shoppingCartCount: state.shoppingCart.shoppingCartCount
+    shoppingCartCount: state.shoppingCart.shoppingCartCount,
+    firestore: state.firestore,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     changeData: project => dispatch(changeData(project)),
     addToCart: dishInfo => dispatch(addToCart(dishInfo)),
-
+    removeFromFirestore: info => dispatch(removeFromFirestore(info)),
     shoppingCartPlusAction: count => {
       dispatch(shoppingCartPlusAction(count));
     }

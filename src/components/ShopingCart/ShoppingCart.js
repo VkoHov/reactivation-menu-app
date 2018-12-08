@@ -38,7 +38,6 @@ class ShoppingCart extends Component {
 
     render() {
         let dishInfo = JSON.parse(sessionStorage.getItem("dishInfo"));
-        console.log(dishInfo)
         let totalPirce = 0;
         if (dishInfo) {
             return (
