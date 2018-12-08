@@ -12,9 +12,11 @@ import _ from "lodash";
 import './Favorites.css';
 
 class Favorites extends Component {
+
     state = {
         remove: false,
     };
+
 
     SaveDataToSessionStorage = info => {
         let infoArr = JSON.parse(sessionStorage.getItem("dishInfo"));
@@ -34,6 +36,7 @@ class Favorites extends Component {
             remove: !this.state.remove,
         })
     }
+
     render() {
         let userId = this.props.auth.uid;
 
@@ -129,6 +132,7 @@ class Favorites extends Component {
                                         ? "<em>Doneness:</em>" + dish.favoriteDish.doneness
                                         : dish.favdoneness}</p>
 
+
                                 <p  className=" price">Price: {info.price}(AMD)</p>
                                 <p><em>Rating:</em>
                                     <StarRatingComponent
@@ -190,7 +194,9 @@ class Favorites extends Component {
 //                         <p>Price: {info.price}</p>
 //                         <button
 // >>>>>>> develop
+
                         onClick={() => {
+
                             let dishes = JSON.parse(
                                 sessionStorage.getItem("dishInfo")
                             );
@@ -200,6 +206,7 @@ class Favorites extends Component {
                             let shopCartCount = this.props.shoppingCartCount;
                             shopCartCount++;
                             if (dishes) {
+
                                 let count = 0;
                                 dishes.map(item => {
                                     return(
@@ -228,6 +235,7 @@ class Favorites extends Component {
                                     );
                                 }
                             } else {
+
                                 this.props.addToCart(info);
                                 this.SaveDataToSessionStorage(info);
                                 this.props.shoppingCartPlusAction(shopCartCount);
@@ -235,6 +243,7 @@ class Favorites extends Component {
                                     "shoppingCartCount",
                                     JSON.stringify({ count: 1 })
                                 );
+
                             }
                         }}
                     >

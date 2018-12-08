@@ -4,6 +4,7 @@ import AccountLayout from '../Layout/AccountLayout/AccountLayout'
 import './Navbar.css';
 import {connect} from 'react-redux';
 import {SlideToComponent} from '../../actions/navbarAction';
+
 // import ReactSVG from 'react-svg';
 class Navbar extends Component {
     constructor(props) {
@@ -25,9 +26,11 @@ class Navbar extends Component {
 
                                 <Link to="/">home</Link>
                                 <span>|</span>
+                                <Link to="/listing">
                                 <p className='navItem' id='ourmenu' onClick={(e) => {
                                     this.props.SlideToComponent(e.target.id)
-                                }}>our menu</p>
+                                }}>our menu</p></Link>
+                                
                                 <span>|</span>
                                 <p className='navItem' id='reservation' onClick={(e) => {
                                     this.props.SlideToComponent(e.target.id)
@@ -43,12 +46,14 @@ class Navbar extends Component {
                             </div>
                             <div className="layout">
                                 <AccountLayout/>
+
                                 <Link to="/favorites"><span><i class="far fa-heart"></i>
                                 {/* <ReactSVG src="https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/svg%2Ffork.svg?alt=media&token=7d146dfb-8dbc-44b3-a495-715ee71562d3"/> */}
                                 </span> </Link>
                                 <Link to="/shoppingcart"  className="cartIcon"><i className="fas fa-shopping-cart">
                                     {storage && <span>{(storage.count)}</span>}
                                     </i></Link>
+
 
 
                             </div>
@@ -71,7 +76,6 @@ const mapDispatchToProps = dispatch => {
         SlideToComponent: (sliderId) => {
             dispatch(SlideToComponent(sliderId))
         },
-
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

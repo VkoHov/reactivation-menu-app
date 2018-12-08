@@ -14,7 +14,7 @@ class Dish extends Component {
 
     render() {
         let info= this.props.dish;
-        let bgcolor = this.props.idd % 2 ==  0 ? " #FFF2DF": '#fff'  ;
+        let bgcolor = this.props.idd % 2 ===  0 ? " #FFF2DF": '#fff'  ;
         return (
             <div >
 
