@@ -13,20 +13,9 @@ class CategoryList extends Component {
         this.state = {
             addClass: false,
         }
-        this.toggle = this.toggle.bind(this);
-      }
-
-      toggle() {
-        this.setState({
-            addClass: !this.state.addClass,
-        });
       }
 
     render() {
-        let classActive ='';
-        if(this.state.addClass) {
-          classActive ='active';
-        }
         let categoryss = this.props.categories && Object.values(this.props.categories[0]);
         categoryss && categoryss.shift();
 
@@ -41,7 +30,7 @@ class CategoryList extends Component {
                             categoryss &&
                             categoryss[0].map((category, index) => {
                                 return (
-                                    <li className={classActive} key={index} onClick={this.toggle}>
+                                    <li  key={index} >
                                         <Category  key={index} category={category} />
                                     </li>
                                 );

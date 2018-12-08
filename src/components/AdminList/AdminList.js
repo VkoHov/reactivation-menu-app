@@ -35,7 +35,7 @@ class AdminList extends Component {
                         <Link to='/admin'>
                             <button>back to admin page</button>
                         </Link>
-                        <Link to='/registration'> <button>Add Admin</button>
+                        <Link to='/adminregistration'> <button>Add Admin</button>
                         </Link>
                     </p>
                 </div>

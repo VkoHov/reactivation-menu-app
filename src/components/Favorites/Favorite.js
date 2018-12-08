@@ -49,7 +49,7 @@ class Favorites extends Component {
         if(favorites && favorites.length !== 0 && this.props.auth.uid ){
             return (
 
-                <div>
+                <div className='paddingTop'>
                     <div>MY FAVORITES</div>
                     {favorites &&
                     favorites.map((dish, index) => {
@@ -134,14 +134,14 @@ class Favorites extends Component {
 
 
                                 <p  className=" price">Price: {info.price}(AMD)</p>
-                                <p><em>Rating:</em>
+                                <div><em>Rating:</em>
                                     <StarRatingComponent
                                         name="rate1"
                                         starCount={5}
                                         value={dish.rating}
                                         starColor={'#ff9900'}
                                         emptyStarColor={'#707070'}
-                                    /></p>
+                                    /></div>
 
 
 
