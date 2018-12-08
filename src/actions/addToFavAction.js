@@ -8,3 +8,13 @@ export const addFavToFireStore = (info)=>{
         })
     }  
 }
+export const removeFromFirestore = (info) =>{
+    return(dispatch,getState,{getFirestore}) =>{
+        const firestore = getFirestore();
+          firestore.collection("users").doc(info.id).update({
+            favorites: info.filteredFavs
+         }).then(() => {
+        dispatch({type: 'REMOVE_FROM_FAVORITES', info},console.log("removed"));
+         })
+    }
+}

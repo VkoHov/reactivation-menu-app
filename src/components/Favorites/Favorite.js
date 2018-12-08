@@ -6,14 +6,16 @@ import { compose } from "redux";
 import { addToCart } from "../../actions/dishDetailAction";
 import { changeData } from "../../actions/rateAction";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
-
+import {removeFromFirestore} from "../../actions/addToFavAction";
 import StarRatingComponent from 'react-star-rating-component';
 import { Link } from 'react-router-dom';
 import _ from "lodash";
 import './Favorites.css';
 
 class Favorites extends Component {
-  state = {};
+  state = {
+    remove: false,
+  };
 
   SaveDataToSessionStorage = info => {
     let infoArr = JSON.parse(sessionStorage.getItem("dishInfo"));
@@ -28,6 +30,11 @@ class Favorites extends Component {
       sessionStorage.setItem("dishInfo", JSON.stringify([info]));
     }
   };
+  removeToggle =()=>{
+    this.setState({
+      remove: !this.state.remove,
+    })
+  }
   render() {
     let userId = this.props.auth.uid;
 
@@ -37,50 +44,77 @@ class Favorites extends Component {
         this.props.firestoreInfo[userId].favorites) ||
       null;
 
-    return (
-      (!this.props.auth.uid && <Redirect to="/login" />) || (
-        <div className="shoppingCart">
-          <div className=" shoppingBaner">
-            <div className='  shoppigShape'></div>
-          </div>
+        if(favorites && favorites.length !== 0 && this.props.auth.uid ){
+          return (
+            
+              <div>
+                <div>MY FAVORITES</div>
+                {favorites &&
+                  favorites.map((dish, index) => {
+                    let info = {
+                      count: dish.count,
+                      description: dish.description,
+                      title: dish.title,
+                      url: dish.url,
+                      price: dish.price,
+                      doneness: dish.favdoneness,
+                      ingredient: dish.favIngredient || null
+                    };
+      
+                    return (
+                      <div key={index}>
+                        <p>
+                          {dish.favoriteDish ? dish.favoriteDish.title : dish.title}
+                        </p>
+                        <p>
+                          {dish.favoriteDish
+// =======
 
-          <div className="container">
-            <div className="source">
-              <p>
-                <Link to="/">Home</Link>
-                <span>/</span>
-                my favorite
-                </p>
-            </div>
-            <h2>my <span>favorite</span></h2>
+//     return (
+//       (!this.props.auth.uid && <Redirect to="/login" />) || (
+//         <div className="shoppingCart">
+//           <div className=" shoppingBaner">
+//             <div className='  shoppigShape'></div>
+//           </div>
 
-          </div>
+//           <div className="container">
+//             <div className="source">
+//               <p>
+//                 <Link to="/">Home</Link>
+//                 <span>/</span>
+//                 my favorite
+//                 </p>
+//             </div>
+//             <h2>my <span>favorite</span></h2>
 
-          {favorites &&
-            favorites.map((dish, index) => {
-              let info = {
-                count: dish.count,
-                description: dish.description,
-                title: dish.title,
-                url: dish.url,
-                // id: dish.id,
-                price: dish.price,
-                doneness: dish.favdoneness,
-                ingredient: dish.favIngredient || null
-              };
+//           </div>
 
-              return (
+//           {favorites &&
+//             favorites.map((dish, index) => {
+//               let info = {
+//                 count: dish.count,
+//                 description: dish.description,
+//                 title: dish.title,
+//                 url: dish.url,
+//                 // id: dish.id,
+//                 price: dish.price,
+//                 doneness: dish.favdoneness,
+//                 ingredient: dish.favIngredient || null
+//               };
 
-                <section className="shopingList favorites" key={index}>
-                  <div className="container">
-                    <div className="shopTable">
-                      <div className="shopingDish">
-                        <div>
-                          <img src={info.url} alt={info.title} />
-                        </div>
-                        <div>
-                          <h3>{dish.favoriteDish ? dish.favoriteDish.title : dish.title}</h3>
-                          <p>  {dish.favoriteDish
+//               return (
+
+//                 <section className="shopingList favorites" key={index}>
+//                   <div className="container">
+//                     <div className="shopTable">
+//                       <div className="shopingDish">
+//                         <div>
+//                           <img src={info.url} alt={info.title} />
+//                         </div>
+//                         <div>
+//                           <h3>{dish.favoriteDish ? dish.favoriteDish.title : dish.title}</h3>
+//                           <p>  {dish.favoriteDish
+// >>>>>>> develop
                             ? dish.favoriteDish.description
                             : dish.description}</p>
 
@@ -196,7 +230,6 @@ class Favorites extends Component {
                               }
                             } else {
                               this.props.addToCart(info);
-                              console.log("elsena mtnum");
                               this.SaveDataToSessionStorage(info);
                               this.props.shoppingCartPlusAction(shopCartCount);
                               sessionStorage.setItem(
@@ -209,6 +242,17 @@ class Favorites extends Component {
                           Add To Cart
 
                         </button>
+                        <button onClick = {()=> {
+                           let favorites = this.props.firestoreInfo[userId].favorites;
+                          let filteredFavs = favorites.filter((favorite)=>{
+                        return favorite.title !== info.title 
+                        })
+                        this.props.removeFromFirestore({
+                            filteredFavs,
+                             id: userId,
+                            });
+                            this.removeToggle()
+                          }}>Remove</button>
                       </div>
                     );
                   })}
@@ -233,14 +277,15 @@ const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
     firestoreInfo: state.firestore.data.users,
-    shoppingCartCount: state.shoppingCart.shoppingCartCount
+    shoppingCartCount: state.shoppingCart.shoppingCartCount,
+    firestore: state.firestore,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     changeData: project => dispatch(changeData(project)),
     addToCart: dishInfo => dispatch(addToCart(dishInfo)),
-
+    removeFromFirestore: info => dispatch(removeFromFirestore(info)),
     shoppingCartPlusAction: count => {
       dispatch(shoppingCartPlusAction(count));
     }
