@@ -28,7 +28,7 @@ class Doneness extends Component {
                 {this.state.doneness.map((inp,index)  => {
                     return (
                     <p key={index}>
-                        <input className ="and"
+                        <input className ="and and1"
                             inpid = {index}
                             id = {"doneness " + index}
                             type = "text"

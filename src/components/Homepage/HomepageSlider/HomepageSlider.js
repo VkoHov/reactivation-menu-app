@@ -14,7 +14,7 @@ class HeaderSlider extends Component {
                     autoPlay = {true}
                     showThumbs = {false}
                     showStatus = {false}
-                    transitionTime = {500}
+                    transitionTime = {1500}
                     emulateTouch = {true}
                     thumbWidth = {0}
                 >
@@ -26,6 +26,9 @@ class HeaderSlider extends Component {
                     </div>
                     <div>
                         <img src='https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fbaner3.jpg?alt=media&token=2fbe95dc-36fe-453a-825f-14ee8e78d4a3' alt='banner'/>
+                    </div>
+                    <div>
+                        <img src='https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/sliderImages%2Fwurst.jpg?alt=media&token=580c8114-e9b6-4cb6-815a-825d12c1a66a' alt='banner'/>
                     </div>
                 </Carousel>
             </section>
