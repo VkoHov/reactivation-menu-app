@@ -1,7 +1,9 @@
 .layout .logout p{
     font-size: 15px;
     margin: 10px 0;
-    color:#707070;
+    color:#3a3939;
+    text-transform: capitalize;
+    cursor:pointer;
 }
 .layout button{
     font-size: 15px;

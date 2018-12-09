@@ -21,7 +21,7 @@
     position: absolute;
     font-size: 20px;
     right: 15px;
-    top: 24px;
+    bottom: 24px;
 }
 .new-dish p label{
     flex: 1;

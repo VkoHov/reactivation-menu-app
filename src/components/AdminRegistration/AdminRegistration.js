@@ -3,6 +3,7 @@ import {SignUp} from '../../actions/authActions';
 import {connect} from 'react-redux';
 import {withRouter, Redirect} from 'react-router-dom';
 import {compose} from 'redux';
+import { firestoreConnect } from "react-redux-firebase";
 import './AdminRegistration.css';
 
 
@@ -17,7 +18,6 @@ class Registration extends Component {
         invalidInpErr: false,
     };
     handleChange = (e) => {
-        console.log(this.state);
         this.setState({
             [e.target.id]: e.target.value
         })
@@ -26,26 +26,26 @@ class Registration extends Component {
         e.preventDefault();
     };
     handleClick = () => {
-
-        if (this.state.password === this.state.passwordComfirm && this.state.password.length >= 6) {
-            if (this.props.auth.uid) {
-                this.props.history.push('/');
-            }
+        let {name, lastname, email, password, passwordComfirm} = this.state;
+        if (password === passwordComfirm && password.length >= 6) {
             this.setState({
                 passwordComfErr: false,
             });
-            let {name, lastname, email, password} = this.state;
-            if (lastname.length !== 0 && name.length !== 0) {
+            let admin = this.props.admins.administrators && this.props.admins.administrators.filter(admin => {
+                return admin.email === email &&  email
+            });
+            if (lastname.length !== 0 && name.length !== 0 && admin.length === 0) {
                 this.setState({
                     invalidInpErr: false,
                 });
-                this.props.SignUp({
+                let signup = this.props.SignUp({
                     name: name,
                     lastname: lastname,
                     email: email,
                     password: password,
                     collection: 'administrators',
                 });
+                signup.then(() => this.props.history.push('/admin'));
             } else {
                 this.setState({
                     invalidInpErr: true,
@@ -60,10 +60,10 @@ class Registration extends Component {
     };
 
     render() {
-
+        console.log(this.props.admins)
         if (!this.props.auth.uid) return <Redirect to="/login"/>;
         return (
-            <div>
+            <div className='paddingTop'>
 
                 <form onSubmit={this.handleSubmit}>
                     {this.state.invalidInpErr && <div> Invalid input </div>}
@@ -101,16 +101,19 @@ class Registration extends Component {
 const mapStateToProps = state => {
     return {
         auth: state.firebase.auth,
-        registerError: state.login.authError
+        registerError: state.login.authError,
+        admins: state.firestore.ordered,
     }
-}
+};
+
 const mapDispatchToProps = dispatch => {
     return {
         SignUp: (newUser) => dispatch(SignUp(newUser)),
     }
-}
+};
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([{collection:'administrators'}]),
     withRouter,
 )(Registration);

@@ -16,6 +16,7 @@ import AdminList from './components/AdminList/AdminList';
 import MenuList from './components/MenueList/MenuList';
 import Footer from './components/Homepage/Footer/Footer';
 import Favorites from "./components/Favorites/Favorite";
+import AdminRegistration from "./components/AdminRegistration/AdminRegistration";
 
 
 class App extends Component {
@@ -31,6 +32,7 @@ class App extends Component {
                         <Route exact path='/' component={Homepage} />
                         <Route path='/login' component={Login} />
                         <Route path='/registration' component={Registration}/>
+                        <Route path='/adminregistration' component={AdminRegistration}/>
                         <Route exact path='/admin' component={AdminHomePage} />
                         <Route path='/admin/editadmin' component={AdminList} />
                         <Route path='/admin/editmanu' component={MenuList} />
@@ -42,7 +44,7 @@ class App extends Component {
                         <Route path='/shoppingcart' component = {ShoppingCart}/> */}
                     </Switch>
 
-                    {window.location.pathname !== '/' && <Footer/>}
+                    {window.location.pathname !== '/' && <Footer />}
                 </div>
             </Router>
         );

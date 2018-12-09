@@ -75,9 +75,10 @@
 	border:none;
 }
 
-.booking input[type="date"] {
+.booking input[type="date"],
+.booking input[type="time"] {
 	width: 64%;
-	padding: 3.47% 5px;
+	padding: 3.47% 8px;
 }
 
 .booking button {
@@ -92,20 +93,23 @@
 	padding: 1.8% 3%;
 }
 
-.red{
+p.red{
 	color: red;
 	margin-top: 20px;
 	text-align: center;
 	text-transform: capitalize;
-	
+	letter-spacing: 1px;
+	font-size: 25px;
 }
 
-.green{
-	color: green;
+p.green{
+	color: #ff9900;
 	margin-top: 20px;
 	text-align: center;
+	font-size: 25px;
+	letter-spacing: 1px;
 	text-transform: capitalize;
 }
 .booking .error{
-	border:1px solid red;
+	border:2px solid red;
 }
