@@ -4,6 +4,7 @@ export const clearReserveOrOrder = (table) => {
 
         return firestore.collection('tables').doc(table.id).update({
             orders: [],
+            status:'free',
         }).then(() => {
             dispatch({ type: 'DELETE_INFO_SUCCESS' });
         }).catch(err => {
