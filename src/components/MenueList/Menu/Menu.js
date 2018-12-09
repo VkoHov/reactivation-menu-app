@@ -11,7 +11,7 @@ class Dish extends Component {
     deleteDish = () => {
         this.props.deleteDish({ id: this.props.dish });
     }
-
+   
     render() {
         let info= this.props.dish;
         let bgcolor = this.props.idd % 2 ===  0 ? " #FFF2DF": '#fff'  ;
@@ -33,6 +33,7 @@ class Dish extends Component {
         );
     }
 }
+
 
 const mapStateToProps = (state) => {
     return {

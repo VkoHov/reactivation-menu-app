@@ -42,7 +42,7 @@ class App extends Component {
                         <Route path='/shoppingcart' component = {ShoppingCart}/> */}
                     </Switch>
 
-                    {window.location.pathname !== '/' && <Footer/>}
+                    {window.location.pathname !== '/' && <Footer />}
                 </div>
             </Router>
         );

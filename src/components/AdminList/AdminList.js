@@ -12,7 +12,7 @@ class AdminList extends Component {
         return (
             <section className="menuList paddingTop">
                 <div className="container">
-                    <h1>menu</h1>
+                    <h1>admin</h1>
                     <div className="menuTable" >
                         <ul className="tableRow tableHead">
                             <li>N/N</li>

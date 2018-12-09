@@ -163,17 +163,17 @@
     outline :none;
 }
  .rating-container{
-    height: 25px;
-    width: 125px;
+    height: 40px;
+    width: 200px;
     position: absolute;
     z-index: 0;
     right: 15px;
 }
 .rating{
     position: absolute;
-    height: 25px;
+    height: 40px;
     right: 15px;
-    max-width: 150px;
+    max-width:200px;
 
     left: 0;
     background-color: #ff9900;
@@ -181,7 +181,7 @@
 }
 
 .star{
-    height: 25px;
-    width:25px;
+    height: 40px;
+    width:40px;
 }
 
