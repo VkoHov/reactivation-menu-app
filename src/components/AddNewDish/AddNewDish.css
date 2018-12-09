@@ -28,11 +28,12 @@
        align-items: center;
        position: relative;
    }
-.new-dish div +span{
+.chanIng span{
     position: absolute;
     font-size: 20px;
     right: 15px;
-    bottom: 24px;
+    bottom: 25px;
+    cursor: pointer;
 }
 .new-dish div label{
     flex: 1;
