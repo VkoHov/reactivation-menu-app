@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import AccountLayout from '../Layout/AccountLayout/AccountLayout'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import AccountLayout from '../Layout/AccountLayout/AccountLayout';
+import FavoriteLayout from '../Layout/FavoriteLayout/FavoriteLayout';
 import './Navbar.css';
-import {connect} from 'react-redux';
-import {SlideToComponent} from '../../actions/navbarAction';
+import { connect } from 'react-redux';
+import { SlideToComponent } from '../../actions/navbarAction';
 
 // import ReactSVG from 'react-svg';
 class Navbar extends Component {
@@ -15,6 +16,13 @@ class Navbar extends Component {
     }
 
     render() {
+
+        // let favorites =
+        //     (this.props.firestoreInfo &&
+        //         this.props.firestoreInfo[userId] &&
+        //         this.props.firestoreInfo[userId].favorites) ||
+        //     null;
+
         let storage = JSON.parse(sessionStorage.getItem("shoppingCartCount"));
         return (
             <header>
@@ -22,37 +30,58 @@ class Navbar extends Component {
                     <div className="container">
                         <div className="navbar">
                             <Link className="logo" to="/">Steak <span>&</span> Grill</Link>
-                            <div className="menu">
 
-                                <Link to="/">home</Link>
+                            <div className="menu">
+                                {window.location.pathname !== '/' ?
+                                    <Link to="/">home</Link> :
+                                    <p className='navItem' id='home' onClick={(e) => {
+                                        this.props.SlideToComponent(e.target.id)
+                                    }}>home</p>
+                                }
+
                                 <span>|</span>
-                                <Link to="/listing">
-                                <p className='navItem' id='ourmenu' onClick={(e) => {
-                                    this.props.SlideToComponent(e.target.id)
-                                }}>our menu</p></Link>
-                                
+                                {window.location.pathname !== '/' ?
+                                    <Link to="/"> our  menu</Link> :
+                                    <p className='navItem' id='ourmenu' onClick={(e) => {
+                                        this.props.SlideToComponent(e.target.id)
+                                    }}>our  menu</p>
+                                }
+
                                 <span>|</span>
-                                <p className='navItem' id='reservation' onClick={(e) => {
-                                    this.props.SlideToComponent(e.target.id)
-                                }}>reservation</p>
+
+                                {window.location.pathname !== '/' ?
+                                    <Link to="/"> reservation</Link> :
+
+                                    <p className='navItem' id='reservation' onClick={(e) => {
+                                        this.props.SlideToComponent(e.target.id)
+                                    }}>reservation</p>
+                                }
+
                                 <span>|</span>
-                                <p className='navItem' id='aboutus' onClick={(e) => {
-                                    this.props.SlideToComponent(e.target.id)
-                                }}>about</p>
+
+                                {window.location.pathname !== '/' ?
+                                    <Link to="/"> about</Link> :
+                                    <p className='navItem' id='aboutus' onClick={(e) => {
+                                        this.props.SlideToComponent(e.target.id)
+                                    }}>about</p>
+                                }
+
                                 <span>|</span>
-                                <p className='navItem' id='contact' onClick={(e) => {
-                                    this.props.SlideToComponent(e.target.id)
-                                }}>contact</p>
+
+                                {window.location.pathname !== '/' ?
+                                    <Link to="/"> contact</Link> :
+                                    <p className='navItem' id='contact' onClick={(e) => {
+                                        this.props.SlideToComponent(e.target.id)
+                                    }}>contact</p>
+                                }
                             </div>
                             <div className="layout">
-                                <AccountLayout/>
+                                <AccountLayout />
 
-                                <Link to="/favorites"><span><i className="far fa-heart"></i>
-                                {/* <ReactSVG src="https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/svg%2Ffork.svg?alt=media&token=7d146dfb-8dbc-44b3-a495-715ee71562d3"/> */}
-                                </span> </Link>
-                                <Link to="/shoppingcart"  className="cartIcon"><i className="fas fa-shopping-cart">
+                               <Link to="/favorites"><i className="far fa-heart"></i> </Link>
+                                <Link to="/shoppingcart" className="cartIcon"><i className="fas fa-shopping-cart">
                                     {storage && <span>{(storage.count)}</span>}
-                                    </i></Link>
+                                </i></Link>
 
 
 
