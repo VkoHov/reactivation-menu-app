@@ -37,7 +37,7 @@
 }
 .new-dish div label{
     flex: 1;
-    font-size: 18px;
+    font-size:  18px;
     color:#ff9900;
     text-transform: capitalize;
 }
