@@ -180,6 +180,7 @@ class Booking extends Component {
 										<input
 											id="date"
 											type="date"
+											value={new Date()}
 											placeholder='Date'	
 											className={this.state.date}
 											onChange={this.handleChange}
@@ -209,7 +210,7 @@ class Booking extends Component {
 											className={this.state.phone}
 											id="phone"
 											type="text"
-											placeholder='Phone'
+											placeholder='(+374) - -   - - -    - - - '
 											onChange={this.handleChange}
 										/>
 									</p>

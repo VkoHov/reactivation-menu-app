@@ -3,6 +3,7 @@ import scrollToComponent from 'react-scroll-to-component';
 import OurMenu from './OurMenu/OurMenu';
 import Booking from './Booking/Booking';
 import AboutUs from './AboutUs/AboutUs';
+import Footer from './Footer/Footer';
 import HeaderSlider from './HomepageSlider/HomepageSlider';
 import {connect} from 'react-redux';
 import './Homepage.css';
@@ -15,19 +16,19 @@ class Homepage extends Component {
     componentDidUpdate(){
         switch (this.props.sliderstatus){
             case 'ourmenu':
-                scrollToComponent(this.OurMenu, {offset:-100,align:'top'});
+                scrollToComponent(this.OurMenu, {offset:-120,align:'top'});
                 break;
             case 'reservation':
-                scrollToComponent(this.Booking, {offset:-100,align:'top'});
+                scrollToComponent(this.Booking, {offset:-120,align:'top'});
                 break;
             case 'aboutus':
-                scrollToComponent(this.AboutUs, {offset:-100,align:'top'});
+                scrollToComponent(this.AboutUs, {offset:-120,align:'top'});
                 break;
             case 'contact':
                 scrollToComponent(this.Footer, {});
                 break;
             default:
-                scrollToComponent(this.HeaderSlider, {});
+                scrollToComponent(this.HeaderSlider, {offset:0,align:'top'});
         }
     }
     render() {
@@ -37,7 +38,7 @@ class Homepage extends Component {
                  <OurMenu ref={(section) => { this.OurMenu = section; }} />
                  <Booking ref={(section) => { this.Booking = section; }} />
                  <AboutUs ref={(section) => { this.AboutUs = section; }}/>
-
+                 <Footer ref={(section) => { this.Footer = section; }}/>
             </div>
         )
     }
