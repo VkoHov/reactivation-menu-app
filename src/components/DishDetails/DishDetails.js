@@ -36,7 +36,7 @@ class DishDetails extends React.Component {
                 mouseOnWidth:
                     e.clientX -
                     e.currentTarget.offsetLeft -
-                    200 +
+                    200 -
                     ((e.clientX - e.currentTarget.offsetLeft - 200) % 20)
             });
         }
