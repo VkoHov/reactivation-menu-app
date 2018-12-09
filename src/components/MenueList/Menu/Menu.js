@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { deleteDish } from '../../../actions/deleteDishAction';
 import { compose } from 'redux';
+import {Link} from 'react-router-dom';
 
 
 
 class Dish extends Component {
 
-    deleteDish = () => {
-        this.props.deleteDish({ id: this.props.dish });
-    }
-   
+
     render() {
         let info= this.props.dish;
         let bgcolor = this.props.idd % 2 ===  0 ? " #FFF2DF": '#fff'  ;
@@ -25,8 +23,10 @@ class Dish extends Component {
                     <li>{info.ingredients.join(',')}</li>
                     <li>{info.price} (AMD)</li>
                     <li onClick={this.deleteDish} style={ {'width':'80px'}}>
-                    <i className="far fa-trash-alt"></i>
+                        <i className="far fa-trash-alt"></i>
                     </li>
+
+                    {/* <Link to="/deleteMenu"><i className="far fa-trash-alt"></i></Link> */}
                 </ul>
                 
             </div>
