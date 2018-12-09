@@ -1,12 +1,21 @@
 export const addFavToFireStore = (info)=>{
     return (dispatch, getState, {getFirestore}) =>{
         const firestore = getFirestore();
-        firestore.collection("users").doc(info.id).update({
-            favorites: firestore.FieldValue.arrayUnion(info)})
-
-            .then(() => {
-                dispatch({type: 'ADD_TO_FAVORITES', info});
-            })
+        if(info.id){
+            firestore.collection("users").doc(info.id).update({
+                favorites: firestore.FieldValue.arrayUnion(info)})
+    
+                .then(() => {
+                    dispatch({type: 'ADD_TO_FAVORITES', info});
+                })
+        }else {
+            alert("Please login to add favorites")
+     
+        }
+        
+            // .catch(err => {
+            //     dispatch({ type: 'DELETE_INFO_ERROR' }, err);
+            // });
     }
 
 }

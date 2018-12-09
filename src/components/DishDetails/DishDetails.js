@@ -8,20 +8,26 @@ import {addFavToFireStore} from "../../actions/addToFavAction";
 import _ from "lodash";
 import "./DishDetails.css";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
- 
+ import {Link} from "react-router-dom";
 
-import { Link } from 'react-router-dom'
+
 
 class DishDetails extends React.Component {
-  state = {
+  constructor(props){
+    super(props);
+  
+  this.state = {
     mouseOnWidth: 0,
     isRated: false,
     doneness: null,
     count: 1,
+    checked: null,
     ingredients: [],
     starUrl:
       "https://firebasestorage.googleapis.com/v0/b/menu-app-d88b1.appspot.com/o/star.png?alt=media&token=361e13d4-7882-4400-90f1-b72278a8a382"
   };
+  this.changeIngredient = this.changeIngredient.bind(this);
+}
   countRating = e => {
     if (!this.state.isRated) {
       this.setState({
@@ -75,9 +81,9 @@ class DishDetails extends React.Component {
   };
   changeIngredient = e => {
     let selectedIng = [e.target.value];
-    if (e.target.checked) {
+     if (e.target.checked) {
       this.setState({
-        ingredients: this.state.ingredients.concat(selectedIng)
+        ingredients: this.state.ingredients && this.state.ingredients.concat(selectedIng)
       });
     } else {
       let arr = this.state.ingredients.filter(ingredient => {
@@ -92,8 +98,6 @@ class DishDetails extends React.Component {
 
   SaveDataToSessionStorage = info => {
     let infoArr = JSON.parse(sessionStorage.getItem("dishInfo"));
-
-
     if (infoArr) {
       let dishArr = [info];
       let array = infoArr.concat(dishArr);
@@ -117,16 +121,22 @@ class DishDetails extends React.Component {
   }
 
   selectAll = e => {
-    this.setState({
-      ingredients: [e.target.value]
-    });
-  };
+    if(!this.state.checked){
+      this.setState({
+        checked: !this.state.checked,
+       ingredients: [e.target.value]
+     });
+    }else{
+      this.setState({
+        checked: null,
+        ingredients: [],
+      })
+    }
+   };
 
   render() {
-    console.log("state", this.props.shoppingCartCount);
-    const id = this.props.dish.dish.id;
-
-    const dish = this.props.dishes
+     const id = this.props.dish.dish.id;
+     const dish = this.props.dishes
       ? this.props.dishes.filter(dish => {
         return id === dish.id;
       })
@@ -142,9 +152,7 @@ class DishDetails extends React.Component {
           return a + b;
         }) / dish[0].rating.length;
     }
-
-
-    let info = {
+      let info = {
       id: id,
       title: dishTitile,
       price: dishPrice,
@@ -154,7 +162,6 @@ class DishDetails extends React.Component {
       description: dishDescription,
       rating: rates,
       url: dishUrl,
-
     };
 
     let donenes = [];
@@ -228,11 +235,12 @@ class DishDetails extends React.Component {
                     return (
                       <p key={index}>
                         <label>
-                          <input
+                          <input 
                             className="select-checkbox ingredients-drop-down"
                             type="checkbox"
+                           checked = {this.state.checked}
                             value={ingredient}
-                            onChange={e => this.changeIngredient(e)}
+                            onChange={(e) => this.changeIngredient(e)}
                           />
                           {ingredient}
                         </label>
