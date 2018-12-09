@@ -25,7 +25,7 @@ export const SignUp = (newUser) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firebase = getFirebase();
         const firestore = getFirestore();
-        firebase.auth().createUserWithEmailAndPassword(
+       return firebase.auth().createUserWithEmailAndPassword(
             newUser.email,
             newUser.password,
         ).then((resp) => {
@@ -35,6 +35,7 @@ export const SignUp = (newUser) => {
                 email: newUser.email,
                 password: newUser.password,
                 favorites:[],
+
             })
         }).then(() => {
             dispatch({type: 'SIGNUP_SUCCESS'})

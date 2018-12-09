@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import TableLIst from './Tablelist/TableList';
 import "./AdminHomePage.css";
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 class AdminHomePage extends Component {
 
     render() {
+        if (!this.props.auth.uid) return <Redirect to="/login"/>;
         return (
             <section className="adminPage paddingTop">
                 <div className="container">
@@ -19,5 +22,9 @@ class AdminHomePage extends Component {
     }
 
 }
-
-export default AdminHomePage;
+const mapStateToProps = state => {
+    return {
+        auth: state.firebase.auth,
+    }
+}
+export default connect(mapStateToProps)(AdminHomePage);
