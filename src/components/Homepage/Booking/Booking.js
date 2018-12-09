@@ -21,6 +21,8 @@ class Booking extends Component {
 		message: null,
 		flag: true,
 		className: null,
+		DefoultTime:'--:-- --',
+		Name:'name',
 	}
 
 	handleChange = (e) => {
@@ -36,32 +38,33 @@ class Booking extends Component {
 		})
 	}
 
-	findTable = () => {
+	findTable = (e) => {
+		console.log(e.parentNode,'currentTurget')
 		switch (true) {
 			case (this.state.people === null):
 				this.setState({
-					people:'error'
+					people: 'error'
 				})
 				break;
 			case (this.state.date === null):
-			this.setState({
-				date:'error'
-			})
+				this.setState({
+					date: 'error'
+				})
 				break;
-			case (this.state.time === null):	
-			this.setState({
-				time:'error'
-			})
+			case (this.state.time === null):
+				this.setState({
+					time: 'error'
+				})
 				break;
 			case (this.state.name === null):
-			this.setState({
-				name:'error'
-			})
+				this.setState({
+					name: 'error'
+				})
 				break;
 			case ((this.state.phone === null) || (this.state.phone === '')):
-			this.setState({
-				phone:'error'
-			})
+				this.setState({
+					phone: 'error'
+				})
 				break;
 			default:
 				this.checkDate();
@@ -69,22 +72,20 @@ class Booking extends Component {
 	}
 
 	checkDate = () => {
+
+		
 		if (this.state.date !== null) {
 
 			if (this.state.dtatmilisecond - Number(new Date()) < 0) {
-				console.log('sxal amsativ e Yntrvats');
-// =======
-// 			if (this.state.dtatmilisecond - Number(new Date()) <= 0) {
-// 				this.setState({
-// 					date:'error'
-// 				})
-// >>>>>>> develop
+				this.setState({
+					date: 'error'
+				})
 				return;
 			}
 		}
 		if (+this.state.time[0] < 1) {
 			this.setState({
-				time:'error'
+				time: 'error'
 			})
 			return;
 		}
@@ -101,7 +102,7 @@ class Booking extends Component {
 		}
 		else {
 			this.setState({
-				phone:'error'
+				phone: 'error'
 			})
 			return false;
 		}
@@ -109,18 +110,51 @@ class Booking extends Component {
 
 	chechTables = (tables) => {
 		let isReserved = false;
-
-		for (let i = 0; i < tables.length; i++) {
-			if (tables[i].status === 'free') {
-				this.props.changeStatus({ id: tables[i].id, info: this.state, status: 'reserve' });
-				isReserved = true;
-				break;
-			} else {
-				isReserved = false;
-			}
+		let checkIsRezerv = true;
+		let tableInformation = {
+			name: this.state.name,
+			phoneNumber: this.state.phone,
+			people: this.state.people,
+			date: this.state.date,
 		}
 
 
+		for (let i = 0; i <= tables.length; i++) {
+			if (checkIsRezerv) {
+				for (let key in tables[i]) {
+					if (checkIsRezerv) {
+						if (tables[i]['reservDate'].length === 0) {
+							checkIsRezerv = false;
+							this.props.changeStatus({ id: i + 1 + '', info: tableInformation, });
+							isReserved = true;
+							break;
+						} else {
+						
+							let foundDate
+							for (let reservDate of tables[i]['reservDate']) {
+								if (reservDate === this.state.date) {
+									foundDate = true;
+									break;
+								} else {
+									foundDate = false;
+									continue;
+								}
+							}
+							if (!foundDate) {
+								this.props.changeStatus({ id: i + 1 + '', info: tableInformation, });
+								checkIsRezerv = false;
+								isReserved = true;
+								break;
+							} else {
+								isReserved = false;
+							}
+						}
+					}
+				}
+			} else {
+				break;
+			}
+		}
 		if (isReserved) {
 			this.setState({
 				className: 'green',
@@ -136,6 +170,7 @@ class Booking extends Component {
 
 
 	render() {
+
 		return (
 			<section className="booking">
 				<div className="map">
@@ -156,7 +191,7 @@ class Booking extends Component {
 				<div className="bookTable">
 					<div className="bookShape">
 						<h2>book a table </h2>
-						<form>
+						<form id={'resetValu'}>
 							<div>
 								<div>
 									<p>
@@ -182,6 +217,7 @@ class Booking extends Component {
 											type="date"
 											value={new Date()}
 											placeholder='Date'	
+
 											className={this.state.date}
 											onChange={this.handleChange}
 										/>
@@ -198,11 +234,12 @@ class Booking extends Component {
 								<div>
 									<p>
 										<input
-											id="name"
-											type="text"
+											id='name'
+											type='text'
 											placeholder='Name'
 											className={this.state.name}
 											onChange={this.handleChange}
+
 										/>
 									</p>
 									<p>
@@ -216,10 +253,11 @@ class Booking extends Component {
 									</p>
 								</div>
 							</div>
-							<p>
-								<button type="button" onClick={this.findTable}>find a table</button>
+							<p id={'garniki2444'}>
+								<button type="reset"
+									onClick={(e)=>{this.findTable(e)}}>find a table</button>
 							</p>
-							<p className={this.state.className&&this.state.className}> {
+							<p className={this.state.className && this.state.className}> {
 								this.state.flag && this.state.message
 							} </p>
 						</form>

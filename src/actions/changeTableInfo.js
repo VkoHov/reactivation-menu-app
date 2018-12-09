@@ -3,6 +3,7 @@ export const changeStatus = (table) => {
         const firestore = getFirestore();
         firestore.collection('tables').doc(table.id).update({
             reservInfo: firestore.FieldValue.arrayUnion(table.info),
+            reservDate: firestore.FieldValue.arrayUnion(table.info.date),
         }).then(() => {
             dispatch({ type: 'CHANGEINFO_SUCCESS' });
         }).catch(err => {
