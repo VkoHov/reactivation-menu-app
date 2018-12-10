@@ -9,7 +9,9 @@ import { compose } from 'redux';
 class Dish extends Component {
 
     deleteDish = () => {
-        this.props.deleteDish({ id: this.props.dish });
+        if (window.confirm("Are you sure")) {
+            this.props.deleteDish({ id: this.props.dish });
+        } 
     }
    
     render() {

@@ -66,3 +66,14 @@ p.price {
 .dishBl > div{
 	background-size: cover;
 }
+
+
+
+.babken{
+	border: 1px solid #FF9900;;
+    white-space: -9px;
+    width: 12px;
+    border-radius: 13px;
+	margin: 0 auto;
+	display: inline-block;
+}
