@@ -13,6 +13,15 @@
 	align-items: center;
 	justify-content: center;
 }
+.shape svg{
+	width: 90px;
+    border: 1px solid #fff;
+    padding: 15px;
+    border-radius: 5px;
+}
+.shape svg path{
+	fill:#fff;
+}
 .ourMenu > div:hover .shape{
 	transform: scale(1);
 }
