@@ -8,6 +8,7 @@ import { compose } from "redux";
 import {addFavToFireStore} from "../../../actions/addToFavAction";
 import StarRatingComponent from 'react-star-rating-component';
 
+
 class Dish extends Component {
    
    

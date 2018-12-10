@@ -10,16 +10,13 @@ import { compose } from 'redux';
 
 
 class Admin extends Component {
-
     deleteAdmin = () => {
-
-        this.props.deleteAdmin({ id: this.props.admin });
+        if (window.confirm("Are you sure")) {
+            this.props.deleteAdmin({ id: this.props.admin });
+        } 
     }
-
-
     render() {
         let info = this.props.admin;
-        console.log(info)
         let bgcolor = this.props.idd % 2 === 0 ? " #FFF2DF" : '#fff';
         return (
             <div >
@@ -28,7 +25,7 @@ class Admin extends Component {
                     <li>{this.props.idd}</li>
                     <li>{info.name}</li>
                     <li>{info.lastname}</li>
-                    <li>{info.mail}</li>
+                    <li>{info.email}</li>
                     <li>Admin</li>
                     <li onClick={this.deleteAdmin} style={{ 'width': '80px' }}>
                         <i className="far fa-trash-alt"></i>

@@ -9,7 +9,6 @@ class OrderInfo extends Component {
             <div>
                 {
                     this.props.info && this.props.info.map((dishInfo)=>{
-                           
                         return(
                             dishInfo
                         )
