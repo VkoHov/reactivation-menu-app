@@ -56,7 +56,7 @@ class DishList extends Component {
                     }
                 }
 
-                for (let j = 0, i = this.state.pageNumber * 10 - 11; j < 9; j++ , i++) {
+                for (let j = 0, i = this.state.pageNumber * 10 - 10; j < 9; j++ , i++) {
                     if (allDish[i] !== undefined) {
                         showDish[j] = allDish[i];
                     } else {
@@ -91,7 +91,7 @@ class DishList extends Component {
 
     initialDish = (arg) => {
         let showDish = [];
-        for (let j = 0, i = +arg.target.id * 10 - 11; j < 9; j++ , i++) {
+        for (let j = 0, i = +arg.target.id * 10 - 10; j < 9; j++ , i++) {
             if (this.state.allDish[i] !== undefined) {
                 showDish[j] = this.state.allDish[i];
             } else {
