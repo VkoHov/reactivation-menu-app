@@ -10,22 +10,11 @@ import { compose } from 'redux';
 
 
 class Admin extends Component {
-
-
-
-
-
     deleteAdmin = () => {
-
-        
         if (window.confirm("Are you sure")) {
             this.props.deleteAdmin({ id: this.props.admin });
         } 
     }
-
-
-
-
     render() {
         let info = this.props.admin;
         let bgcolor = this.props.idd % 2 === 0 ? " #FFF2DF" : '#fff';
