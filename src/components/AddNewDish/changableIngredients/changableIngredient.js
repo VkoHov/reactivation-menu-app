@@ -28,7 +28,7 @@ class ChangableIngredient extends Component {
             <div className="chanIng">
                 {this.state.ingredients.map((inp,index)  => {
                        return (<p key={index}>
-                            <input className ="and"
+                            <input className ="and and1"
                                 inpid = {index}
                                 id = {"changeIng " + index}
                                 type = "text"
