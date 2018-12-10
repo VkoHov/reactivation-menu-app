@@ -15,12 +15,7 @@ class Dish extends Component {
             this.props.deleteDish({ id: this.props.dish });
         } 
     }
-<<<<<<< HEAD
-   
-    
-=======
 
->>>>>>> f0a0a715ee172cef8a6d0f8f8ca61bb8145b74ad
     render() {
         let info= this.props.dish;
         let bgcolor = this.props.idd % 2 ===  0 ? " #FFF2DF": '#fff'  ;
