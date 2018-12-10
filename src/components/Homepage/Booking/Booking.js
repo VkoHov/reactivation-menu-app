@@ -247,7 +247,7 @@ class Booking extends Component {
 											className={this.state.phone}
 											id="phone"
 											type="text"
-											placeholder='(+374) - -   - - -    - - - '
+											placeholder='+374  - -   - - -    - - - '
 											onChange={this.handleChange}
 										/>
 									</p>

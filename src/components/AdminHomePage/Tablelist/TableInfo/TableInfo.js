@@ -5,8 +5,12 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { clearReserveOrOrder } from '../../../../actions/clearReserveOrOrder';
 import { changeTableStatus } from '../../../../actions/changeTableStatusAction';
+import ReserveInfo from '../../../ReserInfo/ReserveInfo';
+import OrderInfo from '../../../OrderInfo/OrderInfo';
+
 
 import './TableInfo.css';
+
 
 
 class TableInfo extends Component {
@@ -24,125 +28,106 @@ class TableInfo extends Component {
 
     }
 
-    componentDidMount() {
-        this.changeStatus();
-
-    }
 
     changeStatus = () => {
-        // let index = this.props.match.params && +this.props.match.params.tableId;
-        // if (this.props.firestoreInfo && new Date(this.props.firestoreInfo[index - 1].reservInfo[0].date).getMilliseconds() === 0) {
-        //     this.props.changeTableStatus({id: index, status: 'reserve'});
-        //     console.log('exav');
-        // } else {
-        //     this.props.changeTableStatus({id: index, status: 'free'});
-        // }
+        let index = this.props.match.params && +this.props.match.params.tableId;
+        for (let i = 0; i < this.props.firestoreInfo[index - 1].reservDate.length; i++) {
 
+            if (this.props.firestoreInfo && (new Date(this.props.firestoreInfo[index - 1].reservDate[i]).toDateString()) === (new Date().toDateString())) {
+                this.props.changeTableStatus({ id: index, status: 'reserve' });
+                this.setState({
+                    empty: i,
+                })
+                return;
+            }
+        }
     }
 
 
     render() {
-
-        console.log('as78954', this.props);
-        console.log(this.state, 'statena');
-
-
         let index = this.props.match.params && +this.props.match.params.tableId;
         let valuOfOrderskeys = [];
         let valuOfOrdersValue = [];
         if (this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status === 'reserve') {
-            valuOfOrderskeys = this.props.firestoreInfo && Object.keys(this.props.firestoreInfo[index - 1].reservInfo[0]);
-            valuOfOrdersValue = this.props.firestoreInfo && Object.values(this.props.firestoreInfo[index - 1].reservInfo[0]);
-        } else if (this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status === 'busy') {
+            valuOfOrdersValue = Object.values(this.props.firestoreInfo && this.props.firestoreInfo[index - 1].reservInfo[this.state.empty]);
+            valuOfOrderskeys = Object.keys(this.props.firestoreInfo && this.props.firestoreInfo[index - 1].reservInfo[this.state.empty]);
+        }
+
+
+        if (this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status === 'busy') {
             valuOfOrderskeys = ['title', 'ingridient', 'count', 'price'];
-            console.log('444gexam',this.props.firestoreInfo &&this.props.firestoreInfo  )
-            this.props.firestoreInfo && this.props.firestoreInfo[index-1].orders.map(order => {
-           console.log( order,'smbo' )
+            this.props.firestoreInfo && this.props.firestoreInfo[index - 1].orders.map(order => {
                 for (let key in order) {
-                    console.log('order[key]:::',order[key],'key::::',key);
                     for (let kay in order[key]) {
-                        console.log('kay::::',kay)
-                            if ((kay === 'title'
-                            || kay === 'price'
-                            || kay === 'count'
-                            || kay === 'ingredient')
-                            && valuOfOrdersValue.push(order[key][kay]));
+                        if (kay === 'title' || kay === 'price' || kay === 'count' | kay === 'ingredient') {
+                            valuOfOrdersValue.push(order[key][kay])
+                        }
                     }
                 }
             })
         }
 
+        let orderInfon = [];
+        let initialInfo = [];
+        for (let i = 0, j = 0; i < valuOfOrdersValue.length; i++ , j++) {
+            initialInfo.push(valuOfOrdersValue[i]);
+            if (j === 2) {
+                orderInfon.push(initialInfo);
+                initialInfo = [];
+                j = -1;
+            }
+        }
 
-
-        console.log(valuOfOrdersValue&&valuOfOrdersValue,'grxam')
         return (
             <div>
                 <div>
                     <h1>{this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status} </h1>
                 </div>
-                <div className={'info'}>
-                    {
+                <div>
+                    <div > {
                         valuOfOrderskeys && valuOfOrderskeys.map((key, i) => {
                             return (
-                                <div key={i + '0ll'}>
+                                <div key={i + '0ll'} className={'gago'}>
                                     {
                                         key
                                     }
                                 </div>
                             )
                         })
-                    }
-                </div>
-                <div className={'info'}>
-                    {
-                        valuOfOrdersValue && valuOfOrdersValue.map((val, i) => {
+                    }</div>
+
+                    <div className={'gago'}> {
+                        this.props.firestoreInfo &&
+                        this.props.firestoreInfo[index - 1].status === 'busy' &&
+                        orderInfon.map((info, inndex) => {
                             return (
-                                <div key={i + '0l'}>
-                                    {val}
-                                </div>
-                            );
+                                < OrderInfo key={inndex} info={info} />
+                            )
                         })
                     }
+                        {
+                            this.props.firestoreInfo &&
+                            this.props.firestoreInfo[index - 1].status === 'reserve'&&
+                            valuOfOrdersValue.map( (valu,indeex)=>{
+                                return(
+                                    <ReserveInfo key={`${indeex}+`} info={valu} />
+                                )
+                            } )
+                        }
+                    </div>
+                </div>
+                <div >
+                    <p className="addNewD">
+                        <button id={index} onClick={(table) => this.clearReserveOrOrder(table)}>
+                            clear reserv/order
+                                     </button>
+                    </p>
                 </div>
                 <div>
-
-                    <section className="menuList paddingTop">
-                        <div className="container">
-                            <div>
-                                <h1>{this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status} </h1>
-                            </div>
-
-
-                            <div className="">
-                                <ul className="tableInfo">
-                                    <li><span>{valuOfOrderskeys[0]}:</span><p>{valuOfOrdersValue[0]}</p></li>
-                                    <li><span>{valuOfOrderskeys[7]}:</span><p>{valuOfOrdersValue[7]}</p></li>
-                                    <li><span>{valuOfOrderskeys[1]}:</span><p>{valuOfOrdersValue[1]}</p></li>
-                                    <li><span> {valuOfOrderskeys[4]}:</span><p>{valuOfOrdersValue[4]}</p></li>
-                                    <li><span>{valuOfOrderskeys[2]}:</span><p>{valuOfOrdersValue[2]}</p></li>
-                                    <li><span>{valuOfOrderskeys[5]}:</span><p>{valuOfOrdersValue[5]}</p></li>
-                                </ul>
-                            </div>
-
-                            <div >
-                                <p className="addNewD">
-                                    <button id={index} onClick={(table) => this.clearReserveOrOrder(table)}>
-                                        clear reserv/order
-                                     </button>
-                                </p>
-                            </div>
-
-
-                        </div>
-
-                        <div>
-                            <Link to={'/admin/'}> back to homePage </Link>
-                        </div>
-
-                    </section>
+                    <Link to={'/admin/'}> back to homePage </Link>
                 </div>
+                <div onClick={() => { this.changeStatus() }}> check todays reserv </div>
             </div>
-
         )
     }
 }
@@ -167,8 +152,4 @@ export default compose(
         { collection: 'tables' }
     ])
 )(TableInfo);
-
-
-
-
 
