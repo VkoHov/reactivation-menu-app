@@ -13,7 +13,6 @@ import {Link} from "react-router-dom";
 
 
 class DishDetails extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -36,7 +35,8 @@ class DishDetails extends React.Component {
                 mouseOnWidth:
                     e.clientX -
                     e.currentTarget.offsetLeft -
-                    200 -
+                    200 +
+                    20 -
                     ((e.clientX - e.currentTarget.offsetLeft - 200) % 20)
             });
         }
@@ -172,7 +172,6 @@ class DishDetails extends React.Component {
             url: dishUrl,
         };
 
-
         let donenes = [];
         if (dish && dish[0].doneness) {
             donenes = dish[0].doneness;
@@ -219,7 +218,10 @@ class DishDetails extends React.Component {
                                 this.mouseLeaving();
                             }}
                         >
-                           
+                            <div>
+                                Rating:
+                                {rates ? Math.round(parseFloat(rates / 20) * 100) / 100 : null}
+                            </div>
                             <div className="rating" style={{width: width}}/>
                             <div className="star-container">
                                 <img className="star" alt="star" src={this.state.starUrl}/>
@@ -267,7 +269,6 @@ class DishDetails extends React.Component {
                             </div>
                         )}
                         <h5>Doneness</h5>
-
 
                         {dish[0].doneness.length !== 0 && (
                             <div>
