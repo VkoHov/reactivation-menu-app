@@ -70,7 +70,7 @@ class Registration extends Component {
                         <h4>create <span>accout</span></h4>
                         <form onSubmit={this.handleSubmit}>
                             {this.state.invalidInpErr && <div> Invalid input </div>}
-                            {this.props.registerError && <div>{this.props.registerError}</div>}
+                            {this.props.registerError && <div  className="regError">{this.props.registerError}</div>}
                             <div>
                                 <label htmlFor="name">Name</label>
                                 <input type="text" id='name' onChange={this.handleChange}/>
@@ -93,7 +93,7 @@ class Registration extends Component {
                                 <input type="password" id='passwordComfirm' onChange={this.handleChange}/>
                             </div>
                             <div className="orLogIn">
-                                Or<Link to="/login"> LOG IN</Link>
+                                Or  <Link to="/login"> LOG IN</Link>
                             </div>
                             <div className="">
                                 <button onClick={this.handleClick}>register</button>

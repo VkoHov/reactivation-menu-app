@@ -76,10 +76,13 @@ class TableInfo extends Component {
 
         console.log(valuOfOrdersValue&&valuOfOrdersValue,'grxam')
         return (
-            <div>
+           
+            <section className="menuList paddingTop">
+            <div className="container">
                 <div>
                     <h1>{this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status} </h1>
                 </div>
+                <div className="tableInfo">
                 <div className={'info'}>
                     {
                         valuOfOrderskeys && valuOfOrderskeys.map((key, i) => {
@@ -104,9 +107,10 @@ class TableInfo extends Component {
                         })
                     }
                 </div>
+                </div>
                 <div>
 
-                    <section className="menuList paddingTop">
+                    {/* <section className="menuList paddingTop">
                         <div className="container">
                             <div>
                                 <h1>{this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status} </h1>
@@ -139,9 +143,10 @@ class TableInfo extends Component {
                             <Link to={'/admin/'}> back to homePage </Link>
                         </div>
 
-                    </section>
+                    </section> */}
                 </div>
             </div>
+            </section>
 
         )
     }
