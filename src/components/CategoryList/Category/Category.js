@@ -10,7 +10,7 @@ class Category extends Component {
 
         return (
             <div className='category-tab' onClick={()=>{
-                console.log(this.props.category)
+               
                 this.props.changeCategoryName(this.props.category)
             }}>
                 {
