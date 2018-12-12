@@ -15,9 +15,6 @@ class CategoryList extends Component {
         }
       }
 
-gago=(e)=>{
-    console.log(e.target,'target');
-}
 
 
     render() {
@@ -35,9 +32,11 @@ gago=(e)=>{
                             categoryss &&
                             categoryss[0].map((category, index) => {
                                 return (
+
                                     <li  key={index} >
                                         <Category  key={index} category={category}  />
                                     </li>
+
                                 );
                             })
                      }

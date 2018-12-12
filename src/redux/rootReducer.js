@@ -19,5 +19,5 @@ export default combineReducers({
     listing: listingReducer,
     navbar: navbarReducer,
     search: searchReducer,
-    shoppingCart:shoppingCartCount,
+    shoppingCart: shoppingCartCount,
 })

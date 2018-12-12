@@ -29,12 +29,13 @@ footer{
 .foot a {
 	color:#FFF;
 }
+.foot a span {
+	margin-right: 10px;	
+}
 
 .foot span {
 	color:#FF9900;
-	font-size: 24px;
 	flex-basis: 25px;
-	margin-right: 10px;
 }
 .foot h4 {
 	color:#FF9900;

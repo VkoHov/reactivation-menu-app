@@ -47,7 +47,7 @@ class Footer extends Component {
                					</ul>
                				</div>	
                				<div>
-               					<h4>followus</h4>
+               					<h4>follow us</h4>
                					<ul>
                						<li>
                							<Link to="">

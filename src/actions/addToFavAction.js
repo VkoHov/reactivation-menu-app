@@ -20,6 +20,5 @@ export const removeFromFirestore = (info) => {
         }).then(() => {
             dispatch({type: 'REMOVE_FROM_FAVORITES', info}, console.log("removed"));
         })
-
     }
 };

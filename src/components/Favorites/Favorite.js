@@ -17,7 +17,6 @@ class Favorites extends Component {
         remove: false,
     };
 
-
     SaveDataToSessionStorage = info => {
         let infoArr = JSON.parse(sessionStorage.getItem("dishInfo"));
 
@@ -31,16 +30,16 @@ class Favorites extends Component {
             sessionStorage.setItem("dishInfo", JSON.stringify([info]));
         }
     };
+
     removeToggle =()=>{
         
         this.setState({
             remove: !this.state.remove,
         })
     };
-   
 
     render() {
-        console.log('renderit');
+
         let userId = this.props.auth.uid;
 
         let favorites =
@@ -48,7 +47,7 @@ class Favorites extends Component {
                 this.props.firestoreInfo[userId] &&
                 this.props.firestoreInfo[userId].favorites) ||
             null;
-
+        
         if(favorites && favorites.length !== 0 && this.props.auth.uid ){
             return (
 

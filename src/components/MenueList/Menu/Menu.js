@@ -32,7 +32,6 @@ class Dish extends Component {
                         <i className="far fa-trash-alt"></i>
                     </li>
 
-                    {/* <Link to="/deleteMenu"><i className="far fa-trash-alt"></i></Link> */}
                 </ul>
                 
             </div>

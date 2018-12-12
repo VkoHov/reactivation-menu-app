@@ -126,7 +126,8 @@ class DishList extends Component {
                     </div>
                 </div>
 
-                <div >
+                <div className="pagination">
+
                     {
                         this.state.countOfDishPages && this.state.countOfDishPages.map((page, index) => {
                             return (
