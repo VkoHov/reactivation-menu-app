@@ -10,6 +10,12 @@ import {Link} from 'react-router-dom';
 class Dish extends Component {
 
 
+    deleteDish = () => {
+        if (window.confirm("Are you sure")) {
+            this.props.deleteDish({ id: this.props.dish });
+        } 
+    }
+
     render() {
         let info= this.props.dish;
         let bgcolor = this.props.idd % 2 ===  0 ? " #FFF2DF": '#fff'  ;

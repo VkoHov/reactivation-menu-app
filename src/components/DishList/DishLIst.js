@@ -31,7 +31,7 @@ class DishList extends Component {
 
     splitPages = (dishis) => {
         let countOfDishPages = [];
-        let countOfShowDish = 10;
+        let countOfShowDish = 9;
         let numberOfAllDish = dishis;
         let countPages = Math.ceil(numberOfAllDish.length / countOfShowDish);
         for (let i = 1; i <= countPages; i++) {
@@ -56,7 +56,7 @@ class DishList extends Component {
                     }
                 }
 
-                for (let j = 0, i = this.state.pageNumber * 10 - 10; j < 10; j++ , i++) {
+                for (let j = 0, i = this.state.pageNumber * 10 - 10; j < 9; j++ , i++) {
                     if (allDish[i] !== undefined) {
                         showDish[j] = allDish[i];
                     } else {
@@ -66,13 +66,13 @@ class DishList extends Component {
 
             } else {
                 allDish = dishes;
-                for (let i = 0; i < 10; i++) {
+                for (let i = 0; i < 9; i++) {
                     if (allDish[i] !== undefined) {
                         showDish[i] = allDish[i];
                     } else {
                         break;
                     }
-                }
+                } 
             }
 
             let pages = this.splitPages(allDish);
@@ -91,7 +91,7 @@ class DishList extends Component {
 
     initialDish = (arg) => {
         let showDish = [];
-        for (let j = 0, i = +arg.target.id * 10 - 10; j < 10; j++ , i++) {
+        for (let j = 0, i = +arg.target.id * 10 - 10; j < 9; j++ , i++) {
             if (this.state.allDish[i] !== undefined) {
                 showDish[j] = this.state.allDish[i];
             } else {
@@ -125,10 +125,11 @@ class DishList extends Component {
                 </div>
 
                 <div className="pagination">
+
                     {
                         this.state.countOfDishPages && this.state.countOfDishPages.map((page, index) => {
                             return (
-                                <div id={page} onClick={(arg) => this.initialDish(arg)} key={index}>{page} </div>
+                                <div  className={'babken'} id={page} onClick={(arg) => this.initialDish(arg)} key={index}>{page} </div>
                             )
                         })
                     }

@@ -21,8 +21,6 @@ class Booking extends Component {
 		message: null,
 		flag: true,
 		className: null,
-		DefoultTime:'--:-- --',
-		Name:'name',
 	}
 
 	handleChange = (e) => {
@@ -39,7 +37,6 @@ class Booking extends Component {
 	}
 
 	findTable = (e) => {
-		console.log(e.parentNode,'currentTurget')
 		switch (true) {
 			case (this.state.people === null):
 				this.setState({
@@ -247,7 +244,7 @@ class Booking extends Component {
 											className={this.state.phone}
 											id="phone"
 											type="text"
-											placeholder='(+374) - -   - - -    - - - '
+											placeholder='+374  - -   - - -    - - - '
 											onChange={this.handleChange}
 										/>
 									</p>
