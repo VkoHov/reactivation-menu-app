@@ -17,7 +17,6 @@ class Favorites extends Component {
         remove: false,
     };
 
-
     SaveDataToSessionStorage = info => {
         let infoArr = JSON.parse(sessionStorage.getItem("dishInfo"));
 
@@ -31,13 +30,16 @@ class Favorites extends Component {
             sessionStorage.setItem("dishInfo", JSON.stringify([info]));
         }
     };
+
     removeToggle =()=>{
+        
         this.setState({
             remove: !this.state.remove,
         })
-    }
+    };
 
     render() {
+
         let userId = this.props.auth.uid;
 
         let favorites =
@@ -45,7 +47,7 @@ class Favorites extends Component {
                 this.props.firestoreInfo[userId] &&
                 this.props.firestoreInfo[userId].favorites) ||
             null;
-
+        
         if(favorites && favorites.length !== 0 && this.props.auth.uid ){
             return (
 
@@ -70,53 +72,6 @@ class Favorites extends Component {
                                 </p>
                                 <p>
                                     {dish.favoriteDish
-                                        // =======
-
-                                        //     return (
-                                        //       (!this.props.auth.uid && <Redirect to="/login" />) || (
-                                        //         <div className="shoppingCart">
-                                        //           <div className=" shoppingBaner">
-                                        //             <div className='  shoppigShape'></div>
-                                        //           </div>
-
-                                        //           <div className="container">
-                                        //             <div className="source">
-                                        //               <p>
-                                        //                 <Link to="/">Home</Link>
-                                        //                 <span>/</span>
-                                        //                 my favorite
-                                        //                 </p>
-                                        //             </div>
-                                        //             <h2>my <span>favorite</span></h2>
-
-                                        //           </div>
-
-                                        //           {favorites &&
-                                        //             favorites.map((dish, index) => {
-                                        //               let info = {
-                                        //                 count: dish.count,
-                                        //                 description: dish.description,
-                                        //                 title: dish.title,
-                                        //                 url: dish.url,
-                                        //                 // id: dish.id,
-                                        //                 price: dish.price,
-                                        //                 doneness: dish.favdoneness,
-                                        //                 ingredient: dish.favIngredient || null
-                                        //               };
-
-                                        //               return (
-
-                                        //                 <section className="shopingList favorites" key={index}>
-                                        //                   <div className="container">
-                                        //                     <div className="shopTable">
-                                        //                       <div className="shopingDish">
-                                        //                         <div>
-                                        //                           <img src={info.url} alt={info.title} />
-                                        //                         </div>
-                                        //                         <div>
-                                        //                           <h3>{dish.favoriteDish ? dish.favoriteDish.title : dish.title}</h3>
-                                        //                           <p>  {dish.favoriteDish
-                                        // >>>>>>> develop
                                         ? dish.favoriteDish.description
                                         : dish.description}</p>
 
@@ -146,56 +101,7 @@ class Favorites extends Component {
 
 
 
-                            <button
-                        className="addtoCart"
-// =======
-//         if(favorites && favorites.length !== 0 && this.props.auth.uid ){
-//           return (
-
-//               <div>
-//                 <div>MY FAVORITES</div>
-//                 {favorites &&
-//                   favorites.map((dish, index) => {
-//                     let info = {
-//                       count: dish.count,
-//                       description: dish.description,
-//                       title: dish.title,
-//                       url: dish.url,
-//                       // id: dish.id,
-//                       price: dish.price,
-//                       doneness: dish.favdoneness,
-//                       ingredient: dish.favIngredient || null
-//                     };
-
-//                     return (
-//                       <div key={index}>
-//                         <p>
-//                           {dish.favoriteDish ? dish.favoriteDish.title : dish.title}
-//                         </p>
-//                         <p>
-//                           {dish.favoriteDish
-//                             ? dish.favoriteDish.description
-//                             : dish.description}
-//                         </p>
-//                         <p>
-//                           {" "}
-//                           {dish.favoriteDish &&
-//                           dish.favoriteDish.doneness.length !== 0
-//                             ? dish.favoriteDish.doneness
-//                             : dish.favdoneness}
-//                         </p>
-//                         <p>
-//                           {" "}
-//                           {dish.favoriteDish &&
-//                           dish.favoriteDish.ingredients.length !== 0
-//                             ? "With" + dish.favoriteDish.ingredients
-//                             : dish.favIngredient}
-//                         </p>
-//                         <p>Price: {info.price}</p>
-//                         <button
-// >>>>>>> develop
-
-                        onClick={() => {
+                            <button className="addtoCart"  onClick={() => {
 
                             let dishes = JSON.parse(
                                 sessionStorage.getItem("dishInfo")
@@ -251,7 +157,7 @@ class Favorites extends Component {
 
                         </button>
                         <button onClick = {()=> {
-                            this.removeToggle()
+                            
                             let favorites = this.props.firestoreInfo[userId].favorites;
                             let filteredFavs = favorites.filter((favorite)=>{
                                 return favorite.title !== info.title
@@ -260,7 +166,7 @@ class Favorites extends Component {
                                 filteredFavs,
                                 id: userId,
                             });
-                            this.removeToggle()
+                            this.removeToggle();
                         }}>Remove</button>
                         </div>
                     );

@@ -145,7 +145,7 @@ class ShoppingCart extends Component {
                                     <p>Total Price <span>AMD {totalPirce + 500}</span></p>
                                     {this.state.popUpIsOpen && <div onClick={(e) => {
                                         e.stopPropagation()
-                                    }}><Status dish={dishInfo}/></div>}
+                                    }}><Status dish={dishInfo} totalPirce = {totalPirce}/></div>}
                                 </div>
                             </div>
                             <p className="orderButton">
