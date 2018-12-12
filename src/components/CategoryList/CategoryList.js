@@ -15,6 +15,7 @@ class CategoryList extends Component {
         }
       }
 
+
     render() {
         let categoryss = this.props.categories && Object.values(this.props.categories[0]);
         categoryss && categoryss.shift();
@@ -30,9 +31,9 @@ class CategoryList extends Component {
                             categoryss &&
                             categoryss[0].map((category, index) => {
                                 return (
-                                    <li  key={index} >
+                                   
                                         <Category  key={index} category={category} />
-                                    </li>
+                              
                                 );
                             })
                      }
