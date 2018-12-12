@@ -14,18 +14,19 @@ import './TableInfo.css';
 
 
 class TableInfo extends Component {
+
+
     state = {
         empty: 0,
     }
 
+
+
     clearReserveOrOrder = (table) => {
-
-        this.props.clearReserveOrOrder({ id: table.target.id });
-
         this.setState({
-            empty: 1,
-        })
-
+            empty: ++this.state.empty,
+        });
+        this.props.clearReserveOrOrder({ id: table.target.id });
     }
 
 
@@ -48,6 +49,7 @@ class TableInfo extends Component {
         let index = this.props.match.params && +this.props.match.params.tableId;
         let valuOfOrderskeys = [];
         let valuOfOrdersValue = [];
+        let totalPrice = [];
         if (this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status === 'reserve') {
             valuOfOrdersValue = Object.values(this.props.firestoreInfo && this.props.firestoreInfo[index - 1].reservInfo[this.state.empty]);
             valuOfOrderskeys = Object.keys(this.props.firestoreInfo && this.props.firestoreInfo[index - 1].reservInfo[this.state.empty]);
@@ -60,13 +62,13 @@ class TableInfo extends Component {
                 for (let key in order) {
                     for (let kay in order[key]) {
                         if (kay === 'title' || kay === 'price' || kay === 'count' | kay === 'ingredient') {
-                            valuOfOrdersValue.push(order[key][kay])
+                            valuOfOrdersValue.push(order[key][kay]);
                         }
                     }
                 }
+                valuOfOrdersValue.push(order.totalPrice);
             })
         }
-
         let orderInfon = [];
         let initialInfo = [];
         for (let i = 0, j = 0; i < valuOfOrdersValue.length; i++ , j++) {
@@ -77,6 +79,9 @@ class TableInfo extends Component {
                 j = -1;
             }
         }
+
+
+
 
         return (
             <div>
@@ -101,18 +106,18 @@ class TableInfo extends Component {
                         this.props.firestoreInfo[index - 1].status === 'busy' &&
                         orderInfon.map((info, inndex) => {
                             return (
-                                < OrderInfo key={inndex} info={info} />
+                                < OrderInfo key={inndex} info={info} totolPrice={this.totalPrice} />
                             )
                         })
                     }
                         {
                             this.props.firestoreInfo &&
-                            this.props.firestoreInfo[index - 1].status === 'reserve'&&
-                            valuOfOrdersValue.map( (valu,indeex)=>{
-                                return(
+                            this.props.firestoreInfo[index - 1].status === 'reserve' &&
+                            valuOfOrdersValue.map((valu, indeex) => {
+                                return (
                                     <ReserveInfo key={`${indeex}+`} info={valu} />
                                 )
-                            } )
+                            })
                         }
                     </div>
                 </div>

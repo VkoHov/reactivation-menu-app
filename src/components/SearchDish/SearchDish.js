@@ -29,7 +29,6 @@ class SearchDish extends Component {
                     value={this.state.inputVal}
                     onChange={this.hendleChange.bind(this)}
                     onFocus={e => this.searchPopUp(e)}
-
                     placeholder="Search Dish"
                 />
                 {this.props.isOpen && <div className='searchBox'>

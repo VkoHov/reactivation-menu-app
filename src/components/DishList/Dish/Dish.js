@@ -29,7 +29,6 @@ class Dish extends Component {
         })
     };
     addToFavorites =() => {
-        console.log("titlena", this.props.favorite);
           this.props.favorite.uid && this.props.addFavToFireStore({
             id: this.props.favorite.uid,
             favoriteDish: this.props.dish,

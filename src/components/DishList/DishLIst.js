@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import Dish from './Dish/Dish';
+
 import './DishList.css';
 
 
@@ -56,7 +57,7 @@ class DishList extends Component {
                     }
                 }
 
-                for (let j = 0, i = this.state.pageNumber * 10 - 10; j < 9; j++ , i++) {
+                for (let j = 0, i = (this.state.pageNumber * 9 - 9); j < 9; j++ , i++) {
                     if (allDish[i] !== undefined) {
                         showDish[j] = allDish[i];
                     } else {
@@ -72,7 +73,7 @@ class DishList extends Component {
                     } else {
                         break;
                     }
-                } 
+                }
             }
 
             let pages = this.splitPages(allDish);
@@ -91,7 +92,7 @@ class DishList extends Component {
 
     initialDish = (arg) => {
         let showDish = [];
-        for (let j = 0, i = +arg.target.id * 10 - 10; j < 9; j++ , i++) {
+        for (let j = 0, i = +arg.target.id * 9 - 9; j < 9; j++ , i++) {
             if (this.state.allDish[i] !== undefined) {
                 showDish[j] = this.state.allDish[i];
             } else {
@@ -104,6 +105,7 @@ class DishList extends Component {
         })
     }
 
+ 
     render() {
         return (
             <section className="dishList">
@@ -119,7 +121,7 @@ class DishList extends Component {
                     <div className='dishes'>
                         {
                             this.state.showDish &&
-                            this.state.showDish.map((dish, index) => <Dish key={`${index}00`} dish={dish} />)
+                            this.state.showDish.map((dish, index) => <Dish key={`${index}00`} dish={dish}  />)
                         }
                     </div>
                 </div>
@@ -128,7 +130,7 @@ class DishList extends Component {
                     {
                         this.state.countOfDishPages && this.state.countOfDishPages.map((page, index) => {
                             return (
-                                <div  className={'babken'} id={page} onClick={(arg) => this.initialDish(arg)} key={index}>{page} </div>
+                                <div className={'babken'} id={page} onClick={(arg) => this.initialDish(arg)} key={index}>{page} </div>
                             )
                         })
                     }

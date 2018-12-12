@@ -250,7 +250,7 @@ class Booking extends Component {
 									</p>
 								</div>
 							</div>
-							<p id={'garniki2444'}>
+							<p>
 								<button type="reset"
 									onClick={(e)=>{this.findTable(e)}}>find a table</button>
 							</p>

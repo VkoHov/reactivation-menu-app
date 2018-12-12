@@ -15,6 +15,11 @@ class CategoryList extends Component {
         }
       }
 
+gago=(e)=>{
+    console.log(e.target,'target');
+}
+
+
     render() {
         let categoryss = this.props.categories && Object.values(this.props.categories[0]);
         categoryss && categoryss.shift();
@@ -31,7 +36,7 @@ class CategoryList extends Component {
                             categoryss[0].map((category, index) => {
                                 return (
                                     <li  key={index} >
-                                        <Category  key={index} category={category} />
+                                        <Category  key={index} category={category}  onClick={(e)=>{this.gago(e)}} />
                                     </li>
                                 );
                             })
