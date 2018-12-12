@@ -36,7 +36,7 @@ gago=(e)=>{
                             categoryss[0].map((category, index) => {
                                 return (
                                     <li  key={index} >
-                                        <Category  key={index} category={category}  onClick={(e)=>{this.gago(e)}} />
+                                        <Category  key={index} category={category}  />
                                     </li>
                                 );
                             })

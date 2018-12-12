@@ -71,7 +71,6 @@ class Dish extends Component {
                     <p className="dishDesc">{this.props.dish.description}</p>
                 </div>
                 {this.state.popUpIsOpen && <div ><DishDetails closePopup={this.showPopUp} dish={this.props}/></div>}
-                {/*{this.state.popUpIsOpen && <div className="overlay" onClick={this.showPopUp}/>}*/}
             </div>
         );
     }
