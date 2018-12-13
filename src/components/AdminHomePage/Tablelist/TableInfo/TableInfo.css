@@ -1,25 +1,67 @@
 .tableInfo {
     display:flex;
     padding:5px 0;
-    justify-content: center;
+    justify-content: space-around;
 }
 .tableInfo>div{
-    flex-basis: 20%;
     text-align: left;
 }
 
-.tableInfo>div:first-of-type{
+.tableInfo>div:nth-of-type(2){
+    flex: 3;
+}
+    .tableInfo>div:first-of-type{
     color:#ff9900;
     text-transform: uppercase;
     font-style: italic;
+    flex:1;
 }
 .tableInfo li p{
     text-align: left;
     color:#707070;
    flex: 5;
-   margin: 0;
+   margin:5px 0;
 }
 .gago{
-display: inline-block;
-margin: 10px 25px;
+    margin: 10px 25px;
+    flex:1;
 
+}
+.tableInf{
+    background: #efefef;
+    padding-top: 1%;
+    width: 52%;
+    margin-top: 2%;
+}
+
+.tableInf h2{
+    color:#ff9900;
+    text-align: center;
+    text-transform: capitalize;
+}
+.tableInf p{
+    color:#707070;
+    margin-top: 0;
+
+}
+.tableInf .addNewD a{
+    text-transform: uppercase;
+    background-color: #ff9900;
+    border: none;
+    outline: none;
+    padding: 12px 1%;
+    width: 14%;
+    margin: 20px 10px 3%;
+    color: #000;
+    font-size: 14px;
+}
+.tableInf .addNewD button {
+    width: 29%;
+}
+.checkReserve{
+    text-align: right;
+    text-decoration: underline;
+    color: #707070;
+    padding: 0 20px 20px 0;
+    text-transform: capitalize;
+}
