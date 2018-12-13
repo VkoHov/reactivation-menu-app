@@ -27,10 +27,13 @@
 .shopingList .shopTable{
     display: flex;
     margin: 15px 0;
-    border:.1px solid rgba(255, 153, 0,.6)
-    
+    border:.1px solid rgba(255, 153, 0,.6);
+    min-height: 11vw;
 }
 
+.shopTable img {
+    height: 100%;
+}
 .shopTable>div>p{
     font-size: 18px;
     text-transform: uppercase; 
@@ -45,7 +48,7 @@
 }
 .shopingDish > div:first-of-type{
     flex: 1.5 ;
-    padding: 24px 20px 0 0;
+    padding:   0  20px 0 0;
 }
 .shopingDish > div:last-of-type{
   flex:3;
@@ -101,7 +104,7 @@ flex-basis: 29%;
 
 
  .subtot p,
-.shopTable .price p{
+.shopTable p.price {
     color:#ff9900;
     font-size: 18px;
 }
@@ -131,7 +134,7 @@ flex-basis: 29%;
     color: #ff9900;
 }
 .emptyCart {
-    padding-top: 20vw;
+    padding: 15vw 0 7vw;
     text-align: center;
     font-size: 2.5vw;
 }

@@ -9,7 +9,9 @@
 }
 
 .favorites .shopingDish >div:nth-of-type(1){
+    flex:0;
     flex-basis:15%;
+    height: 100%;
 }
 .favorites .shopingDish >div:nth-of-type(2){
     flex-basis: 50%;
@@ -20,4 +22,9 @@
 } 
 .favorites .shopingDish h3 {
     margin: 24px 0 10px;
+}
+.shopingDish > div:last-of-type.favAddBlock,
+.favImg{
+    align-self: center;
+    text-align: right;
 }
