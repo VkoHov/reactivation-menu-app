@@ -69,6 +69,9 @@ class Booking extends Component {
 				})
 				break;
 			default:
+			this.setState({
+				phoneValidation: null,
+			})
 				this.checkDate();
 		}
 	}
@@ -85,7 +88,7 @@ class Booking extends Component {
 				this.setState({
 					dateValidation: 'error',
 				})
-				
+
 				return;
 			}else{
 				this.setState({
