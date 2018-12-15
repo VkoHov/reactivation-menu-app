@@ -17,12 +17,7 @@ class Navbar extends Component {
 
     render() {
 
-        // let favorites =
-        //     (this.props.firestoreInfo &&
-        //         this.props.firestoreInfo[userId] &&
-        //         this.props.firestoreInfo[userId].favorites) ||
-        //     null;
-
+      
         let storage = JSON.parse(sessionStorage.getItem("shoppingCartCount"));
         return (
             <header>

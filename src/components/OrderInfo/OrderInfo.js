@@ -30,6 +30,7 @@ class OrderInfo extends Component {
                     </p>
                 </div>
 
+
             </div>
         );
     }

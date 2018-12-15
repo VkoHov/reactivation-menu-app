@@ -144,6 +144,7 @@ class TableInfo extends Component {
                         <Link to={'/admin/'}> back to homePage </Link>
                     </div>
                     <div onClick={() => { this.changeStatus() }}> check todays reserv </div>
+
                 </div>
             </section>
 
