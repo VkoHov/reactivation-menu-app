@@ -3,6 +3,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,.7);
+    overflow: auto;
     top: 0;
     left: 0;
     z-index: 1000;
@@ -42,7 +43,7 @@
   }
   .pop-Up-inner h4{
     font-size: 24px;
-    margin: 10px 0;
+    margin: 14% 0 10px;
     font-weight: 400;
     text-transform:  uppercase;
 }
@@ -143,11 +144,7 @@
     z-index: 100;
 }
 .pop-Up-inner{
-    position: absolute;
-    left: 15%;
-    right: 15%;
-    top: 15%;
-    bottom: 15%;
+    overflow: auto;
     margin: auto;
     background: white;
     z-index: 1000;
@@ -180,4 +177,3 @@
     height: 40px;
     width:40px;
 }
-
