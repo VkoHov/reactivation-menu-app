@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter, Redirect ,Link} from 'react-router-dom';
 import { compose } from 'redux';
 import { firestoreConnect } from "react-redux-firebase";
+import { AdminRegistration } from '../../actions/AdminRegistrationAction'
 import './AdminRegistration.css';
 
 
@@ -25,6 +26,8 @@ class Registration extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
     };
+
+
     handleClick = () => {
         let { name, lastname, email, password, passwordComfirm } = this.state;
         if (password === passwordComfirm && password.length >= 6) {
@@ -45,6 +48,13 @@ class Registration extends Component {
                     password: password,
                     collection: 'administrators',
                 });
+
+                 this.props.AdminRegistration({
+                    name: name,
+                    lastname: lastname,
+                    email: email,
+                    password: password,
+                });
                 signup.then(() => this.props.history.push('/admin'));
             } else {
                 this.setState({
@@ -57,10 +67,11 @@ class Registration extends Component {
             })
         }
 
+
+
     };
 
     render() {
-        console.log(this.props.admins)
         if (!this.props.auth.uid) return <Redirect to="/login" />;
         return (
 
@@ -125,6 +136,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         SignUp: (newUser) => dispatch(SignUp(newUser)),
+        AdminRegistration: (newAdmin) => dispatch(AdminRegistration(newAdmin)),
     }
 };
 
@@ -132,4 +144,4 @@ export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([{ collection: 'administrators' }]),
     withRouter,
-)(Registration);
+)(Registrtion);
