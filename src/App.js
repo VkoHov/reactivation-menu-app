@@ -17,7 +17,6 @@ import MenuList from './components/MenueList/MenuList';
 import Footer from './components/Homepage/Footer/Footer';
 import Favorites from "./components/Favorites/Favorite";
 import AdminRegistration from "./components/AdminRegistration/AdminRegistration";
-// import DeleteMenu from "./components/MenueList/DeleteMenu"
 
 
 class App extends Component {
@@ -41,7 +40,6 @@ class App extends Component {
                         <Route path='/listing'  component={Listing} />
                         <Route path='/newDish' component={AddNewDish}/>
                         <Route path='/favorites' component={Favorites}/>
-                        {/* <Route path='/deleteMenu' component={DeleteMenu}/> */}
                         <Route path='/shoppingcart' component = {ShoppingCart}/> */}
                     </Switch>
 
