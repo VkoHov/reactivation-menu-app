@@ -22,19 +22,17 @@ class TableInfo extends Component {
 
         this.props.clearReserveOrOrder({ id: table.target.id });
 
-        this.setState({
-            empty: 1,
-        })
-
     }
 
 
     changeStatus = () => {
-        let index = this.props.match.params && +this.props.match.params.tableId;
-        for (let i = 0; i < this.props.firestoreInfo[index - 1].reservDate.length; i++) {
+        const { match, firestoreInfo, changeTableStatus } = this.props;
+        let index = match.params && +match.params.tableId;
+        for (let i = 0; i < firestoreInfo[index - 1].reservDate.length; i++) {
 
-            if (this.props.firestoreInfo && (new Date(this.props.firestoreInfo[index - 1].reservDate[i]).toDateString()) === (new Date().toDateString())) {
-                this.props.changeTableStatus({ id: index, status: 'reserve' });
+            if (firestoreInfo
+                && (new Date(firestoreInfo[index - 1].reservDate[i]).toDateString()) === (new Date().toDateString())) {
+                changeTableStatus({ id: index, status: 'reserve' });
                 this.setState({
                     empty: i,
                 })
@@ -45,19 +43,26 @@ class TableInfo extends Component {
 
 
     render() {
-        let index = this.props.match.params && +this.props.match.params.tableId;
+        const { match, firestoreInfo } = this.props;
+        const { empty } = this.state
+        let index = match.params && +match.params.tableId;
         let valuOfOrderskeys = [];
         let valuOfOrdersValue = [];
-        let totalPrice=[];
-        if (this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status === 'reserve') {
-            valuOfOrdersValue = Object.values(this.props.firestoreInfo && this.props.firestoreInfo[index - 1].reservInfo[this.state.empty]);
-            valuOfOrderskeys = Object.keys(this.props.firestoreInfo && this.props.firestoreInfo[index - 1].reservInfo[this.state.empty]);
+        let totalPrice = [];
+
+        if (firestoreInfo && firestoreInfo[index - 1].status === 'reserve' && firestoreInfo[index - 1].reservInfo) {
+            valuOfOrdersValue = firestoreInfo[index - 1].status === 'reserve'
+                && Object.values(firestoreInfo
+                    && firestoreInfo[index - 1].reservInfo[empty]);
+            valuOfOrderskeys = firestoreInfo[index - 1].status === 'reserve'
+                && Object.keys(firestoreInfo
+                    && firestoreInfo[index - 1].reservInfo[empty]);
         }
 
 
-        if (this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status === 'busy') {
-            valuOfOrderskeys = ['count', 'ingridient' ,'price', 'title'];
-            this.props.firestoreInfo && this.props.firestoreInfo[index - 1].orders.map(order => {
+        if (firestoreInfo && firestoreInfo[index - 1].status === 'busy') {
+            valuOfOrderskeys = ['count', 'ingridient', 'price', 'title'];
+            firestoreInfo && firestoreInfo[index - 1].orders.map(order => {
                 for (let key in order) {
                     for (let kay in order[key]) {
                         if (kay === 'title' || kay === 'price' || kay === 'count' | kay === 'ingredient') {
@@ -85,60 +90,61 @@ class TableInfo extends Component {
 
 
         return (
-           
-            <section className="menuList paddingTop">
-            <div className="container">
-                <div>
-                    <h1>{this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status} </h1>
-                </div>
-                <div className="tableInfo">
-                <div className={'info'}>
-                    {
-                        valuOfOrderskeys && valuOfOrderskeys.map((key, i) => {
-                            return (
-                                <div key={i + '0ll'} className={'gago'}>
-                                    {
-                                        key
-                                    }
-                                </div>
-                            )
-                        })
-                    }</div>
 
-                    <div className={'gago'}> {
-                        this.props.firestoreInfo && 
-                        this.props.firestoreInfo[index - 1].status === 'busy' &&
-                        orderInfon.map((info, inndex) => {
-                            return (
-                                < OrderInfo key={inndex} info={info}  totalPrice={totalPrice}/>
-                            )
-                        })
-                    }
-                        {
-                            this.props.firestoreInfo &&
-                            this.props.firestoreInfo[index - 1].status === 'reserve'&&
-                            valuOfOrdersValue.map( (valu,indeex)=>{
-                                return(
-                                    <ReserveInfo key={`${indeex}+`} info={valu} />
+            <section className="menuList paddingTop">
+                <div className="container">
+                    <div>
+                        <h1>{firestoreInfo && firestoreInfo[index - 1].status} </h1>
+                    </div>
+                    <div className="tableInfo">
+                        <div className={'info'}>
+                            {
+                                valuOfOrderskeys && valuOfOrderskeys.map((key, i) => {
+                                    return (
+                                        <div key={i + '0ll'} className={'gago'}>
+                                            {
+                                                key
+                                            }
+                                        </div>
+                                    )
+                                })
+                            }</div>
+
+                        <div className={'gago'}> {
+                            firestoreInfo &&
+                            firestoreInfo[index - 1].status === 'busy' &&
+                            orderInfon.map((info, inndex) => {
+                                return (
+                                    < OrderInfo key={inndex} info={info} />
                                 )
-                            } )
-                        }
+                            })}
+                            {firestoreInfo &&
+                                firestoreInfo[index - 1].status === 'busy' && totalPrice.reduce((a, b) => {
+                                    return a + b
+                                })}
+                            {firestoreInfo &&
+                                firestoreInfo[index - 1].status === 'reserve' &&
+                                valuOfOrdersValue.map((valu, indeex) => {
+                                    return (
+                                        <ReserveInfo key={`${indeex}+`} info={valu} />
+                                    )
+                                })}
+                        </div>
                     </div>
                 </div>
-                </div>
                 <div>
-                <div >
-                    <p className="addNewD">
-                        <button id={index} onClick={(table) => this.clearReserveOrOrder(table)}>
-                            clear reserv/order
-                                     </button>
-                    </p>
+                    <div >
+                        <p className="addNewD">
+                            <button id={index} onClick={(table) => this.clearReserveOrOrder(table)}>
+                                clear reserv/order
+                            </button>
+                        </p>
+                    </div>
+                    <div>
+                        <Link to={'/admin/'}> back to homePage </Link>
+                    </div>
+                    <div onClick={() => { this.changeStatus() }}> check todays reserv </div>
                 </div>
-                <div>
-                    <Link to={'/admin/'}> back to homePage </Link>
-                </div>
-                <div onClick={() => { this.changeStatus() }}> check todays reserv </div>
-            </div>
             </section>
 
 
