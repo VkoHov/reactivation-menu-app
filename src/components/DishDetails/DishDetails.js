@@ -218,10 +218,10 @@ class DishDetails extends React.Component {
                                 this.mouseLeaving();
                             }}
                         >
-                            <div>
+                            {/* <div>
                                 Rating:
                                 {rates ? Math.round(parseFloat(rates / 20) * 100) / 100 : null}
-                            </div>
+                            </div> */}
                             <div className="rating" style={{width: width}}/>
                             <div className="star-container">
                                 <img className="star" alt="star" src={this.state.starUrl}/>

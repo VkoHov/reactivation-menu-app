@@ -28,6 +28,11 @@ class ShoppingCart extends Component {
             removed: !this.state.removed
         });
     }
+    removeAll =()=> {
+        sessionStorage.setItem("dishInfo", null);
+        sessionStorage.setItem("shoppingCartCount",JSON.stringify(null));
+        this.props.shoppingCartMinusAction(null);
+    }
 
     updateCount(newCount) {
         this.setState({
@@ -73,7 +78,6 @@ class ShoppingCart extends Component {
 
                             {dishInfo.map((dish, index) => {
                                 totalPirce += dish.count * dish.price;
-
                                 return (
                                     <div className="shopTable" key={index}>
                                         <div className="shopingDish">
@@ -83,9 +87,10 @@ class ShoppingCart extends Component {
                                             <div>
                                                 <h3>{dish.title}</h3>
                                                 <p>{dish.description}</p>
-                                                <p><em>Ingrediens:</em> {dish.ingredient}</p>
-                                                <p><em>Doneness:</em> {dish.doneness}</p>
-                                                <p><em>Rating:</em> {dish.rating}</p>
+                                                {dish.ingredient.length ? <p><em>Ingrediengts:</em> {dish.ingredient}</p>: null}
+                                                {dish.doneness? <p><em>Doneness:</em> {dish.doneness}</p>: null}
+                                                
+                                                
                                                 <p>
                                                     <span
                                                         onClick={() => {
@@ -117,6 +122,7 @@ class ShoppingCart extends Component {
                                                             }
                                                             this.removeDish();
                                                         }}>Remove </span>
+                                                        
 
                                                 </p>
 
@@ -137,7 +143,7 @@ class ShoppingCart extends Component {
                                     </div>
                                 );
                             })}
-
+                                <button onClick ={this.removeAll}>Remove All</button> 
                             <div className="total">
                                 <div>
                                     <p>Price <span>AMD {totalPirce}</span></p>
@@ -145,9 +151,10 @@ class ShoppingCart extends Component {
                                     <p>Total Price <span>AMD {totalPirce + 500}</span></p>
                                     {this.state.popUpIsOpen && <div onClick={(e) => {
                                         e.stopPropagation()
-                                    }}><Status dish={dishInfo} totalPirce = {totalPirce}/></div>}
+                                    }}><Status  remove = {this.removeAll} dish={dishInfo} totalPirce = {totalPirce}/></div>}
                                 </div>
                             </div>
+                           
                             <p className="orderButton">
                                 <button onClick={this.showPopUp}>Order Now</button>
                             </p>
