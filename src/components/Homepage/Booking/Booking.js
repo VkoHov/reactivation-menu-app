@@ -168,10 +168,6 @@ class Booking extends Component {
 		}
 	}
 
-
-
-
-
 	render() {
 
 		return (
