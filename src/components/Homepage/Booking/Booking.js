@@ -25,7 +25,7 @@ class Booking extends Component {
 
 	handleChange = (e) => {
 		if (e.target.id === 'date') {
-			var myDate = Number(new Date(e.target.value));
+			let myDate = Number(new Date(e.target.value));
 			this.setState({
 				dtatmilisecond: myDate,
 			})
@@ -70,10 +70,13 @@ class Booking extends Component {
 
 	checkDate = () => {
 
-		
+
 		if (this.state.date !== null) {
 
-			if (this.state.dtatmilisecond - Number(new Date()) < 0) {
+			let yy = new Date().getFullYear();
+			let mm = Number(new Date().getMonth()) + 1;
+			let dd = new Date().getDate();
+			if (this.state.dtatmilisecond - Number(new Date(`${yy}-${mm}-${dd}`)) < 0) {
 				this.setState({
 					date: 'error'
 				})
@@ -126,7 +129,7 @@ class Booking extends Component {
 							isReserved = true;
 							break;
 						} else {
-						
+
 							let foundDate
 							for (let reservDate of tables[i]['reservDate']) {
 								if (reservDate === this.state.date) {
@@ -164,7 +167,6 @@ class Booking extends Component {
 			});
 		}
 	}
-
 
 	render() {
 
@@ -212,9 +214,6 @@ class Booking extends Component {
 										<input
 											id="date"
 											type="date"
-											value={new Date()}
-											placeholder='Date'	
-
 											className={this.state.date}
 											onChange={this.handleChange}
 										/>
@@ -252,7 +251,7 @@ class Booking extends Component {
 							</div>
 							<p id={'garniki2444'}>
 								<button type="reset"
-									onClick={(e)=>{this.findTable(e)}}>find a table</button>
+									onClick={(e) => { this.findTable(e) }}>find a table</button>
 							</p>
 							<p className={this.state.className && this.state.className}> {
 								this.state.flag && this.state.message

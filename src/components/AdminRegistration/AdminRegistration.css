@@ -1,0 +1,15 @@
+.account.accountAdmin{
+    background-color: #efefef;
+}
+.account.accountAdmin p {
+    text-transform: capitalize;
+ }
+ .account.accountAdmin label{
+    color: #000000;
+ }
+ .account.accountAdmin input{
+   border:.3px solid #707070;
+ }
+ .error{
+     color:red
+ }

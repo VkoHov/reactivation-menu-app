@@ -46,7 +46,6 @@ class AddNewDish extends Component {
     handleAdd = (e) => {
         e.preventDefault();
         const { url, description, title, image, category, price, ingredients, rating, doneness } = this.state;
-        console.log(doneness)
         if (url && description && title && image && category !== 'category' && price) {
             this.props.addNewDish({ url, description, title, category, price, ingredients, rating, doneness });
             this.setState({
@@ -59,10 +58,7 @@ class AddNewDish extends Component {
                 rating: [],
                 doneness: [],
             })
-            console.log('exav')
-        } else {
-            console.log('chexav brat')
-        }
+        } 
     };
 
     addImage = (e) => {
