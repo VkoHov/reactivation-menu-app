@@ -23,7 +23,6 @@ class ChangableIngredient extends Component {
         this.props.changedIngArr(temp);
     }
     render() {
-        console.log(this.state.ingredients)
         return (
             <div className="chanIng">
                 {this.state.ingredients.map((inp,index)  => {

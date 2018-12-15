@@ -48,6 +48,7 @@ class TableInfo extends Component {
         let index = this.props.match.params && +this.props.match.params.tableId;
         let valuOfOrderskeys = [];
         let valuOfOrdersValue = [];
+        let totalPrice=[];
         if (this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status === 'reserve') {
             valuOfOrdersValue = Object.values(this.props.firestoreInfo && this.props.firestoreInfo[index - 1].reservInfo[this.state.empty]);
             valuOfOrderskeys = Object.keys(this.props.firestoreInfo && this.props.firestoreInfo[index - 1].reservInfo[this.state.empty]);
@@ -55,7 +56,7 @@ class TableInfo extends Component {
 
 
         if (this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status === 'busy') {
-            valuOfOrderskeys = ['title', 'ingridient', 'count', 'price'];
+            valuOfOrderskeys = ['count', 'ingridient' ,'price', 'title'];
             this.props.firestoreInfo && this.props.firestoreInfo[index - 1].orders.map(order => {
                 for (let key in order) {
                     for (let kay in order[key]) {
@@ -64,19 +65,24 @@ class TableInfo extends Component {
                         }
                     }
                 }
+
+                totalPrice.push(order.totalPrice);
             })
         }
+
 
         let orderInfon = [];
         let initialInfo = [];
         for (let i = 0, j = 0; i < valuOfOrdersValue.length; i++ , j++) {
             initialInfo.push(valuOfOrdersValue[i]);
-            if (j === 2) {
+            if (j === 3) {
                 orderInfon.push(initialInfo);
                 initialInfo = [];
                 j = -1;
             }
         }
+
+
 
         return (
            
@@ -100,11 +106,11 @@ class TableInfo extends Component {
                     }</div>
 
                     <div className={'gago'}> {
-                        this.props.firestoreInfo &&
+                        this.props.firestoreInfo && 
                         this.props.firestoreInfo[index - 1].status === 'busy' &&
                         orderInfon.map((info, inndex) => {
                             return (
-                                < OrderInfo key={inndex} info={info} />
+                                < OrderInfo key={inndex} info={info}  totalPrice={totalPrice}/>
                             )
                         })
                     }
@@ -121,42 +127,6 @@ class TableInfo extends Component {
                 </div>
                 </div>
                 <div>
-
-                    {/* <section className="menuList paddingTop">
-                        <div className="container">
-                            <div>
-                                <h1>{this.props.firestoreInfo && this.props.firestoreInfo[index - 1].status} </h1>
-                            </div>
-
-
-                            <div className="">
-                                <ul className="tableInfo">
-                                    <li><span>{valuOfOrderskeys[0]}:</span><p>{valuOfOrdersValue[0]}</p></li>
-                                    <li><span>{valuOfOrderskeys[7]}:</span><p>{valuOfOrdersValue[7]}</p></li>
-                                    <li><span>{valuOfOrderskeys[1]}:</span><p>{valuOfOrdersValue[1]}</p></li>
-                                    <li><span> {valuOfOrderskeys[4]}:</span><p>{valuOfOrdersValue[4]}</p></li>
-                                    <li><span>{valuOfOrderskeys[2]}:</span><p>{valuOfOrdersValue[2]}</p></li>
-                                    <li><span>{valuOfOrderskeys[5]}:</span><p>{valuOfOrdersValue[5]}</p></li>
-                                </ul>
-                            </div>
-
-                            <div >
-                                <p className="addNewD">
-                                    <button id={index} onClick={(table) => this.clearReserveOrOrder(table)}>
-                                        clear reserv/order
-                                     </button>
-                                </p>
-                            </div>
-
-
-                        </div>
-
-                        <div>
-                            <Link to={'/admin/'}> back to homePage </Link>
-                        </div>
-
-                    </section> */}
-
                 <div >
                     <p className="addNewD">
                         <button id={index} onClick={(table) => this.clearReserveOrOrder(table)}>
