@@ -7,7 +7,6 @@ import { addToCart } from "../../actions/dishDetailAction";
 import { changeData } from "../../actions/rateAction";
 import { shoppingCartPlusAction } from "../../actions/shoppingCartAction";
 import { removeFromFirestore } from "../../actions/addToFavAction";
-// import StarRatingComponent from 'react-star-rating-component';
 import _ from "lodash";
 import './Favorites.css';
 
@@ -23,7 +22,6 @@ class Favorites extends Component {
         if (infoArr) {
             let dishArr = [info];
             let array = infoArr.concat(dishArr);
-            console.log("chertov array", array);
 
             sessionStorage.setItem("dishInfo", JSON.stringify(array));
         } else {
@@ -66,9 +64,7 @@ class Favorites extends Component {
                             </div>
                             <h2>my <span>favorites</span></h2>
 
-                            {favorites &&
-                                favorites.map((dish, index) => {
-                                    console.log(dish)
+                            {favorites && favorites.map((dish, index) => {
                                     let info = {
                                         count: dish.count,
                                         description: dish.description,
@@ -95,39 +91,17 @@ class Favorites extends Component {
                                                                 ? dish.favoriteDish.description
                                                                 : dish.description}</p>
 
-                                                        <p>{" "}
-                                                            {dish.favoriteDish &&
-                                                                dish.favoriteDish.ingredients.length !== 0
-                                                                ? "<em>Ingrediens:</em>" + dish.favoriteDish.ingredients
-                                                                : dish.favIngredient}</p>
+                                                            {dish.favIngredient.length
+                                                                ? <p><em>Ingrediens:</em>  {dish.favIngredient}</p>
+                                                                : null}
 
-                                                        <p> {" "}
-                                                            {dish.favoriteDish &&
-                                                                dish.favoriteDish.doneness.length !== 0
-                                                                ? "<em>Doneness:</em>" + dish.favoriteDish.doneness
-                                                                : dish.favdoneness}
-                                                        </p>
-
-
-                                                        <p className=" price">Price: {info.price}(AMD)</p>
-                                                        {/* <div><em>Rating:</em>
-                                                        <StarRatingComponent
-                                                            name="rate1"
-                                                            starCount={5}
-                                                            value={info.rating}
-                                                            starColor={'#ff9900'}
-                                                            emptyStarColor={'#707070'}
-                                                        />
-                                                    </div> */}
-
-                                                    </div>
-
-
-
+                                                            {dish.favdoneness
+                                                                ?  <p><em>Doneness:</em> {dish.favdoneness}</p>
+                                                                : null}
+                                                                <p className=" price">Price: {info.price}(AMD)</p>
+                                                                </div>
                                                     <div className="favAddBlock">
-
-
-                                                        <p>   <button className="addtoCart" onClick={() => {
+                                                    <p>   <button className="addtoCart" onClick={() => {
 
                                                             let dishes = JSON.parse(
                                                                 sessionStorage.getItem("dishInfo")
@@ -157,7 +131,6 @@ class Favorites extends Component {
                                                                 });
                                                                 if (count === 0) {
                                                                     this.props.addToCart(info);
-                                                                    console.log("ifna mtnum");
                                                                     this.SaveDataToSessionStorage(info);
                                                                     this.props.shoppingCartPlusAction(shopCartCount);
                                                                     storageCount.count++;
@@ -178,10 +151,7 @@ class Favorites extends Component {
 
                                                             }
                                                         }}
-                                                        >
-                                                            Move To Cart
-            
-                                    </button>
+                                                        > Move To Cart</button>
                                                         </p>
                                                         <p>   <button className="addtoCart" onClick={() => {
 
@@ -215,7 +185,7 @@ class Favorites extends Component {
             return (
                 <div className="emptyCart">
                     YOUR FAVORITE LIST IS EMPTY YET,TO ADD FAVORITE DISHES CLICK{" "}
-                    <Link to="/listing">HERE</Link>
+                    <Link to="/">HERE</Link>
                 </div>
             )
         }
@@ -234,8 +204,7 @@ const mapDispatchToProps = dispatch => {
         changeData: project => dispatch(changeData(project)),
         addToCart: dishInfo => dispatch(addToCart(dishInfo)),
         removeFromFirestore: info => dispatch(removeFromFirestore(info)),
-        shoppingCartPlusAction: count => {
-            dispatch(shoppingCartPlusAction(count));
+        shoppingCartPlusAction: count => {dispatch(shoppingCartPlusAction(count));
         }
     };
 };

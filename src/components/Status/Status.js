@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { addToFirestore } from "../../actions/addToFireStoreAction";
+import {withRouter} from 'react-router-dom';
 import "./Status.css";
 
 class Status extends Component {
@@ -11,15 +12,15 @@ class Status extends Component {
     this.state = {
       popUpIsOpen: false,
       tableNumber: " ",
-      // userId: this.props
     };
     this.showPopUp = this.showPopUp.bind(this);
   }
   hendleChange(e) {
-    console.log("changing");
-    this.setState({
-      tableNumber: e.target.value
-    });
+      this.setState({
+        tableNumber: e.target.value
+      });
+    
+    
   }
   handleClick(info) {
     if (this.state.tableNumber > 0 && this.state.tableNumber < 7) {
@@ -28,27 +29,9 @@ class Status extends Component {
         if (table.id === this.state.tableNumber) {
           alert("Your order recieved");
           this.props.addToFirestore(info);
-        } else if(table.id !== this.state.tableNumber ) {
-          console.log("urishi sexanin patver mi ara,kamel es sexanin patver ka");
-        }
-        return (
-          <div>
-            <label className="status">
-              <input
-                min="1"
-                max="6"
-                onChange={e => this.hendleChange(e)}
-                type="number"
-                placeholder="Choose the number of table"
-              />
-              <p className="emptyCart">
-              <button  onClick={() => this.handleClick(info)}>Order</button>
-              </p>
-             
-              
-            </label>
-          </div>
-        );
+        } 
+        this.props.remove();
+        this.props.history.push('/');
       });
     }
   }
@@ -59,7 +42,6 @@ class Status extends Component {
     });
   };
   render() {
-    console.log("info", this.props.firebase.authUid);
     let info = {
       tableNumber: this.state.tableNumber,
       totalPrice: this.props.totalPirce,
@@ -95,7 +77,8 @@ const mapDispatchToProps = dispatch => {
 export default compose(
   connect(
     mapStateToProps,
-    mapDispatchToProps
-  ),
+    mapDispatchToProps,
+    ),
+    withRouter,
   firestoreConnect([{ collection: "tables" }])
 )(Status);
