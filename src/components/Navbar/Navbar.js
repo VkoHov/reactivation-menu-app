@@ -18,6 +18,7 @@ class Navbar extends Component {
 
     render() {
         let userId = this.props.auth.uid;
+        
         let storage = JSON.parse(sessionStorage.getItem("shoppingCartCount"));
         return (
             <header>
@@ -73,7 +74,7 @@ class Navbar extends Component {
                             <div className="layout">
                                 <AccountLayout />
 
-                                {this.props.info && this.props.info[userId].favorites.length?
+                                {this.props.info && this.props.info[userId] && this.props.info[userId].favorites.length?
                                 <Link to="/favorites"><i className="fas fa-heart"></i> </Link>: 
                                 <Link to="/favorites"><i className="far fa-heart"></i></Link>}
                                
