@@ -1,4 +1,4 @@
-export const AdminRegistration = (newAdmin) => {
+export const AdminReg = (newAdmin) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         firestore.collection("administrators").add({

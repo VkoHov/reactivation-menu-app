@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { SignUp } from '../../actions/authActions';
 import { connect } from 'react-redux';
-import { withRouter, Redirect ,Link} from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { compose } from 'redux';
 import { firestoreConnect } from "react-redux-firebase";
-import { AdminRegistration } from '../../actions/AdminRegistrationAction'
+import { AdminReg } from '../../actions/AdminRegistrationAction'
 import './AdminRegistration.css';
 
 
-class Registration extends Component {
+class AdminRegistration extends Component {
     state = {
         name: '',
         lastname: '',
@@ -49,7 +49,7 @@ class Registration extends Component {
                     collection: 'administrators',
                 });
 
-                 this.props.AdminRegistration({
+                 this.props.AdminReg({
                     name: name,
                     lastname: lastname,
                     email: email,
@@ -109,9 +109,6 @@ class Registration extends Component {
                                 <label htmlFor="passwordComfirm">Comfirme Password</label>
                                 <input type="password" id='passwordComfirm' onChange={this.handleChange} />
                             </div>
-                            {/* <div className="orLogIn">
-                                Or  <Link to="/login"> LOG IN</Link>
-                            </div> */}
                             <div className="">
                                 <button onClick={this.handleClick}>register</button>
                             </div>
@@ -136,7 +133,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         SignUp: (newUser) => dispatch(SignUp(newUser)),
-        AdminRegistration: (newAdmin) => dispatch(AdminRegistration(newAdmin)),
+        AdminReg: (newAdmin) => dispatch(AdminReg(newAdmin)),
     }
 };
 
@@ -144,4 +141,4 @@ export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([{ collection: 'administrators' }]),
     withRouter,
-)(Registrtion);
+)(AdminRegistration);
