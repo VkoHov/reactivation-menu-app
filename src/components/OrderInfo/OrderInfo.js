@@ -25,11 +25,6 @@ class OrderInfo extends Component {
                 <div>
                     <p>
                     {
-                        // this.props.totalPrice &&
-                        // this.props.totalPrice.map(price => {
-                        //     return price
-                        // })
-                     
                         this.props.totalPrice &&this.props.totalPrice[0]
                     }
                     </p>
