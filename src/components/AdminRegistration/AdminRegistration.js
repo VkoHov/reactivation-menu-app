@@ -41,21 +41,16 @@ class AdminRegistration extends Component {
                 this.setState({
                     invalidInpErr: false,
                 });
-                let signup = this.props.SignUp({
+
+                this.props.AdminReg({
                     name: name,
                     lastname: lastname,
                     email: email,
                     password: password,
-                    collection: 'administrators',
                 });
 
-                 this.props.AdminReg({
-                    name: name,
-                    lastname: lastname,
-                    email: email,
-                    password: password,
-                });
-                signup.then(() => this.props.history.push('/admin'));
+                this.props.history.push('/admin');
+            
             } else {
                 this.setState({
                     invalidInpErr: true,
@@ -67,17 +62,11 @@ class AdminRegistration extends Component {
             })
         }
 
-
-
     };
 
     render() {
         if (!this.props.auth.uid) return <Redirect to="/login" />;
         return (
-
-
-
-
             <section className="register paddingTop">
                 <div>
                     <div className="account accountAdmin">
@@ -139,6 +128,5 @@ const mapDispatchToProps = dispatch => {
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
-    firestoreConnect([{ collection: 'administrators' }]),
     withRouter,
 )(AdminRegistration);

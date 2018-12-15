@@ -4,7 +4,7 @@ export const AdminReg = (newAdmin) => {
         firestore.collection("administrators").add({
         	...newAdmin,
         }).then(() => {
-            dispatch({type: 'NEW_Admin', newAdmin});
+            dispatch({type: 'NEW_ADMIN', newAdmin});
         })
     }
 };
