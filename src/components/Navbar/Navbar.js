@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AccountLayout from '../Layout/AccountLayout/AccountLayout';
-import FavoriteLayout from '../Layout/FavoriteLayout/FavoriteLayout';
+import {compose} from 'redux';
 import './Navbar.css';
 import { connect } from 'react-redux';
 import { SlideToComponent } from '../../actions/navbarAction';
+import { firestoreConnect } from 'react-redux-firebase';
 
 // import ReactSVG from 'react-svg';
 class Navbar extends Component {
@@ -16,8 +17,7 @@ class Navbar extends Component {
     }
 
     render() {
-
-      
+        let userId = this.props.auth.uid;
         let storage = JSON.parse(sessionStorage.getItem("shoppingCartCount"));
         return (
             <header>
@@ -73,7 +73,10 @@ class Navbar extends Component {
                             <div className="layout">
                                 <AccountLayout />
 
-                               <Link to="/favorites"><i className="far fa-heart"></i> </Link>
+                                {this.props.info && this.props.info[userId].favorites.length?
+                                <Link to="/favorites"><i className="fas fa-heart"></i> </Link>: 
+                                <Link to="/favorites"><i className="far fa-heart"></i></Link>}
+                               
                                 <Link to="/shoppingcart" className="cartIcon"><i className="fas fa-shopping-cart">
                                     {storage && <span>{(storage.count)}</span>}
                                 </i></Link>
@@ -93,13 +96,16 @@ class Navbar extends Component {
 const mapStateToProps = state => {
     return {
         shoppingCartCount: state.shoppingCart.shoppingCartCount,
+        auth: state.firebase.auth,
+        info: state.firestore.data.users,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        SlideToComponent: (sliderId) => {
-            dispatch(SlideToComponent(sliderId))
-        },
+        SlideToComponent: (sliderId) => dispatch(SlideToComponent(sliderId)),
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([{collection :"users"}]),
+)(Navbar);

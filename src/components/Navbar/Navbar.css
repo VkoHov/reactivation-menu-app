@@ -23,6 +23,8 @@ nav{
 	text-transform: uppercase;
 	color: #fff;
 	margin: 0;
+	cursor:pointer;
+	
 }
 
 a.logo{
