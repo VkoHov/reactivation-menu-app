@@ -144,7 +144,7 @@ class Booking extends Component {
 			if (checkIsRezerv) {
 				for (let key in tables[i]) {
 					if (checkIsRezerv) {
-						if (tables[i]['reservDate'].length === 0) {
+						if (key['reservDate'].length === 0) {
 							checkIsRezerv = false;
 							this.props.changeStatus({ id: i + 1 + '', info: tableInformation, });
 							isReserved = true;
