@@ -5,7 +5,7 @@ import ChangableIngredient from './changableIngredients/changableIngredient';
 import Doneness from './Doneness/Doneness';
 import { storage } from '../../config/fbConfig';
 import { firestoreConnect } from "react-redux-firebase";
-import { Link } from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import { compose } from 'redux';
 import './AddNewDish.css';
 
@@ -58,7 +58,8 @@ class AddNewDish extends Component {
                 rating: [],
                 doneness: [],
             })
-        } 
+            this.props.history.push('/admin/editmanu');
+        }
     };
 
     addImage = (e) => {
@@ -86,7 +87,8 @@ class AddNewDish extends Component {
                     .child(image.name)
                     .getDownloadURL()
                     .then(url => {
-                        this.setState({ url })
+                        this.setState({ url });
+                        alert('image uploaded');
                     })
             }
         )
@@ -194,6 +196,7 @@ const mapDispatchToProps = (dispatch) => {
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
+    withRouter,
     firestoreConnect([
         { collection: 'categories' }
     ])

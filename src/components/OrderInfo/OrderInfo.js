@@ -4,7 +4,6 @@ import './OrderInfo.css';
 class OrderInfo extends Component {
 
     render() {
-        console.log('horoxper inch ka qeznic', this.props);
         return (
             <div> 
                 < div>
