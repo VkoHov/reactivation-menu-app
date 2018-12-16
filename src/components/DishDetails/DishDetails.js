@@ -190,20 +190,7 @@ class DishDetails extends React.Component {
                 <div className="pop-Up-inner" onClick={e => e.stopPropagation()}>
                     <div>
                         <div className="disPhoto"><img src={this.props.dish.dish.url} alt="dishimage"/></div>
-                        <div className="socIcon">
-                            <Link to="">
-                                <i className="fab fa-facebook-square"></i>
-                                <span>facebook</span>
-                            </Link>
-                            <Link to="">
-                                <i className="fab fa-instagram"></i>
-                                <span>instagram</span>
-                            </Link>
-                            <Link to="">
-                                <i className="fab fa-twitter"></i>
-                                <span>twitter</span>
-                            </Link>
-                        </div>
+                        <p>{dish && dish[0].description}</p>
                     </div>
                     <div>
                         <div
@@ -218,10 +205,6 @@ class DishDetails extends React.Component {
                                 this.mouseLeaving();
                             }}
                         >
-                            {/* <div>
-                                Rating:
-                                {rates ? Math.round(parseFloat(rates / 20) * 100) / 100 : null}
-                            </div> */}
                             <div className="rating" style={{width: width}}/>
                             <div className="star-container">
                                 <img className="star" alt="star" src={this.state.starUrl}/>
@@ -232,7 +215,6 @@ class DishDetails extends React.Component {
                             </div>
                         </div>
                         <h4>{dishTitile}</h4>
-                        <p>{dish && dish[0].description}</p>
                         <p className="price">{dishPrice}(AMD) </p>
                         <h5>Choose Your Ingredient</h5>
                         {dish[0].ingredients.length !== 0 && (
