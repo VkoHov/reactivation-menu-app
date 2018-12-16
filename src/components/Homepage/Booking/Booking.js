@@ -13,10 +13,15 @@ import './Booking.css';
 class Booking extends Component {
 	state = {
 		people: null,
+		peopleValidation:null,
 		date: null,
+		dateValidation:null,
 		time: null,
+		tumeValidation:null,
 		name: null,
+		nameValidation:null,
 		phone: null,
+		phoneValidation:null,
 		dtatmilisecond: null,
 		message: null,
 		flag: true,
@@ -40,30 +45,33 @@ class Booking extends Component {
 		switch (true) {
 			case (this.state.people === null):
 				this.setState({
-					people: 'error'
+					peopleValidation: 'error'
 				})
 				break;
 			case (this.state.date === null):
 				this.setState({
-					date: 'error'
+					dateValidation: 'error'
 				})
 				break;
 			case (this.state.time === null):
 				this.setState({
-					time: 'error'
+					timeValidation: 'error'
 				})
 				break;
 			case (this.state.name === null):
 				this.setState({
-					name: 'error'
+					nameValidation: 'error'
 				})
 				break;
 			case ((this.state.phone === null) || (this.state.phone === '')):
 				this.setState({
-					phone: 'error'
+					phoneValidation: 'error'
 				})
 				break;
 			default:
+			this.setState({
+				phoneValidation: null,
+			})
 				this.checkDate();
 		}
 	}
@@ -78,16 +86,25 @@ class Booking extends Component {
 			let dd = new Date().getDate();
 			if (this.state.dtatmilisecond - Number(new Date(`${yy}-${mm}-${dd}`)) < 0) {
 				this.setState({
-					date: 'error'
+					dateValidation: 'error',
 				})
+
 				return;
+			}else{
+				this.setState({
+					dateValidation: null,
+				})
 			}
 		}
 		if (+this.state.time[0] < 1) {
 			this.setState({
-				time: 'error'
+				timeValidation: 'error',
 			})
 			return;
+		}else{
+			this.setState({
+				timeValidation: null,
+			})
 		}
 		if (this.state.phone !== null) {
 			this.checkNumber(this.state.phone);
@@ -97,12 +114,15 @@ class Booking extends Component {
 	checkNumber = (inputtxt) => {
 		var phoneno = /^\+?([0-9]{3})\)?[-. ]?([0-9]{2})[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/;
 		if (inputtxt.match(phoneno)) {
+			this.setState({
+				phoneValidation: null,
+			})
 			this.props.tables &&
 				this.chechTables(this.props.tables);
 		}
 		else {
 			this.setState({
-				phone: 'error'
+				phoneValidation: 'error',
 			})
 			return false;
 		}
@@ -116,6 +136,7 @@ class Booking extends Component {
 			phoneNumber: this.state.phone,
 			people: this.state.people,
 			date: this.state.date,
+			time:this.state.time,
 		}
 
 
@@ -195,7 +216,7 @@ class Booking extends Component {
 								<div>
 									<p>
 										<select id="people" defaultValue="people"
-											className={this.state.people}
+											className={this.state.peopleValidation}
 											onChange={this.handleChange}>
 											<option value='people'
 												disabled
@@ -214,13 +235,13 @@ class Booking extends Component {
 										<input
 											id="date"
 											type="date"
-											className={this.state.date}
+											className={this.state.dateValidation}
 											onChange={this.handleChange}
 										/>
 									</p>
 									<p>
 										<input
-											className={this.state.time}
+											className={this.state.timeValidation}
 											type="time"
 											id='time'
 											onChange={this.handleChange}
@@ -233,14 +254,14 @@ class Booking extends Component {
 											id='name'
 											type='text'
 											placeholder='Name'
-											className={this.state.name}
+											className={this.state.nameValidation}
 											onChange={this.handleChange}
 
 										/>
 									</p>
 									<p>
 										<input
-											className={this.state.phone}
+											className={this.state.phoneValidation}
 											id="phone"
 											type="text"
 											placeholder='+374  - -   - - -    - - - '
@@ -249,8 +270,8 @@ class Booking extends Component {
 									</p>
 								</div>
 							</div>
-							<p id={'garniki2444'}>
-								<button type="reset"
+							<p>
+								<button  type={'button'}
 									onClick={(e) => { this.findTable(e) }}>find a table</button>
 							</p>
 							<p className={this.state.className && this.state.className}> {
