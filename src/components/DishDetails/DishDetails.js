@@ -30,14 +30,15 @@ class DishDetails extends React.Component {
     }
 
     countRating = e => {
+        console.log(e.currentTarget.offsetWidth)
         if (!this.state.isRated) {
             this.setState({
                 mouseOnWidth:
                     e.clientX -
                     e.currentTarget.offsetLeft -
-                    200 +
-                    20 -
-                    ((e.clientX - e.currentTarget.offsetLeft - 200) % 20)
+                    e.currentTarget.offsetWidth +
+                    e.target.offsetWidth - (e.currentTarget.offsetWidth/2) -
+                    ((e.clientX - e.currentTarget.offsetLeft - e.currentTarget.offsetWidth) % 20)
             });
         }
     };
