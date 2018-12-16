@@ -8,9 +8,7 @@ import { changeTableStatus } from '../../../../actions/changeTableStatusAction';
 import ReserveInfo from '../../../ReserInfo/ReserveInfo';
 import OrderInfo from '../../../OrderInfo/OrderInfo';
 
-
 import './TableInfo.css';
-
 
 
 class TableInfo extends Component {
@@ -19,9 +17,7 @@ class TableInfo extends Component {
     }
 
     clearReserveOrOrder = (table) => {
-
         this.props.clearReserveOrOrder({ id: table.target.id });
-
     }
 
 
@@ -42,6 +38,9 @@ class TableInfo extends Component {
     }
 
 
+
+
+    
     render() {
         const { match, firestoreInfo } = this.props;
         const { empty } = this.state
@@ -70,7 +69,6 @@ class TableInfo extends Component {
                         }
                     }
                 }
-
                 totalPrice.push(order.totalPrice);
                 return '';
             })

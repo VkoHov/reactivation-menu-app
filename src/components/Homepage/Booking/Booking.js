@@ -139,18 +139,18 @@ class Booking extends Component {
 			time:this.state.time,
 		}
 
-
 		for (let i = 0; i <= tables.length; i++) {
+		
 			if (checkIsRezerv) {
 				for (let key in tables[i]) {
+						
 					if (checkIsRezerv) {
-						if (key['reservDate'].length === 0) {
+						if (tables[i]['reservDate'].length === 0) {
 							checkIsRezerv = false;
 							this.props.changeStatus({ id: i + 1 + '', info: tableInformation, });
 							isReserved = true;
 							break;
 						} else {
-
 							let foundDate
 							for (let reservDate of tables[i]['reservDate']) {
 								if (reservDate === this.state.date) {
