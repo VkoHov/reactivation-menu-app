@@ -57,7 +57,7 @@ class AddNewDish extends Component {
                 price: null,
                 rating: [],
                 doneness: [],
-            })
+            });
             this.props.history.push('/admin/editmanu');
         }
     };
@@ -187,12 +187,12 @@ const mapStateToProps = state => {
     return {
         categories: state.firestore.ordered.categories
     }
-}
+};
 const mapDispatchToProps = (dispatch) => {
     return {
         addNewDish: (newDish) => dispatch(addNewDish(newDish)),
     }
-}
+};
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
