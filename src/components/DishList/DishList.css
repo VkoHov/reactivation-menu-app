@@ -78,3 +78,7 @@ p.price {
 	margin:0 5px;
 
 }
+label.dv-star-rating-star.dv-star-rating-full-star>i,
+label.dv-star-rating-star.dv-star-rating-empty-star>i{
+	cursor:default;
+}

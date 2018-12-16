@@ -23,6 +23,11 @@ class AddNewDish extends Component {
             price: null,
             rating: [],
             doneness: [],
+            nameError:'',
+            descError:'',
+            categError:'',
+            priceError:'',
+            fileError:'',
         }
     }
 
@@ -39,11 +44,46 @@ class AddNewDish extends Component {
     }
 
     handleChange = (e) => {
+        console.log("its work", e.target.value)
         this.setState({
             [e.target.id]: e.target.value,
         })
+        console.log(this.state.category,'state');
     };
     handleAdd = (e) => {
+        console.log(this.state.category === 'category',this.state.categError)
+        switch (true) {
+            case (this.state.title === null):
+            this.setState({
+                nameError: 'errorBorder'
+            })
+            break;
+            case (this.state.description === null):
+            this.setState({
+                descError: 'errorBorder'
+            })
+            break;
+            case (this.state.category === 'category'):
+            
+                this.setState({
+                    categError: 'errorBorder'
+                })
+            
+            break;
+            case (this.state.price === null):
+            this.setState({
+               priceError: 'errorBorder'
+            })
+            break;
+            case (this.state.url === ''):
+            this.setState({
+              fileError: 'errorBorder'
+            })
+            break;
+            
+    
+			
+            }
         e.preventDefault();
         const { url, description, title, image, category, price, ingredients, rating, doneness } = this.state;
         if (url && description && title && image && category !== 'category' && price) {
@@ -58,6 +98,7 @@ class AddNewDish extends Component {
                 rating: [],
                 doneness: [],
             })
+            
         } 
     };
 
@@ -106,6 +147,7 @@ class AddNewDish extends Component {
                                     type="text"
                                     className="and"
                                     placeholder="Dish title"
+                                    className = {this.state.nameError +' and'}
                                     onChange={this.handleChange}
                                 />
                             </div>
@@ -113,7 +155,7 @@ class AddNewDish extends Component {
                                 <label htmlFor="description">Short description</label>
                                 <textarea
                                     id="description"
-                                    className="and"
+                                    className={this.state.descError +' and'}
                                     placeholder="Short description"
                                     onChange={this.handleChange}>
                                 </textarea>
@@ -123,7 +165,7 @@ class AddNewDish extends Component {
                                 <label htmlFor="Category">Category</label>
                                 <select
                                     id="category" onChange={this.handleChange}
-                                    className="and"
+                                    className={this.state.categError + " and"}
                                     value={this.state.category}
                                 >
                                     <option value="category" disabled style={{ display: 'none' }}> Category</option>
@@ -151,7 +193,7 @@ class AddNewDish extends Component {
                                 <label htmlFor="price">price</label>
                                 <input id="price"
                                     type="text"
-                                    className="and"
+                                    className={this.state.priceError +" and"}
                                     placeholder="Price"
                                     onChange={this.handleChange}
                                 />
@@ -162,7 +204,7 @@ class AddNewDish extends Component {
                                 <input
                                     id="image"
                                     type="file"
-                                    className="and"
+                                    className={this.state.fileError +" and"}
                                     onChange={this.addImage}
                                 />
                                 <button type="button" className="upload" onClick={this.handleUpload}>Upload</button>

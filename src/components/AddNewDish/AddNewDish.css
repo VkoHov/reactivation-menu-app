@@ -18,7 +18,7 @@
     outline:none;
 }
 .and1{
-     width: 28.3vw;
+     width: 28.5vw;
    }
    .new-dish form> div:last-of-type{
        margin-top: 20px;
@@ -78,6 +78,7 @@ input[type="file"]{
     background-color: transparent;
     border:none;
     margin-left: 20px;
+    padding-bottom: 13px;
 }
 .add{
     text-transform: uppercase;
@@ -107,4 +108,11 @@ input[type="file"]{
 .add-new-dish textarea::placeholder{
     font-weight: 400;
 }
-
+.errorBorder{
+    border:2px solid red;
+}
+input[type="file"].errorBorder::after{
+    content:'please choose image';
+    color:red;
+    display: block;
+}
