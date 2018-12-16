@@ -15,6 +15,10 @@ class Registration extends Component {
         passwordComfirm: '',
         passwordComfErr: false,
         invalidInpErr: false,
+        nameError:'',
+        lastnameError:'',
+        emailError:'',
+        passwordError:'',
     };
     handleChange = (e) => {
         console.log(this.state);
@@ -57,7 +61,28 @@ class Registration extends Component {
                 passwordComfErr: true,
             })
         }
-
+        switch(true){
+            case (this.state.name === '') :
+            this.setState({
+                nameError:'errorBorder',
+            });
+            break;
+            case (this.state.lastname === '') :
+            this.setState({
+                lastnameError:'errorBorder',
+            });
+            break;
+            case (this.state.email === '') :
+            this.setState({
+                emailError:'errorBorder',
+            });
+            break;
+            case (this.state.password === '') :
+            this.setState({
+                passwordError:'errorBorder',
+            });
+            break;
+        }
     };
 
     render() {
@@ -73,23 +98,29 @@ class Registration extends Component {
                             {this.props.registerError && <div  className="regError">{this.props.registerError}</div>}
                             <div>
                                 <label htmlFor="name">Name</label>
-                                <input type="text" id='name' onChange={this.handleChange}/>
+                                <input type="text" id='name' onChange={this.handleChange} className={this.state.nameError}/>
                             </div>
                             <div>
                                 <label htmlFor="lastname">Lastname</label>
-                                <input type="text" id='lastname' onChange={this.handleChange}/>
+                                <input type="text" id='lastname' onChange={this.handleChange} className={this.state.lastnameError}/>
                             </div>
                             <div>
                                 <label htmlFor="email">Email</label>
-                                <input type="email" id='email' onChange={this.handleChange}/>
+                                <input type="email" id='email' onChange={this.handleChange} className={this.state.emailError}/>
                             </div>
-                            {this.state.passwordComfErr && <div>Invalid password input</div>}
                             <div>
                                 <label htmlFor="password">Password</label>
+                            {this.state.passwordComfErr && this.state.password.length < 6 && <div className="regError">
+                                 not less than 6 numbers, letters or symbols
+                            </div>}
                                 <input type="password" id='password' onChange={this.handleChange}/>
                             </div>
+                           
                             <div>
-                                <label htmlFor="passwordComfirm">Comfirme Password</label>
+                                <label htmlFor="passwordComfirm">Comfirm Password</label>
+                             {this.state.passwordComfErr && this.state.password !== this.state.passwordComfirm < 6 && <div className="regError">
+                             comfirm your password
+                             </div>}
                                 <input type="password" id='passwordComfirm' onChange={this.handleChange}/>
                             </div>
                             <div className="orLogIn">
