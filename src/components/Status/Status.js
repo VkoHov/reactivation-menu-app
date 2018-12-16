@@ -35,6 +35,7 @@ class Status extends Component {
         }
         this.props.remove();
         this.props.history.push('/');
+        return table;
       });
     }
   }

@@ -3,7 +3,7 @@ import { SignUp } from '../../actions/authActions';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import { compose } from 'redux';
-import { firestoreConnect } from "react-redux-firebase";
+// import { firestoreConnect } from "react-redux-firebase";
 import { AdminReg } from '../../actions/AdminRegistrationAction'
 import './AdminRegistration.css';
 
