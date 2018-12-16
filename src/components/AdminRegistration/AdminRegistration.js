@@ -3,6 +3,7 @@ import { SignUp } from '../../actions/authActions';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import { compose } from 'redux';
+
 import './AdminRegistration.css';
 
 
