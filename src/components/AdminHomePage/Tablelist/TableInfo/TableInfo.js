@@ -72,6 +72,7 @@ class TableInfo extends Component {
                 }
 
                 totalPrice.push(order.totalPrice);
+                return '';
             })
         }
 

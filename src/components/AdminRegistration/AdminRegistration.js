@@ -3,8 +3,6 @@ import { SignUp } from '../../actions/authActions';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import { compose } from 'redux';
-import { firestoreConnect } from "react-redux-firebase";
-import { AdminReg } from '../../actions/AdminRegistrationAction'
 import './AdminRegistration.css';
 
 
@@ -42,11 +40,12 @@ class AdminRegistration extends Component {
                     invalidInpErr: false,
                 });
 
-                this.props.AdminReg({
+                this.props.SignUp({
                     name: name,
                     lastname: lastname,
                     email: email,
                     password: password,
+                    collection: 'administrators',
                 });
 
                 this.props.history.push('/admin');
@@ -122,7 +121,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         SignUp: (newUser) => dispatch(SignUp(newUser)),
-        AdminReg: (newAdmin) => dispatch(AdminReg(newAdmin)),
     }
 };
 
