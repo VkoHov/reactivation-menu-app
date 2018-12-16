@@ -143,12 +143,10 @@ class ShoppingCart extends Component {
                                     </div>
                                 );
                             })}
-                                <button onClick ={this.removeAll}>Remove All</button> 
+                                
                             <div className="total">
                                 <div>
-                                    <p>Price <span>AMD {totalPirce}</span></p>
-                                    <p>Delivery <span>AMD 500</span></p>
-                                    <p>Total Price <span>AMD {totalPirce + 500}</span></p>
+                                    <p> Total Price <span>AMD {totalPirce}</span></p>
                                     {this.state.popUpIsOpen && <div onClick={(e) => {
                                         e.stopPropagation()
                                     }}><Status  remove = {this.removeAll} dish={dishInfo} totalPirce = {totalPirce}/></div>}
@@ -156,6 +154,7 @@ class ShoppingCart extends Component {
                             </div>
                            
                             <p className="orderButton">
+                                <button onClick ={this.removeAll}>Remove All</button> 
                                 <button onClick={this.showPopUp}>Order Now</button>
                             </p>
                         </div>

@@ -122,6 +122,7 @@ flex-basis: 29%;
     padding: 10px 2%;
     cursor:pointer;
     text-transform: uppercase;
+    margin-left: 0.83em;
 }
 
 .orderButton button:hover{
