@@ -108,7 +108,7 @@ input[type="file"]{
 .add-new-dish textarea::placeholder{
     font-weight: 400;
 }
-.errorBorder{
+.errorBorder,{
     border:2px solid red;
 }
 input[type="file"].errorBorder::after{

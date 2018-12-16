@@ -69,3 +69,14 @@
    vertical-align: middle;
    color:#ff9900;
 }
+
+ input[type='email'].errorBorder::before{
+    content:'The email you provided does not match any accounts';
+    color:red;
+    display: block;
+border:2px solid red;
+}
+.loginForm .errorBorder,
+.account .errorBorder{
+    border:2px solid red;
+}
